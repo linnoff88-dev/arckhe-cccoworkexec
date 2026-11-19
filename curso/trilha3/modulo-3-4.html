@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.4 — Demo como post-mortem | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.10); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span>
+      <span class="text-purple-400">Módulo 3.4</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📼 Demo como post-mortem, nunca ao vivo</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Riley Goodside descreve demos ao vivo de IA como <em>"arranging a ballet over lava"</em>. Ao vivo é roleta russa.
+        Atlassian recomenda explicitamente gravar com Loom. Show-then-do é a regra. Ao vivo só com sala &lt; 10 e demo &lt; 30s.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Crítico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Regra</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎲 Por que ao vivo é roleta russa</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cinco modos de falha independentes acompanham toda demo ao vivo. Mesmo que cada um tenha 90% de funcionar,
+        a probabilidade composta de <em>algo</em> dar errado é alta.
+      </p>
+
+      <div class="bg-gradient-to-br from-red-900/20 to-dark-800 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-4 flex items-center"><span class="mr-2">⚠️</span> Os 5 modos documentados</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-white">1. Queda de internet / VPN:</strong> frequente — wifi corporativo é a fonte #1 de falha</li>
+          <li><strong class="text-white">2. Timeout ou erro de API:</strong> latência alta com sala lotada acessando junto</li>
+          <li><strong class="text-white">3. Prompt não produz resultado esperado:</strong> alucinação ou resposta banal visível</li>
+          <li><strong class="text-white">4. Resposta longa e confusa:</strong> sala perde o fio antes de ver o ponto</li>
+          <li><strong class="text-white">5. Conta bloqueada / rate limit:</strong> raro, mas catastrófico — demo inviabilizada</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🧮</span> A matemática crua</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>P(cada modo ok) = 90%   (otimista)
+P(todos os 5 ok) = 0.9^5 = 0.59
+P(pelo menos 1 falha) = 1 - 0.59 = 41%
+
+Em demo encadeada (workflow longo): 4-5 modos
+por step × 4 steps = ainda pior.</code></pre>
+        <p class="text-neutral-400 text-sm mt-3">Mesmo no otimismo absurdo, 4 em cada 10 demos ao vivo terão pelo menos um susto.</p>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💸 Custo real de uma demo travada</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O custo da demo travada não é o constrangimento de 30s. É o LTV perdido — workshops que não fecham, retainers que não se formam,
+        a história que circula nos grupos de WhatsApp da liderança.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Custos imediatos</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>NPS do workshop cai 2-3 pontos</li>
+            <li>Sponsor sente que recomendou errado</li>
+            <li>Q&amp;A vira interrogatório técnico</li>
+            <li>Foto/clip "demo travada" circula</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Custos de longo prazo (LTV)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Workshop seguinte: pode não fechar (-$5k)</li>
+            <li>Implementation sprint: improvável (-$15k)</li>
+            <li>Retainer mensal: nunca rola (-$24k/ano)</li>
+            <li>Indicação pra outra empresa: zero</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Conta crua</h3>
+        <p class="text-neutral-300">
+          30 segundos de demo travada podem custar <strong>$20k+ em consultoria futura</strong>. Gravar leva 30 minutos.
+          Razão custo/benefício: 1:1000. Não há decisão racional pra fazer ao vivo um workflow longo.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📺 Show-then-do — a regra Atlassian</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O AI Training Workshop Playbook oficial da Atlassian estabelece: <strong class="text-purple-400">facilitador mostra primeiro, participantes replicam depois</strong>.
+        Não "vamos descobrir juntos". Não "tentem você primeiro". Show, then do.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Show-then-do</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Facilitador demonstra (gravado idealmente)</li>
+            <li>Participantes replicam em laptop</li>
+            <li>Caminho conhecido = menos perguntas básicas</li>
+            <li>Sucesso visível em todos</li>
+            <li>Permite acompanhar quem trava</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ "Vamos descobrir juntos"</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Soa colaborativo, mas mata tempo</li>
+            <li>30 perguntas básicas paralelas</li>
+            <li>Quem é leigo se sente burro</li>
+            <li>Quem é técnico se sente perdendo tempo</li>
+            <li>Workshop vira chaos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">📋</span> Estrutura "show-then-do"</h3>
+        <ol class="space-y-2 text-neutral-300 list-decimal list-inside">
+          <li><strong>Show (3 min):</strong> facilitador exibe demo gravada com narração ao vivo</li>
+          <li><strong>Bridge (1 min):</strong> "agora cada um faz a sua versão. Vou estar aqui. Quem travar levanta a mão."</li>
+          <li><strong>Do (5-10 min):</strong> participantes praticam, facilitador circula</li>
+          <li><strong>Debrief (2 min):</strong> 2-3 pessoas compartilham o que tentaram</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎥 Como gravar — Loom, OBS, QuickTime</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Você não precisa virar editor de vídeo. Precisa de gravação limpa, áudio inteligível e cursor visível. Atlassian
+        recomenda explicitamente <strong class="text-purple-400">Loom</strong> pra demos de IA.
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Loom (recomendação Atlassian)</h4>
+            <p class="text-sm text-neutral-400 mb-2">Plano free serve. Share por URL.</p>
+            <p class="text-neutral-300 text-sm">Extensão de browser. Grava tela + webcam (opcional) + áudio. Edição básica de cortes inline. URL pública pra compartilhar com participantes pós-evento.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">OBS Studio (controle total)</h4>
+            <p class="text-sm text-neutral-400 mb-2">Grátis, multi-plataforma.</p>
+            <p class="text-neutral-300 text-sm">Multi-cena, transições, zoom em tempo real. Curva de aprendizado maior. Vale se você grava muitas demos por semana.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">QuickTime (Mac, zero setup)</h4>
+            <p class="text-sm text-neutral-400 mb-2">Pré-instalado em macOS.</p>
+            <p class="text-neutral-300 text-sm">File → New Screen Recording. Sem features avançadas, mas funciona offline. Use quando o tempo de prep é &lt; 10 min.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎤</span> Checklist técnico</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Headset (não use mic do laptop — pega ruído)</li>
+          <li>Cursor com highlight (Cursorcerer, Mouseposé)</li>
+          <li>Tela 1920×1080 pra projetor padrão</li>
+          <li>Fonte grande no terminal/IDE (mínimo 18pt)</li>
+          <li>Ambiente silencioso (avise quem mora junto)</li>
+          <li>Gravação em MP4 H.264 — universal</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎙️ Narração — comentário esportivo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Truque-chave: <strong class="text-purple-400">grave o vídeo sem áudio</strong>. Narre AO VIVO por cima, como narrador de jogo. Aproveita energia da sala
+        e mantém o vídeo flexível pra perguntas. Coberto em detalhe no módulo 3.6.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Vídeo mudo + narração ao vivo</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Sala em "modo aula", não Netflix</li>
+            <li>Você ajusta foco conforme reação</li>
+            <li>Pode pausar pra perguntas</li>
+            <li>Adapta linguagem ao público real</li>
+            <li>Mesma gravação serve várias sessões</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Vídeo com áudio gravado</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Sala consome passivamente, perde atenção</li>
+            <li>Você fica refém do timing</li>
+            <li>Pausar fica estranho</li>
+            <li>Não adapta à reação da sala</li>
+            <li>Sinaliza "isto é vídeo, não aula"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Grave numa pasada. Não tente narrar enquanto grava. Grava limpo (5 min de execução), depois narra em 2-3 ensaios. Versão final é narração ao vivo no palco.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">✅ Quando ao vivo é OK</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Não é proibição absoluta. Existe um envelope claro onde ao vivo funciona: <strong class="text-purple-400">sala &lt; 10 pessoas E demo &lt; 30 segundos</strong>. Fora isso, gravado.
+      </p>
+
+      <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">✓</span> Condições pra ao vivo</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-white">Sala &lt; 10:</strong> workshop conversado, recuperação fácil se algo falhar</li>
+          <li><strong class="text-white">Demo &lt; 30s:</strong> uma chamada de modelo, prompt simples, output curto</li>
+          <li><strong class="text-white">Sem encadeamento:</strong> não envolve connectors, subagents, ou workflow</li>
+          <li><strong class="text-white">Modelo testado:</strong> Sonnet 4.6 ou Haiku 4.5 — não use Opus em demo curta</li>
+          <li><strong class="text-white">Prompt pré-testado:</strong> rodado 3+ vezes em condições similares</li>
+        </ul>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">✗</span> Nunca ao vivo</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Sala &gt; 50: latência composta, risco multiplicado</li>
+          <li>Workflow encadeado (3+ steps)</li>
+          <li>Connector externo (Workspace, GitHub, etc.)</li>
+          <li>Demo 5 / moonshot</li>
+          <li>Prompt que nunca rodou antes</li>
+          <li>Webinar online (problema de latência inerente)</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold mb-1">&lt; 10</div><div class="text-sm text-neutral-400">Sala</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold mb-1">&lt; 30s</div><div class="text-sm text-neutral-400">Demo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold mb-1">1 step</div><div class="text-sm text-neutral-400">Sem chain</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold mb-1">3x</div><div class="text-sm text-neutral-400">Testado antes</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">5 modos de falha → 41% de risco</strong><span class="text-neutral-400"> — mesmo no otimismo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Custo real é LTV, não 30s</strong><span class="text-neutral-400"> — $20k+ em consultoria perdida</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Show-then-do (Atlassian)</strong><span class="text-neutral-400"> — mostre primeiro, deixe replicar</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Loom &gt; OBS &gt; QuickTime</strong><span class="text-neutral-400"> — escolha pelo tempo de prep</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Vídeo mudo + narração ao vivo</strong><span class="text-neutral-400"> — mantém energia de aula</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Ao vivo só com sala &lt; 10 e demo &lt; 30s</strong><span class="text-neutral-400"> — fora desse envelope, grave</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.5 — 🆘 Plano B: queda de internet, Claude indisponível (4 modos de falha, 4 respostas)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 3.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 3 — Pré-produção de Demos | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span>
+            <span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">TRILHA 3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎬 Pré-produção de Demos</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Demo travada queima o workshop inteiro. Esta trilha é o playbook de pré-produção: coletar o avatar do
+        cliente, extrair material real (e-mails via Google Workspace), montar 5 demos incrementais, gravar tudo
+        com plano B — e narrar ao vivo como comentário esportivo. Ao vivo só quando vale o risco.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">6</div>
+          <div class="text-xs text-neutral-400">Módulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">36</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">~4h</div>
+          <div class="text-xs text-neutral-400">Duração</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-purple-400">Prático</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- MAPA DA TRILHA -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#modulo-3-1" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.1</span><span class="text-xs text-neutral-500">~45 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🎭 Avatar da empresa</h3>
+          <p class="text-xs text-neutral-400">Site, deck, calls em 1 arquivo</p>
+        </a>
+        <a href="#modulo-3-2" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.2</span><span class="text-xs text-neutral-500">~40 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">📧 E-mails reais via CLI</h3>
+          <p class="text-xs text-neutral-400">Workspace + sanitização</p>
+        </a>
+        <a href="#modulo-3-3" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.3</span><span class="text-xs text-neutral-500">~50 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🎬 5 demos incrementais</h3>
+          <p class="text-xs text-neutral-400">Do trivial ao moonshot</p>
+        </a>
+        <a href="#modulo-3-4" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.4</span><span class="text-xs text-neutral-500">~40 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">📼 Post-mortem, não ao vivo</h3>
+          <p class="text-xs text-neutral-400">Ao vivo é roleta russa</p>
+        </a>
+        <a href="#modulo-3-5" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.5</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🆘 Plano B: queda</h3>
+          <p class="text-xs text-neutral-400">4 modos de falha, 4 respostas</p>
+        </a>
+        <a href="#modulo-3-6" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.6</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🎙️ Narração ao vivo</h3>
+          <p class="text-xs text-neutral-400">Comentário esportivo sobre gravado</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTEUDO DETALHADO -->
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MODULO 3.1 -->
+    <div id="modulo-3-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.1</span><span class="text-xs text-neutral-500">~45 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎭 Coletando o avatar da empresa</h3>
+        <p class="text-neutral-400 text-sm">A persona da empresa-cliente é o que faz o Claude "soar como eles" durante a demo. Sem isso, a sessão vira tour genérico de IA.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎭</span>
+            <div><span class="font-medium">O que é avatar nesse contexto</span><span class="text-neutral-500 text-sm ml-2">- Persona da empresa, não do usuário</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Avatar aqui é o "system prompt da empresa": tom de voz, vocabulário interno, produtos, restrições. Diferente da persona de marketing (público-alvo) — é como a empresa fala quando responde, não com quem ela fala.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quando Claude responde no tom certo, a sala reage com "ah, esse cara entende a gente". Sem avatar, soa Wikipedia. Esse é o golpe de credibilidade da demo.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">System prompt corporativo · Voz vs público · Tom + vocabulário + restrições · Âncora de marca.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🌐</span>
+            <div><span class="font-medium">De onde tirar</span><span class="text-neutral-500 text-sm ml-2">- Site, deck, releases</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Site institucional (sobre/missão), deck comercial mais recente, releases de imprensa do último ano, e qualquer about-us interno. 5-10 páginas de texto bruto.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Material público é grátis, rápido (1h) e ninguém vai te processar. Já dá 70% do avatar. O resto vem de calls (próximo tópico).</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Fontes públicas · 1h de coleta · 5-10 páginas · 70% do avatar.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🎙️</span>
+            <div><span class="font-medium">Material que vale ouro: transcrições de calls</span><span class="text-neutral-500 text-sm ml-2">- Linguagem real, não institucional</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Transcrição da call de descoberta (Zoom, Meet, Teams) — 30-60 min do cliente falando do próprio negócio. Captura jargão interno, problemas reais, prioridades.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Texto institucional é polido. Call é cru. O Claude treinado em texto cru soa como humano da empresa. É o diferencial entre demo genérica e demo "uau, é assim que a gente fala mesmo".</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Call de descoberta · Otter/Fireflies/Meet transcript · Jargão interno · Cru &gt; polido.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">Sintetizar num arquivo único</span><span class="text-neutral-500 text-sm ml-2">- avatar.md, 1-2 páginas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Arquivo `avatar.md` com 6 seções: identidade, voz, vocabulário, produtos/serviços, restrições, exemplos. 1-2 páginas — não vire wiki.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Arquivo curto cabe na Custom Instruction do projeto. Wiki gigante polui contexto e Claude ignora pedaços.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">avatar.md · 6 seções · 1-2 páginas · Curto vence longo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📁</span>
+            <div><span class="font-medium">Onde colar no Project</span><span class="text-neutral-500 text-sm ml-2">- Custom Instructions vs Knowledge</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Avatar curto vai em Custom Instructions (injetado em cada chat). Materiais brutos (deck, transcrições) vão em Knowledge files do Project — Claude consulta quando precisa.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Projects têm 200k de contexto. Tudo nas Instructions = waste. Tudo em Knowledge = Claude pode não consultar. Combinação certa: âncora curta + biblioteca consultável.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Custom Instructions · Knowledge files · 30MB/arquivo · 200k contexto.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">💰</span>
+            <div><span class="font-medium">Quanto vale a customização</span><span class="text-neutral-500 text-sm ml-2">- 2h de prep = 50% do ROI</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Regra de bolso: cada 1h de avatar prep entrega o equivalente a 4h de workshop melhor. Customização é o multiplicador.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Define se você cobra premium ou compete por preço. Workshop genérico vale $2k; workshop com avatar pré-produzido vale $5k+.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">ROI de prep · Multiplicador 4x · Pricing premium · Diferencial vs commodity.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-1.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 3.2 -->
+    <div id="modulo-3-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.2</span><span class="text-xs text-neutral-500">~40 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📧 Threads de e-mail via Google Workspace CLI</h3>
+        <p class="text-neutral-400 text-sm">E-mails reais sanitizados são o material mais persuasivo da demo. A sala reconhece o tom de "isso aqui é da minha rotina".</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">💥</span>
+            <div><span class="font-medium">Por que e-mails reais bombam</span><span class="text-neutral-500 text-sm ml-2">- Realidade vence exemplo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Em vez de "vamos resumir este e-mail genérico", você usa thread real (sanitizada) do dia-a-dia da empresa. Reconhecimento instantâneo na sala.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Exemplo genérico parece truque. E-mail com a textura da empresa parece magia. Mesma feature, percepção diferente.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Textura real · Reconhecimento · Demo &gt; tutorial · "Isso aí é a minha caixa".</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🛠️</span>
+            <div><span class="font-medium">Extrair com Google Workspace CLI</span><span class="text-neutral-500 text-sm ml-2">- gmail-cli, gam, scripts</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Via Google Workspace Connector no claude.ai (Pro+), ou ferramentas CLI como GAM/gmail-cli. Acesso programático a threads, filtros por label/data/remetente.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Manual é caro (1h por 10 threads). CLI puxa 100 threads em 2 min e ainda filtra por critério.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Google Workspace Connector · Research avançado · Filtros por label · OAuth.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🧹</span>
+            <div><span class="font-medium">Sanitização — PII e dados sensíveis</span><span class="text-neutral-500 text-sm ml-2">- Antes de mostrar em sala</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Remover nomes reais, e-mails, CPFs, números de contrato, valores específicos. Substituir por placeholders consistentes (João Silva, Cliente A, $X).</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Vazar PII em workshop pode quebrar contrato com cliente e acionar LGPD. Sanitização é não-negociável.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">LGPD/PII · Placeholders consistentes · Find-replace · Aprovação do cliente.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📦</span>
+            <div><span class="font-medium">Quantidade ideal de threads</span><span class="text-neutral-500 text-sm ml-2">- 5-10 cobre variedade</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">5-10 threads cobrindo 3-4 cenários (negociação, suporte, interno, fornecedor). Não 50. Não 2.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Pouco material = demo se esgota. Muito = você se perde no que escolher ao vivo. 5-10 é o sweet spot.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Variedade × volume · Sweet spot · 3-4 cenários · Curadoria intencional.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎭</span>
+            <div><span class="font-medium">Anonimizar sem perder textura</span><span class="text-neutral-500 text-sm ml-2">- Trocar nome, manter jargão</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Erro comum: trocar tudo por "lorem ipsum" e perder a textura. Certo: trocar PII mas preservar jargão, estrutura, gírias internas, anexos mencionados.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Textura é o que faz a sala reconhecer. Perder textura = perder a magia. Anonimizar é cirurgia, não amputação.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Textura vs identidade · Cirurgia &gt; amputação · Preservar jargão · "Soa como nós".</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">💾</span>
+            <div><span class="font-medium">Backup local + contingência</span><span class="text-neutral-500 text-sm ml-2">- Conector pode cair</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Após sanitizar, exporte como `.md` ou `.txt` local. Se o Workspace Connector falhar ou a internet cair no dia do workshop, você abre o arquivo direto.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Conector é integração — pode estar fora. Arquivo local sempre abre. Backup é seguro de palco.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Export local · .md/.txt · Seguro de palco · Cobre módulo 3.5.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-2.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 3.3 -->
+    <div id="modulo-3-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.3</span><span class="text-xs text-neutral-500">~50 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎬 5 demos incrementais</h3>
+        <p class="text-neutral-400 text-sm">Do trivial ("chaves balançando") ao moonshot que faz a sala fechar a boca. Sequência testada para construir adesão progressiva.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📈</span>
+            <div><span class="font-medium">Princípio: do trivial ao específico</span><span class="text-neutral-500 text-sm ml-2">- Cada demo abre a próxima</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">5 demos numa sequência crescente: cada uma cria a base de credibilidade para a próxima. Pular pra demo 5 sem passar pelas 4 anteriores = sala descrente.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o mesmo princípio de "show, then do" da Atlassian, aplicado a múltiplos passos. A escalada cognitiva é o que converte awareness em "vou usar isso amanhã".</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Escalada cognitiva · Show-then-do · Cada demo &lt; 5 min · Crescente em complexidade.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🔑</span>
+            <div><span class="font-medium">Demo 1 — "chaves balançando"</span><span class="text-neutral-500 text-sm ml-2">- Intro genérica, prende atenção</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Tarefa universal: melhorar um e-mail rápido, resumir um parágrafo. Todos reconhecem, ninguém se sente excluído. 30-60s.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É a "chave balançando pro bebê" — chama atenção sem assustar. Funciona como nivelamento e dá sucesso visível em &lt; 1 min.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Universal · &lt; 60s · Nivelamento · Sucesso visível.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🏥</span>
+            <div><span class="font-medium">Demo 2 — caso do setor</span><span class="text-neutral-500 text-sm ml-2">- Saúde, jurídico, vendas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Caso típico do setor do cliente (ainda genérico mas vertical). "Vamos rever uma cláusula contratual" para jurídico, "vamos qualificar este lead" para vendas.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mostra que você fez lição de casa sobre o setor. Sala muda de "isso é genérico" para "ah, ele entende o que a gente faz".</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Verticalização · Setor genérico · Lição de casa · ~2 min.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">Demo 3 — caso da empresa</span><span class="text-neutral-500 text-sm ml-2">- Avatar + material real</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Aqui entra o avatar do módulo 3.1 + o material do 3.2. Caso específico: "responder esse e-mail real do cliente, no tom da empresa".</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o momento "isso é mágica" da sessão. Tudo que veio antes preparou o terreno. Aqui você converte.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Avatar em ação · Material sanitizado · Conversão · ~3 min.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🔗</span>
+            <div><span class="font-medium">Demo 4 — workflow encadeado</span><span class="text-neutral-500 text-sm ml-2">- Multi-step + subagent</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Cadeia: ler thread → extrair pendências → gerar resposta → marcar follow-up. Mostra que Claude não é só chat — é workflow.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sala que viu demo 1-3 acha "legal". Demo 4 muda pra "eu poderia automatizar metade do meu dia".</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Multi-step · Subagent/dispatch · Workflow &gt; chat · ~4 min.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🚀</span>
+            <div><span class="font-medium">Demo 5 — moonshot</span><span class="text-neutral-500 text-sm ml-2">- Fecha a boca da sala</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Algo que parece impossível pra sala leiga: agente que monitora caixa de entrada, prioriza, rascunha respostas e dispara só após aprovação. Ou análise de 500 contratos em 5 min.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o "show stopper". Sem moonshot, a sala sai pensando "interessante mas dá pra fazer no ChatGPT". Com moonshot, sai pensando "preciso desse cara me ajudando".</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Show stopper · Pré-gravado obrigatório · Funil pra consultoria · ~5 min.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-3.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 3.4 -->
+    <div id="modulo-3-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.4</span><span class="text-xs text-neutral-500">~40 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📼 Demo como post-mortem, nunca ao vivo</h3>
+        <p class="text-neutral-400 text-sm">Ao vivo é roleta russa. Grave, narre por cima. Exceções existem mas são raras e calculadas.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎲</span>
+            <div><span class="font-medium">Por que ao vivo é roleta russa</span><span class="text-neutral-500 text-sm ml-2">- 5 modos de falha</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Internet cai, conector falha, modelo dá output ruim, sala lota a API simultaneamente, conta entra em rate limit. Cada um sozinho mata a demo.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Calcular o risco real reorganiza a decisão. P(qualquer falha) = 1 - P(todas as 5 ok). Mesmo com 90% cada, é 60% de chance de algo dar errado.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">5 modos de falha · Probabilidade composta · Risco real · Roleta russa.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">💸</span>
+            <div><span class="font-medium">Custo real de uma demo travada</span><span class="text-neutral-500 text-sm ml-2">- Credibilidade, contrato, mercado</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Não é só o constrangimento. É o workshop seguinte que não fecha, o retainer que não se forma, e a história "vi o cara travar" que circula no mercado.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem ainda acha que vale o risco precisa ver o LTV perdido. 30s de constrangimento podem custar $20k em consultoria futura.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">LTV perdido · Reputação de palco · Histórias circulam · Não é só hoje.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📺</span>
+            <div><span class="font-medium">Show-then-do — regra Atlassian</span><span class="text-neutral-500 text-sm ml-2">- Mostre primeiro, deixe fazerem depois</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Playbook oficial da Atlassian para workshops de IA: facilitador mostra (idealmente gravado), depois participantes fazem. Nunca o contrário.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">"Vamos descobrir juntos" soa colaborativo mas é assassinato de tempo. Quem mostra primeiro define o caminho e elimina 30 perguntas básicas.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Show-then-do · Mostre primeiro · Replicar &gt; descobrir · Playbook Atlassian.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🎥</span>
+            <div><span class="font-medium">Como gravar — Loom, OBS, QuickTime</span><span class="text-neutral-500 text-sm ml-2">- Stack mínimo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Loom (mais fácil, share rápido), OBS (controle total, multi-cena), QuickTime no Mac (sem instalação). Atlassian recomenda explicitamente Loom para demos de IA.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Não precisa virar editor de vídeo. Precisa de gravação limpa, áudio inteligível (use headset), e cursor visível.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Loom &gt; OBS &gt; QuickTime · Headset obrigatório · Cursor visível · Sem edição pesada.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎙️</span>
+            <div><span class="font-medium">Narração — "comentário esportivo"</span><span class="text-neutral-500 text-sm ml-2">- Áudio do vídeo mudo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Grave o vídeo sem áudio (ou mute). Narre AO VIVO por cima, como narrador de jogo: "veja aqui — o Claude já entendeu o tom — agora ele propõe duas opções...".</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Vídeo com áudio gravado entrega o "what". Narração ao vivo entrega o "why". Coberto em detalhe no módulo 3.6.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Mudo + narração ao vivo · Comentário esportivo · Why &gt; what · Módulo 3.6.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">✅</span>
+            <div><span class="font-medium">Quando ao vivo é OK</span><span class="text-neutral-500 text-sm ml-2">- Sala &lt; 10 e demo &lt; 30s</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Exceção: sala &lt; 10 (workshop conversado, recuperação fácil) E demo de até 30s (rate limit improvável, sem encadeamento longo). Fora isso, gravado.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Não é proibição cega — é regra com exceção clara. Workshop íntimo se beneficia da espontaneidade. Palestra de 100 não.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Sala &lt; 10 · Demo &lt; 30s · Espontaneidade · Exceção clara.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-4.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 3.5 -->
+    <div id="modulo-3-5" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.5</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🆘 Plano B: queda de internet, Claude indisponível</h3>
+        <p class="text-neutral-400 text-sm">4 modos de falha possíveis, 4 respostas pré-ensaiadas. Sem "vamos esperar".</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">⚠️</span>
+            <div><span class="font-medium">Os 4 modos de falha possíveis</span><span class="text-neutral-500 text-sm ml-2">- Mapa de risco</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">(1) Internet do local cai. (2) Claude/serviço fora. (3) Conector específico (Workspace, GitHub) fora. (4) Sua máquina trava. Cada um tem resposta diferente.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mapear riscos antes evita reação emocional na hora. Você não improvisa — executa o plano que escolheu calmo.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Mapa de risco · 4 modos · Plano calmo · Resposta pré-ensaiada.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📼</span>
+            <div><span class="font-medium">Demos offline — vídeo local salvo</span><span class="text-neutral-500 text-sm ml-2">- Rede 1</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Cada demo gravada baixada localmente em formato MP4. Se a internet cair, você abre o player e narra normalmente. Ninguém percebe a falha.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o seguro mais barato. 100MB no disco vs $2k de workshop queimado.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">MP4 local · Player offline · Rede 1 · Seguro barato.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🗣️</span>
+            <div><span class="font-medium">Modo manual — narrar o que apareceria</span><span class="text-neutral-500 text-sm ml-2">- Rede 2</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Se nem vídeo abre (máquina travou, projetor falhou): você descreve oralmente o que aconteceria. "Eu pediria assim, ele responderia assim, e o resultado seria..."</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Demonstra domínio. Sala respeita quem sabe a demo de cabeça. Quem só sabe clicar é apertador de botão.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Narrar sem tela · Domínio · Rede 2 · Última cartada quente.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Slides com prints estáticos</span><span class="text-neutral-500 text-sm ml-2">- Backup do backup</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Cada demo tem 3-5 screenshots-chave dentro do deck. Se vídeo não roda, você navega pelos prints. Pior cenário ainda funcional.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Slides sempre abrem. PPT no pendrive USB é o seguro nuclear. Deselegante mas salva.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Screenshots no deck · USB com PPT · Seguro nuclear · Deselegante mas salva.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📶</span>
+            <div><span class="font-medium">Tethering como rede 3</span><span class="text-neutral-500 text-sm ml-2">- 4G/5G do celular</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Hotspot do celular pré-testado no local. Wifi corporativo + tethering = redundância. Em 2 minutos você troca de rede e continua.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Wifi corporativo é a maior fonte de queda. 4G pessoal raramente falha junto. Cobre 80% dos cenários de internet.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Hotspot · Pré-testar no local · Redundância · 80% dos cenários.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🚫</span>
+            <div><span class="font-medium">O que NÃO fazer</span><span class="text-neutral-500 text-sm ml-2">- "Vamos esperar" é morte</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Nunca: "vamos esperar voltar", "estranho, agora não funciona", debugar ao vivo, ligar pro TI, abrir terminal. Cada um desses é caixão.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sala perdoa falha técnica se você não perder a postura. Quem espera, debuga ou se desculpa muito perde a sala antes de voltar.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Não esperar · Não debugar · Não pedir desculpa repetida · Manter ritmo.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-5.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 3.6 -->
+    <div id="modulo-3-6" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.6</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎙️ Narração por cima da gravação</h3>
+        <p class="text-neutral-400 text-sm">A técnica que transforma vídeo gravado em aula ao vivo. Ensaiar a narração vale mais que ensaiar a demo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎬</span>
+            <div><span class="font-medium">Narrar ao vivo &gt; vídeo com áudio</span><span class="text-neutral-500 text-sm ml-2">- Energia da sala</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Vídeo com áudio gravado: sala desliga. Narração ao vivo: sala fica em modo aula. Mesma imagem, percepção diferente.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Audio gravado sinaliza "consumo passivo". Voz ao vivo mantém o contrato de aula. É a diferença entre Netflix e palestra.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Energia · Sinalização social · Modo aula · Voz ao vivo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📐</span>
+            <div><span class="font-medium">Estrutura: contexto → ação → resultado</span><span class="text-neutral-500 text-sm ml-2">- 3 batidas por demo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Toda narração tem 3 batidas: (a) contexto — "imagine que recebemos esse e-mail às 18h", (b) ação — "vou pedir pro Claude...", (c) resultado — "olha o que ele entregou: a, b, c".</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem estrutura, narração vira "olha que legal isso aqui... e aquilo... e mais isso". Com estrutura, prende e fecha.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">3 batidas · Contexto-ação-resultado · Setup-payoff · Storytelling mínimo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">⏸️</span>
+            <div><span class="font-medium">Pausas estratégicas no vídeo</span><span class="text-neutral-500 text-sm ml-2">- Você é o maestro</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Pausar o vídeo em 2-3 momentos por demo para explicar, perguntar à sala ou destacar detalhe. Você controla o ritmo, não o vídeo.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Vídeo correndo + sala lendo = ninguém absorve. Pausar destaca. É a diferença entre exibir e ensinar.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Pause espacejado · Maestro do ritmo · Destacar &gt; exibir · Espaço pra absorver.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">👉</span>
+            <div><span class="font-medium">"Veja o que ele fez aqui"</span><span class="text-neutral-500 text-sm ml-2">- Apontar momentos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Frases-âncora que direcionam o olhar: "veja como ele já manteve o tom da empresa", "repare que ele citou o ID do contrato corretamente", "essa frase em particular...".</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sala olha pro telão mas não sabe onde focar. Sua voz é o ponteiro laser invisível.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Frases-âncora · Ponteiro laser invisível · Direcionar atenção · "Repare que...".</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📜</span>
+            <div><span class="font-medium">Roteiro vs improviso</span><span class="text-neutral-500 text-sm ml-2">- Bullet points, não script</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Bullet points por demo (5-8 pontos chave), não script palavra-a-palavra. Script lido soa robótico; bullets dão liberdade pra conversar com a sala.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Improviso 100% vira divagação. Script 100% vira robô. Bullets são o meio-termo praticado por jornalistas e narradores.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Bullets &gt; script · Liberdade controlada · Cola visível · Conversa &gt; recital.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🏋️</span>
+            <div><span class="font-medium">Ensaiar narração antes</span><span class="text-neutral-500 text-sm ml-2">- Mínimo 3 passadas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-purple-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Rode o vídeo 3x em casa narrando em voz alta. Cronometre. Ajuste bullets. Versão 1 é embolada, versão 3 é fluente.</p></div>
+              <div><span class="text-purple-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem ensaio, você descobre o ritmo no palco — péssimo lugar pra descobrir. Com 3 passadas, você entra previsível.</p></div>
+              <div><span class="text-purple-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">3 passadas mínimas · Cronometrar · Refinar bullets · Previsibilidade.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-3-6')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-3-6.html" class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- NAV INFERIOR -->
+    <div class="flex flex-col sm:flex-row gap-4 mt-12">
+      <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Trilha 2: Produtos</a>
+      <a href="../trilha4/index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próxima trilha: 🛠️ Interface →</a>
+    </div>
+
+  </main>
+
+  <!-- MODAIS -->
+  <div id="modal-3-1" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.1</span><span class="font-semibold">🎭 Coletando o avatar da empresa</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-1.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.2</span><span class="font-semibold">📧 Threads via Workspace CLI</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-2.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-3" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.3</span><span class="font-semibold">🎬 5 demos incrementais</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-3.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.4</span><span class="font-semibold">📼 Post-mortem, nunca ao vivo</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-4.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.5</span><span class="font-semibold">🆘 Plano B</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-5.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-3-6" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.6</span><span class="font-semibold">🎙️ Narração por cima</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-3-6.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Trilha 3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; } }
+    function closeModal() { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); document.body.style.overflow = 'auto'; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

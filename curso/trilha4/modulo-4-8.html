@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.8 — Skills, connectors, plugins | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(217, 119, 6, 0.10); }
+    html:not(.dark) .bg-amber-900\/30 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.10); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+    <div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+    <div class="flex items-center space-x-1 sm:space-x-2">
+      <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+      <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+      <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+      <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+      <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+      <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+      </button>
+    </div>
+  </div></div></nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span><a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span><span class="text-amber-400">Módulo 4.8</span></div></nav>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.8</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧩 Skills, connectors, plugins</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Três mecanismos de extensão que <strong class="text-amber-400">parecem iguais e não são</strong>.
+        Skill = unidade de conhecimento. Connector = ponte pra serviço externo via MCP. Plugin =
+        bundle que junta tudo. Saber a diferença evita 90% da confusão em demo.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">22</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Extensão</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">📁 Skill — pasta com SKILL.md</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Uma <strong class="text-amber-400">skill</strong> é uma pasta contendo no mínimo um arquivo
+        <code>SKILL.md</code> com frontmatter YAML (<code>name</code>, <code>description</code>). Pode
+        incluir scripts, recursos e instruções. Claude carrega contextualmente quando a descrição
+        bate com a tarefa.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">📄</span> Exemplo mínimo de SKILL.md</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>---
+name: revisar-curso
+description: Audita paginas HTML de cursos no formato INEMA.CLUB.
+  Use quando o usuario pedir para revisar, auditar ou validar paginas
+  HTML de curso existentes.
+---
+
+# Revisar Curso
+
+## Quando usar
+- Usuario pediu "revisar curso", "checar paginas", "auditar trilhas"
+- Ha paginas HTML em curso/trilhaN/ que precisam validacao
+
+## Workflow
+1. Listar paginas da trilha alvo
+2. Ler index.html e cada modulo-N-M.html
+3. Comparar com SPEC.md
+4. Reportar inconsistencias por modulo</code></pre>
+        <p class="text-neutral-400 text-sm mt-4">Estrutura no disco: <code>skills/revisar-curso/SKILL.md</code> (mais scripts/recursos opcionais).</p>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          O <strong>description</strong> é o que importa pro Claude decidir invocar. Escreva como se
+          fosse a "ementa" da skill: o que faz + quando usar + gatilhos típicos. Sem isso, a skill
+          fica engavetada.
+        </p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">🔌 Connector — ponte pra serviço externo</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Connectors (também chamados <strong class="text-amber-400">Integrations</strong> em claude.ai)
+        ligam Claude a ferramentas externas via servidores MCP remotos. Lançados em maio de 2025.
+        Disponíveis em Pro, Max, Team e Enterprise.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">🧰 Serviços no lançamento</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Atlassian Jira/Confluence</li>
+            <li>• Zapier</li>
+            <li>• Cloudflare</li>
+            <li>• Intercom</li>
+            <li>• Asana</li>
+            <li>• Square</li>
+            <li>• Sentry · PayPal · Linear · Plaid</li>
+          </ul>
+        </div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">🔐 Como conecta</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Settings &gt; Connectors em claude.ai</li>
+            <li>• Fluxo OAuth do provedor</li>
+            <li>• Termos e privacy mostrados no flow</li>
+            <li>• Mantido por desenvolvedores terceiros</li>
+            <li>• Google Workspace via Research avançado (Drive/Gmail/Calendar)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">📡</span> MCP Connector na API</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>// Beta header atual (verificar na doc)
+"anthropic-beta": "mcp-client-2025-11-20"
+
+// Anterior, deprecated:
+"anthropic-beta": "mcp-client-2025-04-04"</code></pre>
+        <p class="text-neutral-400 text-sm mt-4">Permite ligar Messages API a servidores MCP remotos sem cliente MCP separado. Custom connectors via Remote MCP estão documentados em support.anthropic.com.</p>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">📦 Plugin — bundle de extensão</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Plugin é o <strong class="text-amber-400">embrulho maior</strong>: empacota qualquer combinação
+        de slash commands, subagentes, MCP servers e hooks numa unidade instalável e compartilhável.
+        Public beta no Claude Code.
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Slash commands</h4><p class="text-neutral-300 text-sm">Comandos do tipo <code>/revisar-curso</code> que disparam workflows pré-definidos.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Subagentes</h4><p class="text-neutral-300 text-sm">Diretório <code>agents/</code> escaneado recursivamente; pastas viram parte do identificador com escopo.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">MCP servers</h4><p class="text-neutral-300 text-sm">Servidores MCP empacotados que aparecem disponíveis quando o plugin está ligado.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Hooks</h4><p class="text-neutral-300 text-sm">Pontos de extensão que rodam código em eventos do Claude Code.</p></div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Plugins podem ser <strong>ligados/desligados</strong> conforme necessidade — isso reduz contexto
+          do system prompt. Não deixe todos ativos o tempo todo. Liga só o que vai usar na sessão.
+        </p>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">📊 Diferenças resumidas</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A tabela que resolve a confusão:</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+        <table class="w-full text-sm">
+          <thead class="bg-dark-700">
+            <tr>
+              <th class="text-left p-4 text-amber-400">Mecanismo</th>
+              <th class="text-left p-4 text-amber-400">Escopo</th>
+              <th class="text-left p-4 text-amber-400">Conteúdo</th>
+              <th class="text-left p-4 text-amber-400">Onde roda</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-dark-600">
+            <tr>
+              <td class="p-4 font-semibold text-white">Skill</td>
+              <td class="p-4 text-neutral-300">Unidade focada</td>
+              <td class="p-4 text-neutral-300">SKILL.md + recursos</td>
+              <td class="p-4 text-neutral-300">claude.ai · Claude Code · API</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-white">Connector</td>
+              <td class="p-4 text-neutral-300">Ponte a serviço externo</td>
+              <td class="p-4 text-neutral-300">Servidor MCP remoto</td>
+              <td class="p-4 text-neutral-300">claude.ai (Integrations) · API (mcp-connector)</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-white">Plugin</td>
+              <td class="p-4 text-neutral-300">Bundle multi-componente</td>
+              <td class="p-4 text-neutral-300">Slash + subagentes + MCP + hooks</td>
+              <td class="p-4 text-neutral-300">Claude Code (public beta)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Quando usar Skill</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Workflow repetitivo que precisa de instruções</li>
+            <li>• Conhecimento de domínio que Claude deve "saber"</li>
+            <li>• Quer que invoque automaticamente por relevância</li>
+            <li>• Compartilhar entre claude.ai, Code e API</li>
+          </ul>
+        </div>
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">→ Quando usar Connector/Plugin</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Connector: ligar Claude a Jira, GitHub, Drive</li>
+            <li>• Plugin: distribuir conjunto coeso a um time</li>
+            <li>• Plugin: precisa de hooks + subagentes + comandos juntos</li>
+            <li>• Connector: serviço já tem servidor MCP pronto</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Confusões comuns</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Tratar skill como plugin (skill é unidade, plugin é bundle)</li>
+            <li>• Achar que connector é instalado no Claude Code (é claude.ai/API)</li>
+            <li>• Empacotar tudo em plugin antes de ter skill estável</li>
+            <li>• Ligar 20 plugins e reclamar do contexto inflado</li>
+          </ul>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Hierarquia mental</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Skill = peça LEGO</li>
+            <li>• Plugin = kit LEGO com manual</li>
+            <li>• Connector = cabo USB pro mundo lá fora</li>
+            <li>• Os três podem coexistir num mesmo projeto</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">🛒 Onde achar — gallery e <code>/plugin</code></h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Os três têm caminhos diferentes pra descoberta e instalação. Saber qual é qual te economiza
+        quinze minutos clicando errado.
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">S</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Skills</h4><p class="text-neutral-300 text-sm">Pro/Max/Team/Enterprise. Habilita em <strong>Settings &gt; Features</strong>. Em Team/Enterprise, admin precisa habilitar organization-wide antes. Skills pessoais no diretório próprio do usuário; gallery oficial em construção.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">C</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Connectors</h4><p class="text-neutral-300 text-sm">claude.ai &gt; <strong>Settings &gt; Connectors</strong>. Diretório oficial mostra connectors mantidos por terceiros. Custom connector via Remote MCP documentado em support.anthropic.com.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">P</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Plugins</h4><p class="text-neutral-300 text-sm">Comando <code>/plugin</code> dentro do Claude Code instala com um único comando. Public beta — ecossistema em formação entre Anthropic e comunidade.</p></div>
+        </div>
+      </div>
+
+      <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🔎</span> Onde demonstrar em sala</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Sala leiga: mostre <strong>Connectors</strong> em claude.ai (cara visual, OAuth bonito)</li>
+          <li>• Sala técnica: <code>/plugin</code> no Claude Code instalando algo da galeria</li>
+          <li>• Sala mista: mostre uma <strong>skill</strong> sendo invocada automaticamente — o "mágico" do <em>description</em> faz efeito</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🪄 <code>skill-creator</code> — criar interativamente</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A própria Anthropic publica uma skill chamada <strong class="text-amber-400">skill-creator</strong>
+        que guia você na criação de novas skills via perguntas. Você descreve o workflow, ela monta
+        pasta, formata SKILL.md e empacota recursos.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🔄</span> Fluxo do skill-creator</h3>
+        <ol class="space-y-3 text-neutral-300 text-sm list-decimal list-inside">
+          <li><strong>Você chama:</strong> "preciso criar uma skill pra revisar páginas HTML do curso"</li>
+          <li><strong>skill-creator pergunta:</strong> quais gatilhos? que arquivos lê? que saída espera?</li>
+          <li><strong>Itera:</strong> testa o description com gatilhos plausíveis pra ver se a skill seria invocada</li>
+          <li><strong>Empacota:</strong> gera <code>skills/nome/SKILL.md</code> + scripts auxiliares se preciso</li>
+          <li><strong>Você revisa:</strong> ajusta o description e o conteúdo manualmente</li>
+        </ol>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Quando vale</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Primeira skill da vida — você não sabe formato</li>
+            <li>• Workflow ainda em descoberta</li>
+            <li>• Quer testar gatilhos antes de finalizar</li>
+            <li>• Vai compartilhar com gente fora do código</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Quando dispensa</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Você já escreveu 5 skills — só duplica e edita</li>
+            <li>• Skill mínima de 10 linhas — perde tempo iterando</li>
+            <li>• Você quer estrutura idiossincrática (skill-creator empurra o padrão)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Use o skill-creator pra <strong>aprender o formato</strong>, depois desenrole sozinho. O grande
+          aprendizado é o jeito de escrever o <em>description</em>: ele decide se sua skill vive ou
+          morre engavetada.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Skill = pasta com SKILL.md (yaml frontmatter)</strong><span class="text-neutral-400"> — unidade focada de conhecimento</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Connector = ponte a serviço externo via MCP</strong><span class="text-neutral-400"> — Jira, Asana, Linear, Cloudflare, etc.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Plugin = bundle (slash + subagente + MCP + hooks)</strong><span class="text-neutral-400"> — instalável com <code>/plugin</code></span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Skill = peça · Plugin = kit · Connector = cabo</strong><span class="text-neutral-400"> — hierarquia mental</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Onde achar: Settings/Features · /Connectors · /plugin</strong><span class="text-neutral-400"> — caminhos diferentes</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">skill-creator guia interativamente</strong><span class="text-neutral-400"> — útil pra primeira skill</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-amber-400 mb-2">Próximo Módulo:</h3><p class="text-neutral-300">4.9 — 🤖 Subagente Claude Code Guide (doc canônica, Agent SDK, clone interno)</p></div>
+        <div class="flex flex-col sm:flex-row gap-4"><a href="modulo-4-7.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a><a href="modulo-4-9.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Ensinando Cowork · Módulo 4.8 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

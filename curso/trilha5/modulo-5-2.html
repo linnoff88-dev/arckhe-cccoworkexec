@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5.2 — Jogo infinito vs finito | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13, 148, 136, 0.10); }
+    html:not(.dark) .bg-teal-900\/30 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-teal-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-teal-400">Trilha 5</a>
+      <span>/</span>
+      <span class="text-teal-400">Módulo 5.2</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MÓDULO 5.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">♾️ Jogo infinito vs finito</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Workshop é jogo finito. Praticar IA é jogo infinito. Confundir os dois mata implementações depois do evento.
+        Este módulo aplica o frame de Carse / Sinek pra ensinar como enquadrar continuidade — e por que retainer
+        vira lógica natural, não upsell forçado.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">30</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Mindset</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📚 Sinek: finite vs infinite games</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O frame vem de James Carse (filósofo, 1986) e foi popularizado por Simon Sinek (<em>The Infinite Game</em>, 2019).
+        Carse propôs dois modos de jogar. <strong class="text-teal-400">Jogo finito</strong>: regras fixas, jogadores conhecidos,
+        objetivo de vencer. <strong class="text-teal-400">Jogo infinito</strong>: regras mudando, jogadores entrando e saindo,
+        objetivo de continuar jogando.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🎲</span> Os dois jogos</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="text-white font-semibold mb-2">Jogo finito</h4>
+            <ul class="space-y-1 text-neutral-300 text-sm">
+              <li>• Regras fixas</li>
+              <li>• Jogadores conhecidos</li>
+              <li>• Início e fim definidos</li>
+              <li>• Objetivo: vencer</li>
+              <li>• Ex: xadrez, futebol, eleição</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-2">Jogo infinito</h4>
+            <ul class="space-y-1 text-neutral-300 text-sm">
+              <li>• Regras mudam ao longo do tempo</li>
+              <li>• Jogadores entram e saem</li>
+              <li>• Não há linha de chegada</li>
+              <li>• Objetivo: continuar jogando</li>
+              <li>• Ex: educação, saúde, negócios</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O erro estratégico que Sinek descreve: tratar jogo infinito como se fosse finito. Empresa que mede "vencemos a IA"
+        em vez de "estamos jogando bem o jogo da IA" toma decisões erradas — atinge meta, declara vitória, depois é
+        atropelada na próxima reorganização do tabuleiro.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📖</span> Referências</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>James Carse — <em>Finite and Infinite Games</em> (1986)</li>
+          <li>Simon Sinek — <em>The Infinite Game</em> (2019)</li>
+          <li>Conceito de <em>just cause</em>: motivo maior que sustenta o jogo</li>
+          <li class="text-xs text-neutral-500 italic">Aplicação a IA — síntese própria, baseada nas obras acima</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🌊 IA: paisagem muda toda semana</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Aplicado a IA, o frame fica óbvio. Em 12 meses: Sonnet <strong class="text-teal-400">3.5 → 3.7 → 4 → 4.5 → 4.6</strong>.
+        Opus <strong class="text-teal-400">4 → 4.5 → 4.7</strong>. Apareceram Skills, Connectors, MCP, Adaptive thinking, Code subagentes.
+        Quem aprendeu uma feature em janeiro precisa atualizar em abril.
+      </p>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">Q1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Janeiro–Março 2025</h4>
+            <p class="text-sm text-neutral-400 mb-3">Sonnet 3.5/3.7, Computer Use experimental</p>
+            <p class="text-neutral-300 text-sm">Workshop ensinava mega-prompt, contexto longo, MCP recém-anunciado.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">Q2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Abril–Junho 2025</h4>
+            <p class="text-sm text-neutral-400 mb-3">Sonnet 4, Skills, Projects refinado</p>
+            <p class="text-neutral-300 text-sm">Workshop ganhou novos exercícios; quem fez em Q1 já desatualizou metade.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">Q3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Julho–Setembro 2025</h4>
+            <p class="text-sm text-neutral-400 mb-3">Sonnet 4.5, Opus 4.5, Connectors gerais</p>
+            <p class="text-neutral-300 text-sm">Adaptive thinking substituiu extended thinking — workshop antigo virou history lesson.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">Q4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Outubro–Dezembro 2025 → 2026</h4>
+            <p class="text-sm text-neutral-400 mb-3">Sonnet 4.6, Opus 4.7 (breaking change), Auto Mode</p>
+            <p class="text-neutral-300 text-sm">Modelos com contexto de 1M, classifiers ML em produção. Workshop precisa reformular ciclo agêntico.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Inclua na <strong>página final do material</strong> uma frase do tipo: "Última atualização: [data]. Modelos
+          ativos: Haiku 4.5, Sonnet 4.6, Opus 4.7. Se você está lendo isso depois de [+90 dias], cheque o que mudou."
+          Honestidade explícita sobre half-life de conhecimento.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎓 "Terminar o curso" é finito; "praticar Claude" é infinito</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O reframe explícito que o facilitador planta no fechamento muda a postura mental do participante.
+        <strong class="text-teal-400">Curso termina hoje. Prática começa hoje.</strong> Sem o reframe, participante sai com
+        sensação de "concluí" — atalho cognitivo que mata adoção.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Postura "concluí"</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Fiz o curso de IA, agora estou pronto."</li>
+            <li>"Daqui pra frente é só aplicar."</li>
+            <li>"Não preciso voltar — já vi o conteúdo."</li>
+            <li class="italic text-neutral-400">Resultado: ferramenta esquecida em 30 dias.</li>
+          </ul>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Postura "comecei"</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Comecei a praticar IA. Agora é hábito."</li>
+            <li>"Vou testar algo novo toda semana."</li>
+            <li>"Volto ao material quando tiver dúvida."</li>
+            <li class="italic text-neutral-400">Resultado: uso semanal sustentado.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🎤</span> Frase canônica de fechamento</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>"Hoje termina o curso. Hoje começa a prática.
+
+O curso tem fim. A prática não — porque a paisagem
+de IA muda mais rápido do que vocês conseguem
+'terminar' qualquer coisa.
+
+Não saiam daqui sentindo que concluíram.
+Saiam sentindo que começaram."</code></pre>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Pode parecer retórico, mas a literatura de behavioral design mostra que o frame inicial determina o tipo de
+        comportamento que vem depois. "Concluir" ativa relaxamento. "Começar" ativa engajamento. A diferença é uma frase.
+      </p>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔄 Como enquadrar continuidade</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Continuidade não é compromisso vago — é ritual concreto. Sugira um <strong class="text-teal-400">ritual mínimo viável</strong>
+        que custa &lt; 1h/mês por pessoa: 15 min toda segunda-feira revisitando 1 caso de uso novo, + canal interno pra compartilhar
+        achados da semana. Esse formato sobrevive ao caos do trabalho real.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📅</span> Ritual mínimo viável</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">Segunda 9h–9h15:</strong> "AI Monday" — cada um lê 1 case novo (newsletter, blog, este curso) e anota 1 ideia aplicável.</li>
+          <li><strong class="text-white">Durante a semana:</strong> canal interno (Slack/Teams) #ai-achados pra postar prompts que funcionaram.</li>
+          <li><strong class="text-white">Sexta 14h–14h30 (opcional):</strong> rápida show-and-tell de 1 pessoa do time apresentando 1 caso.</li>
+          <li><strong class="text-white">Custo total:</strong> &lt; 60 min/mês por pessoa. Sustenta-se.</li>
+        </ul>
+      </div>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🛠️</span> Outras opções de ritual</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">AI Lunch (mensal)</h4>
+            <p class="text-sm text-neutral-300">1 almoço/mês, 1 caso compartilhado por pessoa.</p>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">Prompt do mês</h4>
+            <p class="text-sm text-neutral-300">Newsletter interna: 1 prompt destacado por mês.</p>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">AI Liaison interno</h4>
+            <p class="text-sm text-neutral-300">1 pessoa nomeada como ponto focal por equipe.</p>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">Office hours</h4>
+            <p class="text-sm text-neutral-300">1h/semana aberta pra qualquer dúvida de IA.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Escolha <strong>UM ritual</strong>, não três. Equipes adotam um hábito por vez. Combinar AI Monday + AI Lunch +
+          office hours na largada vira ruído e nenhum vinga. Comece com o mais barato e expanda se pegou.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🚪 Sair do modo workshop, entrar no modo prática</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Modo workshop e modo prática são duas posturas mentais diferentes. <strong class="text-teal-400">A transição entre eles é
+        traiçoeira</strong> — a maioria das pessoas volta ao zero por não nomear a mudança.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">🎓 Modo workshop</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Slot agendado, energia alta</li>
+            <li>• Facilitador conduz, você executa</li>
+            <li>• Erro é parte do show, sem custo</li>
+            <li>• Atenção 100% dedicada</li>
+            <li>• Outras tarefas suspensas</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">🛠️ Modo prática</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Encaixado no trabalho real, energia variável</li>
+            <li>• Você se autodireciona</li>
+            <li>• Erro custa tempo do seu dia</li>
+            <li>• Atenção dividida com tudo</li>
+            <li>• Compete com 50 outras tarefas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🎙️</span> Como nomear a transição</h3>
+        <p class="text-neutral-300 mb-3">
+          No fechamento, fale algo como:
+        </p>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>"Daqui pra frente vocês saem do modo passivo.
+Não tem mais facilitador conduzindo. Vocês viram
+os próprios facilitadores. Quando travarem, vocês
+mesmos vão precisar buscar a resposta — no material,
+no canal da turma, ou na próxima sessão.
+
+Isso é desconfortável. É normal. Mas é o que
+distingue quem só fez um workshop de quem virou
+praticante."</code></pre>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Nomear a transição reduz a queda. Sem nomear, participante sai esperando suporte e fica decepcionado.
+        Com nomear, participante sai esperando autonomia e exerce.
+      </p>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">💰 Follow-up pago como parte do jogo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Se o jogo é infinito, faz sentido lógico haver um parceiro contínuo — não um vendedor de eventos pontuais.
+        <strong class="text-teal-400">Retainer mensal de "AI office hours" se justifica como infraestrutura de continuidade</strong>,
+        não como upsell forçado. O reframe de jogo infinito posiciona retainer como custo de manutenção.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🔁</span> Lógica narrativa do retainer</h3>
+        <p class="text-neutral-300 mb-3">
+          Quem internaliza "jogo infinito" automaticamente perguntar: "Quem vai me acompanhar na próxima atualização do
+          Sonnet? Quem vai me mostrar a próxima feature da Anthropic? Quem vai ajudar a refazer o playbook quando o Skill
+          system mudar?".
+        </p>
+        <p class="text-neutral-300">
+          A resposta natural é um parceiro com retainer. Não porque o facilitador empurrou — porque o cliente identificou
+          a necessidade sozinho.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Posicionamento que funciona</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Acompanho vocês na evolução dos modelos"</li>
+            <li>"Estou disponível pras dúvidas semanais"</li>
+            <li>"Trago o que aparece de novo, antes que vire dor"</li>
+            <li>"Parceiro de jornada, não vendedor de evento"</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Posicionamento que afasta</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Quem fechar hoje tem 20% de desconto"</li>
+            <li>"O retainer paga em 3 meses"</li>
+            <li>"Sem retainer vocês vão ficar para trás"</li>
+            <li>"Esse preço é só essa semana"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          O frame de jogo infinito é pré-vender sem pré-vender. Você planta a estrutura cognitiva no fechamento; o
+          cliente faz a conta sozinho. Quando voltar perguntando sobre retainer, já está convencido — só precisa de
+          formato e preço. Detalhes em 5.3.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Reframe</div><div class="text-sm text-neutral-400">Infinito vs finito</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Parceiro</div><div class="text-sm text-neutral-400">Não vendedor</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Manutenção</div><div class="text-sm text-neutral-400">Custo lógico</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Sem pressão</div><div class="text-sm text-neutral-400">Cliente decide</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Finite vs infinite games (Carse/Sinek)</strong><span class="text-neutral-400"> — duas posturas, dois jogos</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">IA muda mais rápido que conhecimento estabiliza</strong><span class="text-neutral-400"> — half-life curto</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Curso termina, prática começa</strong><span class="text-neutral-400"> — reframe explícito no fechamento</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Ritual mínimo viável &lt; 1h/mês</strong><span class="text-neutral-400"> — AI Monday + canal interno</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Modo workshop ≠ modo prática</strong><span class="text-neutral-400"> — nomear a transição reduz queda</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Retainer como infraestrutura, não upsell</strong><span class="text-neutral-400"> — lógico depois do reframe</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-teal-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">5.3 — 💼 Da palestra à consultoria recorrente (funil $500 → $25k, formato de retainer, precificação)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-5-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-5-3.html" class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 5.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

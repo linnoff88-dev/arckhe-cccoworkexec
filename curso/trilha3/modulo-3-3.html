@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.3 — 5 demos incrementais | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.10); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span>
+      <span class="text-purple-400">Módulo 3.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎬 5 demos incrementais</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Sequência testada que constrói adesão progressiva: começa no universal ("chaves balançando"), termina no
+        moonshot que faz a sala fechar a boca. Cada demo cria a credibilidade da próxima.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Prático</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Roteiro</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📈 Princípio: do trivial ao específico</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A demo mais eficaz começa no <strong class="text-purple-400">trivial universal</strong> e termina no <strong class="text-purple-400">específico do cliente</strong>. Cada passo provoca
+        um "ah, eu consigo fazer isso" antes de avançar. Esse é o padrão "show, then do" do playbook Atlassian aplicado a múltiplos passos.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Os 3 atos da demo (Atlassian-style)</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">Ato 1 — Trivial (30s):</strong> tarefa universal. "Melhore esse e-mail rápido."</li>
+          <li><strong class="text-white">Ato 2 — Intermediário (1-2 min):</strong> mesma ferramenta com mais contexto. "Agora com tom do cliente."</li>
+          <li><strong class="text-white">Ato 3 — Específico do cliente (3-5 min):</strong> caso real da empresa. É o que converte awareness em adoção.</li>
+        </ul>
+        <p class="text-neutral-400 text-sm mt-4">A versão 5-demos é a expansão desse modelo: 1 trivial + 2 intermediárias (setor + empresa) + 2 ato 3 (workflow + moonshot).</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Sequência funciona porque</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Demo 1 estabelece "isso é fácil"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Demo 2-3 estabelece "entende meu setor"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Demo 4 estabelece "isso é workflow, não só chat"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Demo 5 estabelece "preciso desse cara"</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Pular pra demo 5 direto</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sala leiga vê como mágica suspeita</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Técnicos pedem detalhes que não cabem</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem escada cognitiva = não adota</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Demo mãe de Deus" vira novidade, não método</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔑 Demo 1 — "chaves balançando"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Nome inspirado no chocalho de bebê: chama atenção sem assustar. Tarefa universal, &lt; 60s, qualquer um na sala faz amanhã.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">📝</span> Exemplo de demo 1</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>Prompt: "Melhore esse e-mail que mandei rápido:
+
+'oi joao precisamos remarcar a reuniao de
+amanha estou viajando me avisa que horario
+funciona pra vc valeu'"
+
+Output esperado: versão polida em 5s, mesmo conteúdo.</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Características da demo 1</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Duração:</strong> 30-60s no total</li>
+          <li><strong class="text-white">Modelo:</strong> Haiku 4.5 ou Sonnet 4.6 — não precisa Opus</li>
+          <li><strong class="text-white">Universalidade:</strong> qualquer um na sala já mandou e-mail assim</li>
+          <li><strong class="text-white">Função:</strong> nivelamento — coloca todo mundo no mesmo ponto</li>
+          <li><strong class="text-white">Objetivo:</strong> sucesso visível em &lt; 1 min, baixa guarda</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Resista à tentação de fazer a demo 1 "impressionante". Quanto mais trivial, melhor. Você quer que o leigo da sala pense
+          "eu consigo fazer isso agora", não "uau, isso é avançado".
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🏥 Demo 2 — caso do setor</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sobe um nível: caso típico do setor do cliente (jurídico, saúde, vendas, RH). Ainda genérico — não é a empresa específica —
+        mas com vertical claro. Sala muda de "interessante" pra "ah, ele entende o que a gente faz".
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">⚖️</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Jurídico</h4>
+            <p class="text-sm text-neutral-300">"Vou pedir pro Claude revisar essa cláusula contratual e apontar riscos potenciais."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">🏥</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Saúde</h4>
+            <p class="text-sm text-neutral-300">"Vamos transformar essa nota clínica desestruturada num resumo SOAP padrão."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">💼</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Vendas</h4>
+            <p class="text-sm text-neutral-300">"Vou pedir pra qualificar esse lead pelo BANT olhando o histórico de troca."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">👥</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">RH</h4>
+            <p class="text-sm text-neutral-300">"Gere job description pra esse cargo seguindo nosso template padrão."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Capriche no jargão. "Cláusula", "SOAP", "BANT", "job description padrão" — vocabulário do setor sinaliza que você fez lição de casa.
+          Sem jargão certo, demo 2 vira repetição de demo 1.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎯 Demo 3 — caso da empresa</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Aqui entra tudo que você preparou: <strong class="text-purple-400">avatar do módulo 3.1 + thread sanitizada do módulo 3.2</strong>. Caso específico:
+        "responder esse e-mail real (sanitizado) do cliente A, no tom da empresa". Esse é o ponto "isso é mágica" da sessão.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎬</span> Setup ideal</h3>
+        <ol class="space-y-2 text-neutral-300 list-decimal list-inside">
+          <li>Project com avatar.md em Custom Instructions</li>
+          <li>Thread sanitizada como Knowledge file</li>
+          <li>Modelo: Sonnet 4.6 (qualidade/custo) ou Opus 4.7 se moonshot exigir</li>
+          <li>Prompt: "Responda essa thread no tom da empresa, citando o ID do contrato corretamente, oferecendo 2 opções de próximo passo."</li>
+        </ol>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que vai chamar atenção</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Tom idêntico ao da empresa</li>
+            <li>Uso de jargão interno correto</li>
+            <li>Referências cruzadas (ID do contrato, etc.)</li>
+            <li>2 opções de resposta vs 1 só</li>
+            <li>Tom adequado pra urgência detectada</li>
+          </ul>
+        </div>
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">🎭 Frases-âncora pra narrar</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Repare que ele manteve o 'time' em vez de 'departamento'..."</li>
+            <li>"Veja como ele citou o ID corretamente..."</li>
+            <li>"Note que ele não falou de preço — porque o avatar restringe..."</li>
+            <li>"Esse tom caloroso mas direto é o que pedimos..."</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔗 Demo 4 — workflow encadeado</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Salto qualitativo: deixar de ser "chat útil" e virar <strong class="text-purple-400">workflow</strong>. Cadeia multi-step que executa uma tarefa real do dia-a-dia.
+        Aqui entra dispatch/subagent ou Claude Code se a sala suportar.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⛓️</span> Exemplo: triagem de inbox</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>Cadeia:
+1. Ler as últimas 10 threads via Workspace Connector
+2. Classificar por urgência (alta/média/baixa)
+3. Para cada de alta: rascunhar resposta no tom da empresa
+4. Para cada de média: gerar resumo de 1 linha
+5. Para cada de baixa: marcar pra revisão semanal
+6. Retornar dashboard estruturado
+
+Tempo total: ~90s
+Trabalho manual equivalente: ~45 min</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🤖</span> Ferramentas relevantes</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Connectors:</strong> Google Workspace, Linear, Atlassian, GitHub, etc.</li>
+          <li><strong class="text-white">Subagents / Agent tool:</strong> delega partes pra agentes especializados (paralelizável)</li>
+          <li><strong class="text-white">Scheduled Tasks / Routines:</strong> rodam mesmo com máquina off (infra Anthropic)</li>
+          <li><strong class="text-white">Artifacts:</strong> dashboard interativo como resultado final</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Demo 4 é onde a sala pensa "espera, isso elimina metade do meu dia". Esse momento de cálculo mental é o gatilho para
+          interesse em continuidade (workshop pago, retainer). Não acelere — deixe o cálculo acontecer.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🚀 Demo 5 — moonshot</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A demo que <strong class="text-purple-400">fecha a boca da sala</strong>. Algo que parece impossível pra sala leiga, mas é alcançável com Claude + connectors + um pouco de cola.
+        Aqui não é "isso é útil" — é "preciso desse cara me ajudando a fazer isso".
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <h4 class="font-bold text-purple-400 mb-2">📨 Agente de inbox</h4>
+          <p class="text-sm text-neutral-300">Monitora caixa 24/7, prioriza, rascunha respostas, espera aprovação humana. Routine + connectors.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <h4 class="font-bold text-purple-400 mb-2">📑 500 contratos em 5 min</h4>
+          <p class="text-sm text-neutral-300">Subagents em paralelo extraem cláusulas-chave, identificam riscos, geram planilha consolidada.</p>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <h4 class="font-bold text-purple-400 mb-2">📊 Relatório diário automático</h4>
+          <p class="text-sm text-neutral-300">Routine roda 7h da manhã: puxa métricas, gera resumo executivo, manda no Slack.</p>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Demo 5 é OBRIGATORIAMENTE gravada</h3>
+        <p class="text-neutral-300 text-sm">
+          Workflow longo (3-5 min de execução) + múltiplas integrações = probabilidade alta de falha ao vivo. Conector instável, rate limit, latência.
+          Grave em condições calmas, narre por cima. Coberto em detalhe no módulo 3.4.
+        </p>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">💰</span> Função comercial do moonshot</h3>
+        <p class="text-neutral-300 mb-3">
+          Sem moonshot, a sala sai pensando "interessante mas dá pra fazer no ChatGPT grátis". Com moonshot, sai pensando "isso eu não construo sozinho — preciso de quem construiu".
+        </p>
+        <p class="text-neutral-300">
+          É o gatilho de funil pra workshop pago, sprint de implementação, retainer mensal. Cobre Trilha 5.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Trivial → específico</strong><span class="text-neutral-400"> — escada cognitiva em 5 degraus</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Demo 1: chaves balançando</strong><span class="text-neutral-400"> — universal, &lt; 60s, nivelamento</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Demo 2: caso do setor</strong><span class="text-neutral-400"> — jargão certo sinaliza lição de casa</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Demo 3: caso da empresa</strong><span class="text-neutral-400"> — avatar + thread real, é o "uau"</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Demo 4: workflow</strong><span class="text-neutral-400"> — chat → workflow, gatilho de cálculo mental</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Demo 5: moonshot gravado</strong><span class="text-neutral-400"> — funil pra consultoria paga</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.4 — 📼 Demo como post-mortem, nunca ao vivo (por que gravar é a regra)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-3-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-3-4.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 3.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

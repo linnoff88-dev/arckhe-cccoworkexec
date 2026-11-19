@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 5 — Fechamento e Continuidade | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .group:hover .group-hover\:text-teal-400 { color: #0d9488; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span>
+            <span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10">
+            <span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">TRILHA 5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏁 Fechamento e Continuidade</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Workshop sem fechamento estruturado vira awareness perdido em 48h. Esta trilha cobre o fechamento 1-2-3,
+        o enquadramento de jogo infinito, o funil que transforma palestra em retainer, métricas de adoção real,
+        templates de follow-up testados, e estudos de caso por setor pra você adaptar o playbook.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-teal-400">6</div>
+          <div class="text-xs text-neutral-400">Módulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-teal-400">36</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-teal-400">~4h</div>
+          <div class="text-xs text-neutral-400">Duração</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-teal-400">Avançado</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- MAPA DA TRILHA -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#modulo-5-1" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-teal-400 font-bold text-sm">5.1</span>
+            <span class="text-xs text-neutral-500">~40 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">🏁 Fechamento 1-2-3</h3>
+          <p class="text-xs text-neutral-400">Três passos pra esta semana</p>
+        </a>
+        <a href="#modulo-5-2" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-teal-400 font-bold text-sm">5.2</span>
+            <span class="text-xs text-neutral-500">~30 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">♾️ Jogo infinito vs finito</h3>
+          <p class="text-xs text-neutral-400">IA não tem linha de chegada</p>
+        </a>
+        <a href="#modulo-5-3" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-teal-400 font-bold text-sm">5.3</span>
+            <span class="text-xs text-neutral-500">~50 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">💼 Palestra → consultoria</h3>
+          <p class="text-xs text-neutral-400">Funil $500 → $25k</p>
+        </a>
+        <a href="#modulo-5-4" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-teal-400 font-bold text-sm">5.4</span>
+            <span class="text-xs text-neutral-500">~40 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">📊 Métricas da sessão</h3>
+          <p class="text-xs text-neutral-400">4 dimensões da Capably</p>
+        </a>
+        <a href="#modulo-5-5" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-teal-400 font-bold text-sm">5.5</span>
+            <span class="text-xs text-neutral-500">~40 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">📨 Templates de follow-up</h3>
+          <p class="text-xs text-neutral-400">D+0, D+2, D+7, D+30</p>
+        </a>
+        <a href="#modulo-5-6" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-teal-400 font-bold text-sm">5.6</span>
+            <span class="text-xs text-neutral-500">~50 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">🎒 Estudos de caso</h3>
+          <p class="text-xs text-neutral-400">5 setores, 5 adaptações</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTEUDO DETALHADO -->
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MODULO 5.1 -->
+    <div id="modulo-5-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-teal-400 font-bold">5.1</span>
+          <span class="text-xs text-neutral-500">~40 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🏁 O fechamento 1-2-3</h3>
+        <p class="text-neutral-400 text-sm">Workshop sem fechamento estruturado é awareness que evapora. O 1-2-3 transforma intenção em ação nas próximas 48h.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">A estrutura: 3 próximos passos concretos</span><span class="text-neutral-500 text-sm ml-2">- Tarefa, pessoa, dúvida</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Três compromissos escritos: (1) uma tarefa real que vai tentar com IA amanhã; (2) uma pessoa pra quem vai contar o aprendizado; (3) uma dúvida ainda em aberto. Cada participante escreve, não só pensa.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Slides genéricos de "próximos passos" não geram comportamento. A escrita do compromisso específico aumenta a probabilidade de execução em ~3x — efeito documentado em behavioral design.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Compromisso escrito · Especificidade · Intenção de implementação · Coleta das dúvidas como FAQ.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">3️⃣</span>
+            <div><span class="font-medium">Por que 3 — não 5, não 10</span><span class="text-neutral-500 text-sm ml-2">- Carga cognitiva</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Três é o limite que cabe na memória de trabalho sem nota. Cinco já exige consulta. Dez vira lista esquecida na primeira semana. Workshop entrega valor quando o participante sai com 3 coisas no bolso.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Facilitadores que listam 10 next steps acreditam estar entregando mais valor — entregam zero. A restrição de 3 obriga priorização e aumenta execução.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Magic number 3 · Memória de trabalho · Priorização forçada · Subtraction > addition.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📅</span>
+            <div><span class="font-medium">Critério: faz nesta semana</span><span class="text-neutral-500 text-sm ml-2">- Não amanhã abstrato</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Cada passo tem que caber em ≤ 7 dias. "Vou implementar IA na empresa" é vago demais. "Sexta-feira vou pedir pro Claude rascunhar a ata da daily de segunda" é executável.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Horizonte longo dilui responsabilidade. Horizonte de 7 dias força o participante a usar a janela de motivação pós-workshop antes que ela evapore.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Time-boxing curto · Janela de motivação · Tarefa real do dia · Calendário aberto durante o exercício.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">Exemplo: criar projeto, rodar X, postar Y</span><span class="text-neutral-500 text-sm ml-2">- Concreto > genérico</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Trio canônico de exemplos: (1) criar um Claude Project com instruções da sua função; (2) rodar 1 workflow real (revisar e-mail, sintetizar reunião, gerar JD); (3) postar internamente o que aprendeu — 2 frases no Slack/Teams.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">O facilitador entrega "moldes prontos" que cada participante adapta. Reduz o atrito de improvisar o próprio 1-2-3 e amplifica a taxa de execução.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Templates de compromisso · Fill-in-the-blank · Pública orgânica · Cada um adapta à própria realidade.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📨</span>
+            <div><span class="font-medium">"Contrato de 48h" como preditor</span><span class="text-neutral-500 text-sm ml-2">- Métrica de sucesso</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Variação rigorosa: participante "assina" compromisso de testar 1 caso em 48h. Facilitador envia e-mail em D+2 perguntando "conseguiu?". A taxa de resposta a esse e-mail é métrica direta de sucesso do workshop.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É a métrica mais barata e mais honesta. Se &lt; 30% respondem, o workshop foi entretenimento. Se &gt; 60%, virou comportamento.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Contrato simbólico · E-mail D+2 · Taxa de resposta · Atlassian playbook.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🎚️</span>
+            <div><span class="font-medium">Cola pronta de 1-2-3 por nível</span><span class="text-neutral-500 text-sm ml-2">- Adapta ao público</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Três versões prontas — iniciante (criar conta + rodar 1 prompt + contar a 1 colega), intermediário (montar projeto + workflow real + postar interno), avançado (publicar Skill + medir economia + propor adoção em equipe).</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mesma estrutura, profundidade calibrada. Facilitador escolhe a versão antes da sessão baseado no termômetro da Trilha 1.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Três trilhas de saída · Calibrar por leitura de sala · Iniciante/intermediário/avançado · Slide pré-pronto.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-1.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 5.2 -->
+    <div id="modulo-5-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-teal-400 font-bold">5.2</span>
+          <span class="text-xs text-neutral-500">~30 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">♾️ Jogo infinito vs finito</h3>
+        <p class="text-neutral-400 text-sm">Workshop é finito. Praticar IA é infinito. Confundir os dois é a razão pela qual a maioria das implementações morre depois do evento.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📚</span>
+            <div><span class="font-medium">Sinek: finite vs infinite games</span><span class="text-neutral-500 text-sm ml-2">- Dois tipos de jogo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Conceito de James Carse adaptado por Simon Sinek: jogo finito tem regras fixas, jogadores conhecidos, objetivo de vencer. Jogo infinito tem regras mudando, jogadores entrando/saindo, objetivo de continuar jogando.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Te dá vocabulário pra explicar por que "implementar IA" não tem fim. Liderança que aplica métrica de jogo finito a iniciativas infinitas mata os projetos cedo.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Carse, Sinek · Vencer vs continuar · Regras fixas vs móveis · Just cause.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🌊</span>
+            <div><span class="font-medium">IA: paisagem muda toda semana</span><span class="text-neutral-500 text-sm ml-2">- Modelo do mês passado é legado</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Em 12 meses: Sonnet 3.5 → 3.7 → 4 → 4.5 → 4.6. Opus 4 → 4.5 → 4.7. Surgiram Skills, Connectors, Adaptive thinking, MCP. Quem aprende uma feature hoje precisa atualizar em 90 dias.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem reconhecer a cadência, o cliente acha que "fez o curso, está pronto". Em 6 meses, o curso virou referência histórica. O enquadramento de jogo infinito normaliza atualização contínua.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Cadência de release · Half-life de conhecimento · Sempre beta · Aceitar a mudança.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🎓</span>
+            <div><span class="font-medium">"Terminar o curso" é finito; "praticar Claude" é infinito</span><span class="text-neutral-500 text-sm ml-2">- O reframe</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Frame explícito que o facilitador planta no fechamento: "Vocês não vão terminar de aprender IA hoje. O que termina hoje é o curso. O que começa hoje é a prática — e ela não tem fim previsto."</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem o reframe, participantes saem com "concluí" — atalho cognitivo que mata adoção. Com ele, saem com "comecei" — postura que sustenta uso recorrente.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Concluir vs começar · Postura mental · Reframe explícito · Permanente beta.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">Como enquadrar continuidade</span><span class="text-neutral-500 text-sm ml-2">- Ritual semanal</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Sugerir um ritual mínimo viável: 15 min toda segunda revisitando 1 caso de uso novo + canal interno (Slack/Teams) pra compartilhar "achados da semana". Custo &lt; 1h/mês por pessoa.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Ritual barato vence retomada cara. Sem ritual, a próxima vez que olham IA é em outro workshop daqui a 6 meses — começam do zero.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Ritual mínimo · Canal de equipe · Cadência semanal · Custo baixo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🚪</span>
+            <div><span class="font-medium">Sair do modo workshop, entrar no modo prática</span><span class="text-neutral-500 text-sm ml-2">- Mudança de postura</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Modo workshop = expectativa de ser ensinado, slot agendado, energia alta. Modo prática = autodirigido, no meio do trabalho, energia variável. A transição é traiçoeira — a maioria volta ao zero.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Nomear a transição já reduz a queda. "Saímos do modo passivo. Daqui pra frente vocês são os próprios facilitadores" é uma instrução, não apenas observação.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Postura passiva vs ativa · Transição nomeada · Autodireção · Identidade de praticante.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">💰</span>
+            <div><span class="font-medium">Follow-up pago como parte do jogo</span><span class="text-neutral-500 text-sm ml-2">- Continuar é serviço</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Se o jogo é infinito, faz sentido haver um parceiro contínuo — não um vendedor de eventos. O retainer mensal de "AI office hours" se justifica naturalmente como infraestrutura de continuidade.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">O framing de jogo infinito posiciona consultoria recorrente como lógica, não como upsell. Cliente que internalizou o frame vê retainer como custo de manutenção, não despesa extra.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Retainer como infraestrutura · Custo de continuidade · Parceria longa · Coberto na 5.3.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-2.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 5.3 -->
+    <div id="modulo-5-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-teal-400 font-bold">5.3</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">💼 Da palestra à consultoria recorrente</h3>
+        <p class="text-neutral-400 text-sm">A palestra é o topo do funil. O valor real está no retainer mensal. Funil testado: auditoria → workshop → sprint → retainer.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">💵</span>
+            <div><span class="font-medium">Funil: auditoria → workshop → retainer</span><span class="text-neutral-500 text-sm ml-2">- Tickets em escada</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Estrutura mapeada: auditoria AI Readiness ($500–$1.5k) → workshop half/full day ($2.5k–$12k) → sprint de implementação ($10k–$25k) → retainer mensal ($1k–$3k). Cada degrau qualifica o próximo.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem funil definido, você vende workshop avulso e perde o LTV. Com funil, cada cliente vira sequência previsível de tickets crescentes.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Funil escalonado · Ticket crescente · LTV vs CAC · Indústrias reguladas pagam premium.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📣</span>
+            <div><span class="font-medium">Pré-vender no fechamento</span><span class="text-neutral-500 text-sm ml-2">- Plantar a semente cedo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Última slide do workshop: oferta clara de chamada de 20 min em 30 dias pra acompanhar progresso (grátis), e menção sutil de retainer pra quem quiser parceria contínua. Sem pitch agressivo.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem não planta a continuidade no fechamento, descobre 30 dias depois que ninguém lembra de comprar. Plantar é diferente de empurrar.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Slide de continuidade · Oferta grátis qualificadora · Tom leve · Opt-in explícito.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🎁</span>
+            <div><span class="font-medium">Oferta dupla (open + paid)</span><span class="text-neutral-500 text-sm ml-2">- Caminho grátis e caminho pago</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Pra cada workshop, ter sempre duas saídas: (a) material gratuito (este curso, repositório, newsletter) e (b) oferta paga (sprint, retainer). Quem se autodirige vai pelo grátis, quem precisa de mão segura paga.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem oferta grátis, parece que tudo é gancho de venda. Sem oferta paga, dinheiro deixado na mesa. As duas juntas qualificam a audiência por self-selection.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Trilha dupla · Self-selection · Material persistente · Sem pressão.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📂</span>
+            <div><span class="font-medium">Cases que viraram retainer</span><span class="text-neutral-500 text-sm ml-2">- O padrão observado</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Padrão recorrente: empresa contrata workshop, identifica 3 casos de uso na sessão, descobre que internamente não tem capacidade pra implementar sozinha. Retainer aparece como solução pragmática, não como upsell.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem entende o padrão calibra o workshop pra deixar essas 3 oportunidades visíveis — sem manipulação, só por design intencional do conteúdo.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Casos identificados na sessão · Gap de capacidade interna · Pragmatismo · Design intencional.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">⏰</span>
+            <div><span class="font-medium">Modelos: hours-bank, async, sync+async</span><span class="text-neutral-500 text-sm ml-2">- Três formatos de retainer</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Hours-bank (X horas/mês a consumir), async (resposta em &lt; 24h em canal dedicado), sync+async (1 reunião quinzenal + canal). Cada modelo serve um perfil — operação madura escolhe async, empresa em transformação prefere sync.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Vender o modelo errado fritar relacionamento. Empresa que precisa de sync e contrata async cancela em 60 dias.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Hours-bank · Slack/Teams dedicado · Reunião quinzenal · Match modelo↔maturidade.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">💲</span>
+            <div><span class="font-medium">Como precificar o primeiro retainer</span><span class="text-neutral-500 text-sm ml-2">- A regra dos 10%</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Regra prática: retainer mensal deve representar ~10% do valor estimado mensal que IA agrega à operação. Se cliente economiza ~$10k/mês com IA, $1k/mês de retainer é barganha — e fácil de defender.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem âncora, retainer vira "dou desconto pra fechar". Com âncora de valor agregado, defende preço sem improvisar.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Value-based pricing · Regra dos 10% · Justificativa numérica · Faixa $1k–$3k/mês.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-3.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 5.4 -->
+    <div id="modulo-5-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-teal-400 font-bold">5.4</span>
+          <span class="text-xs text-neutral-500">~40 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📊 Métricas de sucesso da sessão</h3>
+        <p class="text-neutral-400 text-sm">Presença não é sucesso. NPS sem delta de confiança também não. Framework de 4 dimensões pra medir o que importa.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🧭</span>
+            <div><span class="font-medium">4 dimensões (Capably)</span><span class="text-neutral-500 text-sm ml-2">- Engagement, behavioral, capability, governance</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Framework da Capably + Google Cloud: engagement (DAU/WAU, retenção 30d), behavioral (% workflows com IA, tempo economizado), capability (casos novos, PRs assistidos), governance (adesão à política, incidentes).</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem framework, você mede o que é fácil. Com framework, você mede o que move o ponteiro — e tem como reportar pro patrocinador em linguagem que ele entende.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Engagement · Behavioral · Capability · Governance.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">Pesquisa pós-sessão (3 perguntas, NPS)</span><span class="text-neutral-500 text-sm ml-2">- Curto, antes do Q&A</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">3 perguntas: (1) confiança 1–5 (mesma escala do baseline), (2) NPS 0–10, (3) qual seu próximo passo? Cinco minutos, antes do Q&A pra não contaminar com debate.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Pesquisa longa &gt; 5 perguntas tem taxa de resposta caindo. Três perguntas têm 80–90% de respostas. Captura o essencial.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Survey curto · Antes do Q&A · Delta vs baseline · NPS.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📈</span>
+            <div><span class="font-medium">Adoção em 7 e 30 dias</span><span class="text-neutral-500 text-sm ml-2">- O que importa pós-evento</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Em D+7: % que usou Claude pelo menos 1x desde o workshop. Em D+30: % ainda usando semanalmente, DAU/WAU. Esses dois pontos contam mais que NPS do dia.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É a métrica que separa workshop bom de workshop teatral. Workshop com NPS 9 e adoção 0 em 30d foi entretenimento.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">D+7, D+30 · Retenção real · WAU/DAU · Adoção &gt; satisfação.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🛠️</span>
+            <div><span class="font-medium">Métricas hard raras (PRs, docs)</span><span class="text-neutral-500 text-sm ml-2">- Quando dá pra medir</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Quando há instrumentação: nº de PRs com co-authoring de IA, nº de docs gerados com assistência, tempo médio de turnaround. Raras porque dependem de telemetria que poucos têm.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Se o cliente tem instrumentação, oferecer mensuração hard é diferencial enorme — vira case publicável. Se não tem, autodeclarado via survey é o realista.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Telemetria · PR co-authored · Tempo de turnaround · Hard vs self-reported.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">⏱️</span>
+            <div><span class="font-medium">"Contrato de 48h" como proxy</span><span class="text-neutral-500 text-sm ml-2">- Métrica barata e honesta</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Quando não há telemetria, a taxa de resposta ao e-mail de D+2 ("conseguiu fazer aquilo?") é proxy razoável de adoção. Custo zero, sinal forte.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Te dá métrica defensável mesmo sem instrumentação. ≥ 60% de resposta = workshop com tração. &lt; 30% = repensar.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Proxy barato · Taxa de resposta · Sem telemetria · Sinal forte.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">📑</span>
+            <div><span class="font-medium">Reportar pro patrocinador</span><span class="text-neutral-500 text-sm ml-2">- Página única, sem fluff</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Relatório de 1 página: baseline vs delta de confiança, NPS, % de respostas D+2, lista dos 3 casos de uso mais citados, recomendação de próximo passo. PDF, gráficos simples, sem jargão.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Patrocinador que recebe relatório de 1 página lê. Patrocinador que recebe 30 slides arquiva. A diferença entre próximo contrato e silêncio é a forma do relatório.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">One-pager · Baseline + delta · Recomendação clara · Gancho pro próximo.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-4.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 5.5 -->
+    <div id="modulo-5-5" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-teal-400 font-bold">5.5</span>
+          <span class="text-xs text-neutral-500">~40 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📨 Templates de follow-up</h3>
+        <p class="text-neutral-400 text-sm">Quatro e-mails: D+0, D+2, D+7, D+30. Cada um tem um job específico. Templates prontos pra adaptar.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📧</span>
+            <div><span class="font-medium">D+0: resumo + 1-2-3 escrito</span><span class="text-neutral-500 text-sm ml-2">- No mesmo dia</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Enviado em até 4h pós-workshop. Recapitula 3 pontos centrais, lista o 1-2-3 que cada um se comprometeu, anexa prompts usados na demo + 3 links úteis. Curto, direto.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">D+0 enquanto a memória é fresca tem taxa de abertura ~80%. Mesmo conteúdo em D+3 cai pra 30%. Janela curta.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Janela de abertura · Anexar prompts · Reforço imediato · &lt; 4h.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📨</span>
+            <div><span class="font-medium">D+2: "conseguiu fazer?"</span><span class="text-neutral-500 text-sm ml-2">- Contrato de 48h</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Mensagem curta (3 frases), 1 pergunta direta: "Conseguiu testar o passo 1 do seu 1-2-3?". Resposta de Sim/Não/Travei. Quem responde "Travei" vira candidato a ajuda 1:1.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Métrica de adoção real + canal de suporte com baixíssima fricção. Quem trava e tem suporte rápido vira evangelizador.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Pergunta única · 3 frases · Sim/Não/Travei · Suporte 1:1 pra quem trava.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">💡</span>
+            <div><span class="font-medium">D+7: caso de uso novo</span><span class="text-neutral-500 text-sm ml-2">- Mantém o interesse</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">1 caso de uso novo relevante pra função do grupo, com prompt pronto pra colar. Ex: pra time de vendas — "Use o Claude pra rascunhar follow-ups de demo. Aqui o prompt: [...]". Curto, copiável.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mantém a relação viva sem virar spam. Cada D+7 entrega 1 mini-valor — pessoa não desinscreve, espera o próximo.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Prompt copy-paste · Caso por área · Mini-valor semanal · Não pedir nada.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🤝</span>
+            <div><span class="font-medium">D+30: oferta de continuidade</span><span class="text-neutral-500 text-sm ml-2">- Próximo passo pago</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">E-mail mais longo: recapitula valor entregue (com dados do survey D+30), apresenta opções de continuidade (sprint, retainer, próximo workshop), oferece chamada de 20 min. Aqui é onde o funil avança.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">D+30 é o momento de ouro: confiança construída, ROI percebido, ainda lembram do facilitador. Quem espera D+90 perde a janela.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Valor recapitulado · Opções claras · Call de 20 min · Janela D+30.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">💬</span>
+            <div><span class="font-medium">Grupo Slack/WhatsApp</span><span class="text-neutral-500 text-sm ml-2">- Comunidade da turma</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Canal opt-in da turma, moderado pelo facilitador, vida útil de 60–90 dias. Foco: compartilhar achados, perguntas curtas, prompts úteis. Acima de 90 dias morre — e tudo bem.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Comunidade pequena com vida útil definida funciona. Comunidade aberta gigante vira fantasma e pesa em moderação.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Opt-in · Vida útil definida · Moderação leve · Aceitar morte natural.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">📚</span>
+            <div><span class="font-medium">Material persistente</span><span class="text-neutral-500 text-sm ml-2">- Este curso, repositório, links</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">URL única (este curso, repositório GitHub, página com prompts da sessão) que existe para sempre. Cada e-mail referencia. Cada participante volta semanas depois e o material ainda está lá.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">PDF anexado some no histórico de e-mail. URL persistente vira referência consultada — e backlinks orgânicos.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">URL fixa · Repositório público · Backlinks · Sempre presente.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-5.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 5.6 -->
+    <div id="modulo-5-6" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-teal-400 font-bold">5.6</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🎒 Estudos de caso e variações por público</h3>
+        <p class="text-neutral-400 text-sm">Cinco setores, cinco adaptações concretas. Mesmo playbook, ênfases diferentes — saúde, jurídico, e-commerce, startup, governo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🏥</span>
+            <div><span class="font-medium">Caso 1: empresa de saúde</span><span class="text-neutral-500 text-sm ml-2">- Compliance é o eixo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Workshop pra área de saúde gira em torno de LGPD/HIPAA, dados de paciente, BAA, audit logs. Demos sempre com dados sintéticos. Governança vira eixo, não apêndice. Premium de 30–50% no preço.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Saúde paga mais e exige mais. Quem ignora compliance perde o contrato no comitê de ética. Quem trata como eixo central fecha retainer rapidamente.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">LGPD/HIPAA · Dados sintéticos · BAA · Premium regulado.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">⚖️</span>
+            <div><span class="font-medium">Caso 2: jurídico</span><span class="text-neutral-500 text-sm ml-2">- Confidencialidade e citações</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Escritórios e jurídicos internos: foco em confidencialidade cliente-advogado, citação verificável (anti-alucinação de jurisprudência), audit trail. Demos com contratos sintéticos. Premium alto, ciclo de venda longo.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Jurídico tem trauma documentado com casos Mata-papers (advogados sancionados por citações inventadas). Tratar alucinação como risco operacional é tabela de entrada.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Privilege · Verificação de citação · Audit trail · Contratos sintéticos.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🛒</span>
+            <div><span class="font-medium">Caso 3: e-commerce</span><span class="text-neutral-500 text-sm ml-2">- Volume e custo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">E-commerce: foco em descrição de produto em massa, atendimento via chatbot, classificação de tickets, geração de copy A/B. Eixo é custo por interação — Haiku 4.5 domina, prompt caching obrigatório.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Em e-commerce, 1¢ por interação x 10M de interações = decisão financeira séria. Sem ROI de tokens claro, o projeto morre no diretor financeiro.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Custo por token · Haiku como default · Prompt caching · A/B de copy.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🚀</span>
+            <div><span class="font-medium">Caso 4: startup técnica</span><span class="text-neutral-500 text-sm ml-2">- Claude Code no centro</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Startup engineering-heavy: foco em Claude Code, subagents, Skills, MCP, automação de dev workflow. Workshop pode ir fundo em ciclo agêntico. Outputs concretos: PRs, scripts, automações rodando.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Esse perfil rejeita workshop "raso de prompt engineering". Pra fechar, precisa demonstrar profundidade de Code desde a primeira hora.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Claude Code · Subagents · Skills · Outputs executáveis.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🏛️</span>
+            <div><span class="font-medium">Caso 5: governo</span><span class="text-neutral-500 text-sm ml-2">- Políticas públicas e accountability</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Governo: foco em política de uso institucional, soberania de dado, transparência algorítmica, comunicação com cidadão. Ciclo de venda longuíssimo, ticket grande, exige paciência. Apoio executivo é mandatório.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Governo paga, mas exige outro tipo de evidência (referências formais, casos públicos comparáveis). Quem não tem essa base não fecha.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Política institucional · Soberania · Transparência · Ciclo longo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🔧</span>
+            <div><span class="font-medium">Como adaptar o playbook por setor</span><span class="text-neutral-500 text-sm ml-2">- O método de calibração</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-teal-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Método de 4 perguntas antes de qualquer workshop: (1) qual é o eixo regulatório? (2) qual é o trabalho que paga a conta? (3) onde está o ROI mais óbvio? (4) qual é o tabu interno? Respostas viram ângulo da sessão.</p></div>
+              <div><span class="text-teal-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Adaptação genérica não convence. Adaptação específica vira ROI imediato. Estas 4 perguntas, respondidas com sponsor antes da sessão, valem mais que 20h de pesquisa solta.</p></div>
+              <div><span class="text-teal-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">4 perguntas pré-workshop · Eixo regulatório · ROI evidente · Tabu interno.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-5-6')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-5-6.html" class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- NAV INFERIOR -->
+    <div class="flex flex-col sm:flex-row gap-4 mt-12">
+      <a href="../trilha4/index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">← Trilha anterior: 🧭 Interface</a>
+      <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">🏁 Fim do curso — voltar à landing</a>
+    </div>
+
+  </main>
+
+  <!-- MODAIS -->
+  <div id="modal-5-1" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.1</span><span class="font-semibold">🏁 O fechamento 1-2-3</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-5-1.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-5-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.2</span><span class="font-semibold">♾️ Jogo infinito vs finito</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-5-2.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-5-3" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.3</span><span class="font-semibold">💼 Da palestra à consultoria</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-5-3.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-5-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.4</span><span class="font-semibold">📊 Métricas da sessão</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-5-4.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-5-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.5</span><span class="font-semibold">📨 Templates de follow-up</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-5-5.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-5-6" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.6</span><span class="font-semibold">🎒 Estudos de caso</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-5-6.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Trilha 5 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; } }
+    function closeModal() { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); document.body.style.overflow = 'auto'; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

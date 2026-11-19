@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5.4 — Métricas de sucesso da sessão | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13, 148, 136, 0.10); }
+    html:not(.dark) .bg-teal-900\/30 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-teal-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-teal-400">Trilha 5</a>
+      <span>/</span>
+      <span class="text-teal-400">Módulo 5.4</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MÓDULO 5.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📊 Métricas de sucesso da sessão</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Presença não é sucesso. NPS sem delta de confiança também não. Este módulo cobre o framework de 4 dimensões da
+        Capably/Google Cloud, o survey pós-sessão de 3 perguntas, as métricas de adoção em D+7 e D+30, e como reportar
+        pro patrocinador em uma página única.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Medição</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🧭 4 dimensões (framework Capably)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sem framework, você mede o que é fácil — presença, NPS, "gostei". Com framework, mede o que move o ponteiro.
+        O modelo da <strong class="text-teal-400">Capably + Google Cloud</strong> organiza adoção de IA em quatro dimensões
+        complementares. Cada uma captura um aspecto que as outras não veem.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📐</span> As 4 dimensões</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">1. Engagement</h4>
+            <p class="text-sm text-neutral-300">DAU/WAU, frequência semanal por departamento, retenção 30 dias. "Está usando?"</p>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">2. Behavioral</h4>
+            <p class="text-sm text-neutral-300">% de workflows com IA, tempo economizado por tarefa, redução de turnaround. "O trabalho mudou?"</p>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">3. Capability</h4>
+            <p class="text-sm text-neutral-300">Casos de uso novos identificados, PRs/docs com assistência, conclusão de materiais adicionais. "Está crescendo?"</p>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4">
+            <h4 class="text-white font-semibold mb-2">4. Governance</h4>
+            <p class="text-sm text-neutral-300">Adesão à política aprovada, incidentes de uso inadequado, dados sensíveis vazados. "Está seguro?"</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que medir</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Pelo menos 1 métrica por dimensão</li>
+            <li>Baseline antes do workshop</li>
+            <li>Pontos de medição: D+0, D+7, D+30</li>
+            <li>Reportar ao patrocinador em 1 página</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que NÃO medir como sucesso</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Presença (sala cheia ≠ aprendizado)</li>
+            <li>Satisfação sem delta de confiança</li>
+            <li>Número de licenças ativas (≠ uso real)</li>
+            <li>NPS sozinho (sem comportamento)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📚</span> Fontes</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Capably — <em>AI Adoption Metrics: The New KPI for Enterprise Maturity</em></li>
+          <li>• Google Cloud — <em>KPIs for gen AI — Measuring your AI success</em></li>
+          <li>• Zapier — <em>How to measure AI adoption</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📋 Pesquisa pós-sessão (3 perguntas, NPS)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Pesquisa de fechamento longa tem taxa de resposta caindo. <strong class="text-teal-400">Três perguntas tem 80–90% de
+        respostas</strong>; cinco perguntas já cai pra 60%. Aplique <strong>antes do Q&A</strong> — após o debate, respostas
+        ficam contaminadas pelo último comentário que ouviram.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📝</span> Survey de fechamento (template)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>1. Numa escala de 1–5, quão confortável você se sente
+   usando IA no seu trabalho HOJE?
+   (mesma pergunta do survey de abertura — comparar delta)
+
+   ○ 1 — desconfortável
+   ○ 2
+   ○ 3
+   ○ 4
+   ○ 5 — totalmente confortável
+
+2. Numa escala de 0–10, você recomendaria este workshop
+   a um colega?
+   (NPS clássico)
+
+3. Qual é o seu próximo passo concreto?
+   (campo aberto curto — vira o 1-2-3 escrito)
+   ___________________________________________</code></pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📈</span> Métrica-chave: delta de confiança</h3>
+        <p class="text-neutral-300 mb-3">
+          <strong>Meta:</strong> aumento de ≥ 1 ponto médio na escala 1–5 entre survey de abertura e fechamento.
+        </p>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">+0.5 pt:</strong> workshop teve impacto mínimo. Investigar formato.</li>
+          <li><strong class="text-white">+1.0 pt:</strong> meta atingida. Workshop bom.</li>
+          <li><strong class="text-white">+1.5 pt:</strong> excelente. Replicar formato em outras turmas.</li>
+          <li><strong class="text-white">+2.0 pt:</strong> raro; pode indicar baseline excessivamente baixo (sala desinformada na largada).</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          <strong>Survey de abertura é obrigatório</strong>. Sem ele, delta vira imaginação. Pergunta única ("escala
+          1–5, quão confortável com IA hoje?") em Google Form ou Zoom Poll. 5 min no início, 5 min no fim. ROI máximo.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📈 Adoção em 7 e 30 dias</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        NPS do dia mede sentimento. <strong class="text-teal-400">Adoção em D+7 e D+30 mede comportamento</strong> — e
+        comportamento é o único sinal que importa. Workshop com NPS 9 e adoção 0 em 30 dias foi entretenimento. Workshop
+        com NPS 7 e adoção 50% em 30 dias foi transformação.
+      </p>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">D+7</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Sete dias depois</h4>
+            <p class="text-sm text-neutral-400 mb-3">% de participantes que usaram Claude ≥ 1x desde o workshop</p>
+            <p class="text-neutral-300 text-sm">Indicador de tentativa. Meta: &gt; 60%. Abaixo de 40%, problema sério de ativação — repensar formato ou plano de acompanhamento.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">D+30</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Trinta dias depois</h4>
+            <p class="text-sm text-neutral-400 mb-3">% ainda usando semanalmente (WAU). Tempo economizado autodeclarado</p>
+            <p class="text-neutral-300 text-sm">Indicador de hábito. Meta: &gt; 30% mantendo uso semanal. Esse é o ponto de inflexão entre "experimentou" e "incorporou".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">D+90</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Noventa dias depois (opcional)</h4>
+            <p class="text-sm text-neutral-400 mb-3">Casos de uso novos identificados pela equipe sozinha</p>
+            <p class="text-neutral-300 text-sm">Sinal de autonomia. Se 3+ casos novos surgem sem nova intervenção do consultor, time atingiu independência.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Atlassian: o dado contraintuitivo</h3>
+        <p class="text-neutral-300 text-sm">
+          Atlassian documentou que <strong>um único gerente fazendo demo curta de IA para sua equipe quase dobrou a
+          adoção de IA no grupo</strong>. A métrica foi AI feature usage rate antes e depois da demo do gerente. Sugere
+          que workshops formais não são o único vetor — e que medir adoção agregada captura o efeito real.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🛠️ Métricas hard raras (PRs, docs)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Quando o cliente tem <strong class="text-teal-400">instrumentação</strong>, oferecer mensuração hard é diferencial enorme —
+        vira case publicável e prova de ROI. Quando não tem, autodeclarado via survey é o realista. A maioria das empresas
+        está no segundo grupo.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">📐 Métricas hard (raras)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• PRs com co-authoring de IA (Git stats)</li>
+            <li>• Docs gerados/revisados com IA (CMS logs)</li>
+            <li>• Tempo médio de turnaround de tickets</li>
+            <li>• Volume de prompts via API corporativa</li>
+            <li>• Spend Anthropic/OpenAI por usuário</li>
+          </ul>
+        </div>
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">📋 Métricas soft (comuns)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• "Quantas horas/semana economizou?" (autodeclarado)</li>
+            <li>• "Quantas tarefas usou IA nesta semana?"</li>
+            <li>• Survey de delta de confiança</li>
+            <li>• NPS</li>
+            <li>• Casos de uso citados em retrospectiva</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🔧</span> Como pedir instrumentação</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Conversa com TI (antes do workshop):
+
+"Vocês conseguem extrair:
+ - Volume de PRs/commits com 'Co-Authored-By: Claude'
+   no histórico Git dos últimos 30 dias?
+ - Spend mensal nas APIs Anthropic/OpenAI por team?
+ - Logs de uso do claude.ai SSO se houver?"
+
+Se SIM → métrica hard.
+Se NÃO → fica com autodeclarado, sem drama.</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          <strong>Não prometa métricas hard que dependem de TI</strong> sem confirmar antes que TI vai entregar. Pedido
+          que não vira número derruba a credibilidade do relatório final. Confirme acesso antes de incluir no proposal.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⏱️ "Contrato de 48h" como proxy</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Quando não há telemetria nem orçamento pra survey D+30, a métrica mais barata e mais honesta é a
+        <strong class="text-teal-400">taxa de resposta ao e-mail D+2</strong> — o "conseguiu fazer?". Custo zero, sinal forte.
+        Discutido em detalhe na 5.1; aqui ele aparece como proxy formal de adoção.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📊</span> Interpretação da taxa de resposta</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-white">&lt; 30%:</strong> workshop foi awareness, não comportamento. Repensar.</li>
+          <li><strong class="text-white">30–60%:</strong> tração média. Ajustes táticos podem subir.</li>
+          <li><strong class="text-white">&gt; 60%:</strong> workshop forte; quem responde está fazendo.</li>
+          <li><strong class="text-white">&gt; 80%:</strong> excepcional. Documentar formato pra replicar.</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">💌</span> Por que funciona como proxy</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Quem fez tem orgulho de contar — responde com história</li>
+          <li>Quem não fez sente fricção em ignorar (efeito do compromisso assinado em 5.1)</li>
+          <li>Quem travou usa o canal pra pedir ajuda — vira lead pro retainer</li>
+          <li>Quem desligou de vez não responde — você sabe quem perdeu</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Custo zero</div><div class="text-sm text-neutral-400">Sem telemetria</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">D+2</div><div class="text-sm text-neutral-400">Janela curta</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">3 frases</div><div class="text-sm text-neutral-400">E-mail simples</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Sinal forte</div><div class="text-sm text-neutral-400">Comportamento real</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📑 Reportar pro patrocinador</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O relatório final é o vetor de continuidade. <strong class="text-teal-400">Uma página, números curtos, recomendação
+        explícita</strong>. Patrocinador que recebe relatório de 1 página lê. Patrocinador que recebe 30 slides arquiva. A
+        diferença entre próximo contrato e silêncio é a forma do relatório.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📄</span> One-pager template</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>RELATÓRIO — Workshop [Nome] · [Data]
+─────────────────────────────────────────
+
+PARTICIPANTES: 45  |  TAXA DE PRESENÇA: 89%
+
+DELTA DE CONFIANÇA (1–5):
+  Antes: 2.4  →  Depois: 3.7  (+1.3)  ✓ meta
+
+NPS: 64
+
+ADOÇÃO D+2 (resposta ao "conseguiu?"):
+  68% responderam que SIM tentaram
+  12% responderam que TRAVARAM (suporte 1:1 ativado)
+  20% não responderam
+
+TOP 3 CASOS DE USO CITADOS:
+  1. Rascunho de e-mails complexos (n=22)
+  2. Resumo de reuniões longas (n=18)
+  3. Revisão/melhoria de documentos (n=15)
+
+RECOMENDAÇÃO:
+  → Workshop intermediário com foco em Projects
+    e workflows reais. Estimativa: ROI ~$15k/mês
+    pela própria autodeclaração da turma.
+    Próximo passo: chamada de 30 min em D+30.
+
+ANEXOS: prompts da sessão, gravação, FAQ das dúvidas
+        coletadas no 1-2-3.</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Relatório que vira próximo contrato</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>1 página, gráficos simples</li>
+            <li>Delta numérico antes/depois</li>
+            <li>Top 3 casos de uso identificados</li>
+            <li>Recomendação explícita de próximo passo</li>
+            <li>Pedido de 30 min em D+30 já agendado</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Relatório que vai pra pasta</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>30 slides, gráficos 3D</li>
+            <li>"Workshop foi um sucesso" sem números</li>
+            <li>Lista de tópicos cobertos (já sabem)</li>
+            <li>Sem recomendação específica</li>
+            <li>Sem próximo agendamento</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Mande o one-pager em <strong>até D+5</strong>. Quanto mais demora, menos a memória do workshop sustenta o
+          relatório. Em D+10 já está frio. Envie em PDF + link permanente — patrocinador costuma encaminhar pra outros
+          decisores, e link funciona melhor que anexo de 5 MB.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">4 dimensões: engagement, behavioral, capability, governance</strong><span class="text-neutral-400"> — Capably + Google Cloud</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Survey de 3 perguntas, antes do Q&A</strong><span class="text-neutral-400"> — confiança 1-5, NPS, próximo passo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Adoção em D+7 e D+30 importa mais que NPS do dia</strong><span class="text-neutral-400"> — comportamento &gt; sentimento</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Métricas hard quando há instrumentação</strong><span class="text-neutral-400"> — confirmar com TI antes</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Taxa de resposta D+2 como proxy honesto</strong><span class="text-neutral-400"> — custo zero, sinal forte</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">One-pager em até D+5</strong><span class="text-neutral-400"> — delta + top 3 + recomendação</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-teal-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">5.5 — 📨 Templates de follow-up (D+0, D+2, D+7, D+30, grupo, material persistente)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-5-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-5-5.html" class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 5.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

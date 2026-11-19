@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.5 — Prompt ruim vs mega-prompt | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.5</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎯 Prompt ruim vs mega-prompt</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Mega-prompt não é "prompt comprido" — é documento técnico estruturado. Anatomia em 6 componentes,
+        regra de quando vale escrever, ROI dramático com prompt caching, 7 erros catalogados, e dois
+        exemplos lado a lado pra fixar a diferença.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Médio</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Prática</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🧬 Anatomia de mega-prompt</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Mega-prompt não é "prompt comprido". É um documento técnico com componentes canônicos.
+        Anthropic recomenda separar com <strong class="text-blue-400">XML tags</strong> (<code class="bg-dark-700 px-1 rounded text-blue-400">&lt;role&gt;</code>,
+        <code class="bg-dark-700 px-1 rounded text-blue-400">&lt;context&gt;</code>, etc.) pra evitar que o modelo misture seções.
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📐</span> Os 6 componentes canônicos</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">Role:</strong> persona e domínio de expertise ("engenheiro Python sênior")</li>
+          <li><strong class="text-white">Context:</strong> background do problema, empresa, usuário</li>
+          <li><strong class="text-white">Task:</strong> instrução principal com verbo de ação claro</li>
+          <li><strong class="text-white">Constraints:</strong> restrições (tamanho, tom, o que evitar)</li>
+          <li><strong class="text-white">Output format:</strong> estrutura da saída (markdown, JSON, lista)</li>
+          <li><strong class="text-white">Examples:</strong> 1-3 pares input/output esperados (k-shot)</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📜</span> Esqueleto com XML tags</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>&lt;role&gt;
+[persona e expertise]
+&lt;/role&gt;
+
+&lt;context&gt;
+[background, situação, restrições do ambiente]
+&lt;/context&gt;
+
+&lt;task&gt;
+[verbo de ação + objetivo]
+&lt;/task&gt;
+
+&lt;constraints&gt;
+- [restrição 1]
+- [restrição 2]
+&lt;/constraints&gt;
+
+&lt;output_format&gt;
+[estrutura esperada]
+&lt;/output_format&gt;
+
+&lt;examples&gt;
+[1-3 pares input/output]
+&lt;/examples&gt;</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Cada componente protege contra</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Role:</strong> tom genérico, falta de autoridade técnica</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Context:</strong> suposições erradas, alucinação</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Task:</strong> ambiguidade no entregável</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Constraints:</strong> saída fora do escopo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Output:</strong> formato que quebra downstream</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Examples:</strong> estilo e tom indefinidos</span></li>
+          </ul>
+        </div>
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">📌 Por que XML tags &gt; markdown</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li>Anthropic treina Claude pra reconhecer XML como separador estrutural</li>
+            <li>Markdown pode se confundir com conteúdo do usuário</li>
+            <li>XML deixa explícito onde uma seção começa e termina</li>
+            <li>Funciona melhor com inputs grandes (contratos, código)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚖️ Quando vale escrever mega vs simples</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        <strong class="text-blue-400">A regra dos 10 usos:</strong> se vai usar mais de 10 vezes OU se outra pessoa
+        vai usar, escreva mega-prompt. Pra exploração ad-hoc ou uso pessoal pontual, prompt simples basta. Sem
+        critério claro, gente sobre-investe e sub-investe ao mesmo tempo.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Vale escrever mega-prompt</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tarefa repetida em produção (cache hit 80-95%)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Saída alimenta sistema downstream (JSON, código)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Múltiplos usuários, mesmo fluxo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Consistência é requisito (jurídico, marca, compliance)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Vai virar Cowork project ou system prompt persistente</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Prompt simples basta</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Exploração ad-hoc, uso pessoal pontual</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tarefa única sem reuso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Contexto radicalmente diferente a cada input</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Brainstorm me dá 5 ideias"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pergunta única que cabe em uma frase</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Investimento × retorno</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Escrever mega-prompt: <strong>30-60 min</strong> de pensamento estruturado</li>
+          <li>Custo de manter: zero — uma vez bom, fica bom</li>
+          <li>Ganho por uso (após o 10º): <strong>3-5x</strong> menos retrabalho, output consistente, cache hit</li>
+          <li>ROI claro a partir do 10º uso; spettacolare a partir do 50º</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Mantenha uma <strong>pasta de mega-prompts</strong> versionados em markdown. Cada um com nome descritivo (<code class="bg-dark-700 px-1 rounded">revisao-pr.md</code>,
+          <code class="bg-dark-700 px-1 rounded">extracao-contrato.md</code>). Vira biblioteca pessoal — e patrimônio.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">💸 ROI com prompt caching (60-90% economia)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O multiplicador escondido. Mega-prompt <em>sem</em> caching já é melhor que prompt ruim. Mega-prompt
+        <em>com</em> caching tem ROI maior que qualquer outra otimização.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">💵</span> Mecânica do caching</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>Multiplicadores sobre o preço de input padrão:
+
+  Cache write (5 min):  1.25x  → +25% no write
+  Cache write (1 hora): 2.00x  → +100% no write
+  Cache read (hit):     0.10x  → -90% por leitura
+
+Break-even:
+  Cache 5 min:  paga após 1 leitura
+  Cache 1 hora: paga após 2 leituras
+
+Em produção real:
+  System prompt fixo → cache hit 80-95%
+  Economia efetiva  → 60-90% no input</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🧮</span> Exemplo numérico: chatbot de suporte</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>System prompt mega: 50k tokens (mesmo em toda chamada)</li>
+          <li>1000 chamadas/dia, modelo Sonnet 4.6 ($3/MTok input)</li>
+          <li><strong class="text-white">Sem caching:</strong> 1000 × 50k × $3/M = <strong>$150/dia</strong> só no system prompt</li>
+          <li><strong class="text-white">Com caching (cache hit 90%):</strong> ~$22/dia</li>
+          <li><strong class="text-blue-400">Economia: $128/dia = $3,8k/mês — só de caching</strong></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Como estruturar pra cachear bem</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>System prompt fixo (não varia entre chamadas)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Conteúdo variável só no user turn</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cache breakpoint após examples grandes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cache de 1h pra workloads contínuos</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Padrões que matam cache hit</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Timestamp/data no system prompt (muda hash)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>User context misturado no system</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Conteúdo dinâmico antes do estável</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Reescrever prompt a cada deploy</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚧 7 erros típicos catalogados</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Taxonomia de prompt defects baseada em pesquisa acadêmica (arxiv 2509.14404) e literatura aplicada.
+        Reconhecer o defeito pelo sintoma corta tempo de debug em <strong class="text-blue-400">80%</strong>.
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">Vague task</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> resposta genérica, cobre tudo superficialmente. <strong>Causa:</strong> verbo de ação ausente ("fale sobre X").</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">Missing context</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> suposições erradas, alucinação de premissas. <strong>Causa:</strong> modelo não sabe pra quem, pra quê, em que situação.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">No output spec (#1 mais custoso em produção)</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> output varia a cada run, não integra com sistemas. <strong>Causa:</strong> sem formato, tamanho ou estrutura definidos.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">Role mixing</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> conflito de objetivos, resultado confuso. <strong>Causa:</strong> persona misturada com instrução ("você é um especialista, escreva um email").</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">5</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">Overloaded single prompt</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> tarefa fácil recebe atenção, difícil é negligenciada. <strong>Causa:</strong> muitas tarefas num prompt ("faça X, depois Y, e também Z").</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">6</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">No examples</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> estilo, tom e formato variam. <strong>Causa:</strong> instruções sem calibração k-shot.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold">7</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-red-400 mb-1">Contradiction</h4>
+            <p class="text-neutral-300 text-sm"><strong>Sintoma:</strong> modelo escolhe arbitrariamente o que seguir. <strong>Causa:</strong> instrução que se anula ("seja breve mas detalhe tudo").</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Ao debugar prompt, <strong>rode o sintoma na taxonomia</strong>. "Output varia entre runs" → defeito #3, no output spec. "Resposta cobre
+          tudo superficialmente" → defeito #1, vague task. Soluções óbvias quando você sabe o nome do defeito.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">👁️ Exemplo lado-a-lado: revisão de código</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A diferença fica óbvia quando você vê os dois prompts e os outputs que cada um produz.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Prompt ruim</h4>
+          <pre class="bg-dark-900 rounded-lg p-4 text-xs text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Revise esse código Python e me diga
+o que está errado.</code></pre>
+          <p class="text-neutral-400 text-sm mt-4 italic">
+            Sem role → tom genérico. Sem context → sugestões irrelevantes (ex: "use async" sem saber da RAM).
+            Sem output spec → 80% do output em nitpicks de estilo. Inútil pra ticket de issue.
+          </p>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Mega-prompt</h4>
+          <pre class="bg-dark-900 rounded-lg p-4 text-xs text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>&lt;role&gt;
+Engenheiro sênior Python, especialista em
+performance e segurança de APIs REST.
+&lt;/role&gt;
+
+&lt;context&gt;
+Endpoint Flask em produção, ~10k req/dia,
+container 512MB RAM.
+&lt;/context&gt;
+
+&lt;task&gt;
+Revise o código e produza relatório
+estruturado de problemas.
+&lt;/task&gt;
+
+&lt;constraints&gt;
+- Foco: bugs, segurança, performance
+- Ignore: estilo cosmético
+- Não reescreva, só aponte
+&lt;/constraints&gt;
+
+&lt;output_format&gt;
+Por problema:
+- Severidade: CRITICAL/HIGH/MEDIUM/LOW
+- Linha(s) afetadas
+- Descrição
+- Risco concreto
+&lt;/output_format&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Por que o mega ganha</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Role:</strong> ativa o domínio correto, não um generic "assistente"</li>
+          <li><strong class="text-white">Context:</strong> evita sugestões irrelevantes (não sugere async com RAM limitada)</li>
+          <li><strong class="text-white">Constraints:</strong> poda nitpicks de estilo que comem 80% do output</li>
+          <li><strong class="text-white">Output format:</strong> resultado vira ticket de issue tracker sem reformat</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📄 Exemplo lado-a-lado: extração de contrato</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Caso clássico de saída que alimenta sistema downstream. Sem output spec rigoroso, parsing quebra em produção.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Prompt ruim</h4>
+          <pre class="bg-dark-900 rounded-lg p-4 text-xs text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Extraia as informações importantes
+desse contrato.</code></pre>
+          <p class="text-neutral-400 text-sm mt-4 italic">
+            "Importantes" é subjetivo. Output varia: às vezes prosa, às vezes lista, às vezes tabela. Em produção,
+            o parser quebra. Modelo pode "adivinhar" campos ausentes — erro silencioso.
+          </p>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Mega-prompt</h4>
+          <pre class="bg-dark-900 rounded-lg p-4 text-xs text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>&lt;role&gt;
+Analista jurídico, contratos de
+prestação de serviços de TI no Brasil.
+&lt;/role&gt;
+
+&lt;task&gt;
+Extraia os campos listados. Se campo
+não estiver presente, retorne null.
+&lt;/task&gt;
+
+&lt;constraints&gt;
+- Não interprete, não infira — só
+  extraia texto literal
+- Datas em ISO 8601 (YYYY-MM-DD)
+- Valores em centavos (int) + moeda
+&lt;/constraints&gt;
+
+&lt;output_format&gt;
+JSON com schema:
+{
+  "partes": {"contratante": str,
+             "contratada": str},
+  "objeto": str,
+  "valor_total": {"centavos": int,
+                  "moeda": "BRL"},
+  "prazo_inicio": "YYYY-MM-DD" | null,
+  "prazo_fim": "YYYY-MM-DD" | null,
+  "clausula_multa": str | null,
+  "foro": str | null
+}
+&lt;/output_format&gt;</code></pre>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Por que esse mega salva produção</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">JSON determinístico:</strong> vai direto pro banco sem parsing adicional</li>
+          <li><strong class="text-white">"Não interprete":</strong> evita o modelo "adivinhar" campos ausentes — fonte de erros silenciosos</li>
+          <li><strong class="text-white">null explícito:</strong> sistema downstream sabe distinguir "ausente" de "vazio"</li>
+          <li><strong class="text-white">Formatos canônicos:</strong> ISO 8601, centavos — sem parsing de moeda/data</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Determinístico</div><div class="text-sm text-neutral-400">Mesmo input → JSON estável</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Schema</div><div class="text-sm text-neutral-400">Estrutura contratada</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Null explícito</div><div class="text-sm text-neutral-400">Falta de info clara</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">ISO/centavos</div><div class="text-sm text-neutral-400">Formatos canônicos</div></div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Em prompts que alimentam banco, <strong>defina o schema antes do prompt</strong>. Pense como contrato de API. Output que quebra parser
+          em produção é o erro mais caro do catálogo.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">6 componentes canônicos</strong><span class="text-neutral-400"> — role, context, task, constraints, output, examples (com XML tags)</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Regra dos 10 usos</strong><span class="text-neutral-400"> — &gt;10x ou outra pessoa usar → mega-prompt; ad-hoc → simples</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Prompt caching = 60-90% off</strong><span class="text-neutral-400"> — break-even em 1 leitura (cache 5min), system prompt fixo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">7 erros catalogados</strong><span class="text-neutral-400"> — vague, missing context, no output spec (#1), role mixing, overload, no examples, contradiction</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Revisão de código</strong><span class="text-neutral-400"> — role + context + constraints + output transforma "revise isso" em ticket de issue</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Extração de contrato</strong><span class="text-neutral-400"> — schema JSON + "não interprete" + null explícito = produção sem parsing quebrado</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.6 — 🧭 IA é direção, não mágica (caso Replit, humano-no-loop, e como sair do palco)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="modulo-2-6.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 2.5 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

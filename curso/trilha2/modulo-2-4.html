@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.4 — Hierarquia Haiku → Sonnet → Opus | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.4</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📊 Hierarquia Haiku 4.5 → Sonnet 4.6 → Opus 4.7</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Três modelos, três marchas. Preço, contexto, latência, capacidades. Saber quando subir e quando descer é o
+        que separa quem paga 5x desnecessário de quem extrai ROI real. E sim — o Opus 4.7 trouxe um breaking change
+        que pegou muita gente de surpresa.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Médio</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Técnico</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📊 Os 3 modelos atuais (2026)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A família Claude 4.x em maio de 2026: <strong class="text-blue-400">Haiku 4.5</strong> (rápido e barato),
+        <strong class="text-blue-400">Sonnet 4.6</strong> (equilibrado de produção),
+        <strong class="text-blue-400">Opus 4.7</strong> (mais capaz, raciocínio denso). Cada um tem perfil cognitivo
+        diferente — não é "mais inteligente vs menos".
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🗂️</span> Tabela comparativa rápida</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>Modelo        Lançamento   Cutoff      Context   Output
+Haiku 4.5     15/out/2025  fev 2025    200k      64k
+Sonnet 4.6    ~nov 2025    ago 2025    1M        64k
+Opus 4.7      ~2026        jan 2026    1M        128k
+
+IDs API:
+  claude-haiku-4-5-20251001
+  claude-sonnet-4-6
+  claude-opus-4-7</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🚗</span> Analogia: câmbios de um carro</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">Haiku 4.5 — Câmbio 5:</strong> alta rotação, máxima eficiência em cruzeiro. Mude antes da ladeira.</li>
+          <li><strong class="text-white">Sonnet 4.6 — Câmbio 3:</strong> potência intermediária. Sobe ladeiras moderadas, não é ideal pra fora-de-estrada.</li>
+          <li><strong class="text-white">Opus 4.7 — Câmbio 1 em 4x4:</strong> máxima força de tração. Lento, mas atravessa qualquer terreno. Caro manter em alta rotação.</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Velocidade</div><div class="text-sm text-neutral-400">Haiku &gt; Sonnet &gt; Opus</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Profundidade</div><div class="text-sm text-neutral-400">Opus &gt; Sonnet &gt; Haiku</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Custo</div><div class="text-sm text-neutral-400">5x entre Haiku e Opus</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Context</div><div class="text-sm text-neutral-400">Haiku 200k · outros 1M</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💵 Preços ($1/$5, $3/$15, $5/$25 por MTok)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A tabela de bolso. Decore — quem decora decide por ROI, quem não decora decide por intuição (e quase sempre
+        paga mais).
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">💰</span> Preços por milhão de tokens</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>                Input    Output   Cache write  Cache read
+Haiku 4.5       $1       $5       $1.25 (5min) $0.10
+Sonnet 4.6      $3       $15      $3.75 (5min) $0.30
+                                  $6.00 (1h)
+Opus 4.7        $5       $25      $6.25 (5min) $0.50
+                                  $10.00 (1h)
+
+Batch API: 50% off em input E output (qualquer modelo)</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📉</span> Prompt caching — o multiplicador</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Cache read = 10%</strong> do input padrão (todos os modelos)</li>
+          <li><strong class="text-white">Break-even:</strong> cache de 5min paga após 1 leitura. Cache de 1h paga após 2 leituras.</li>
+          <li><strong class="text-white">Em produção:</strong> system prompts estáveis dão cache hit 80-95% → 60-90% de economia no input</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Otimizações que pagam</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>System prompt fixo + cache write (5min)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Batch API pra workloads assíncronos (-50%)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Sub-agentes em Haiku quando dá</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Mesa-redonda: rascunho Haiku, revisão Sonnet</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Custos invisíveis</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Opus em pipeline de alto volume (5x desnecessário)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem caching em system prompt repetido</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ignorar Batch quando latência não importa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Extended thinking em pergunta trivial</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          A pergunta certa pra escolher modelo não é <strong>"qual é o melhor?"</strong> — é <strong>"qual é o menor que resolve esse caso?"</strong>.
+          O default deve ser Haiku; só sobe quando ele dá ré.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🪟 Context window (Haiku 200k, Sonnet/Opus 1M)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Tamanho da janela define o que cabe na cabeça do modelo de uma vez. <strong class="text-blue-400">Haiku 4.5</strong>
+        tem 200k tokens (~500 páginas), sem versão 1M. <strong class="text-blue-400">Sonnet 4.6 e Opus 4.7</strong> têm 1M
+        tokens — já no preço padrão, sem premium de long-context.
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📏</span> O que cabe em cada janela</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">200k tokens (Haiku):</strong> ~500 páginas de texto, ou ~150 mil linhas de código pequeno</li>
+          <li><strong class="text-white">1M tokens (Sonnet/Opus):</strong> ~2500 páginas, ou repositório de tamanho médio inteiro</li>
+          <li><strong class="text-white">Max output:</strong> Haiku/Sonnet 64k, Opus 4.7 dobra pra 128k</li>
+        </ul>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">A</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Cabe em Haiku</h4>
+            <p class="text-neutral-300 text-sm">FAQ bot, classificação em lote, chat de suporte com knowledge limitado, sub-agentes especializados que só leem 5-10 arquivos.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">B</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Precisa de Sonnet/Opus (1M)</h4>
+            <p class="text-neutral-300 text-sm">Análise de repositório inteiro, contratos longos com referências cruzadas, code review de PR grande com contexto histórico, agentes de longa duração com memória.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">C</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Precisa de Opus (128k output)</h4>
+            <p class="text-neutral-300 text-sm">Geração de relatórios longos, refactoring que produz arquivos extensos, documentação completa a partir de código.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Mesmo com 1M de janela, <strong>qualidade cai conforme enche</strong>. Use subagentes pra carregar contexto isolado e retornar
+          só resumo — preserva a janela principal pra raciocínio, não pra acúmulo.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🧠 Adaptive thinking + breaking change Opus 4.7</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        <strong class="text-blue-400">Adaptive thinking</strong> deixa o modelo decidir dinamicamente quando raciocinar
+        mais devagar. Disponível em Sonnet 4.6 e Opus 4.6/4.7. Combina com o parâmetro <code class="bg-dark-700 px-1 rounded text-blue-400">effort</code>
+        (low/medium/high/xhigh/max).
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎚️</span> Níveis de effort</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>max     → sempre pensa, sem limite de profundidade
+xhigh   → exploração profunda estendida (só Opus 4.7)
+high    → sempre pensa, raciocínio profundo (padrão)
+medium  → pensamento moderado, pula em queries simples
+low     → minimiza pensamento, prioriza velocidade
+
+API: thinking: {type: "adaptive"} + effort param</code></pre>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-4 flex items-center"><span class="mr-2">⚠️</span> Breaking change: Opus 4.7 REMOVEU extended thinking</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Opus 4.6:</strong> tinha extended thinking (modo binário liga/desliga)</li>
+          <li><strong class="text-white">Opus 4.7:</strong> <span class="text-red-400">extended thinking NÃO está disponível</span> — apenas adaptive thinking</li>
+          <li><strong class="text-white">Impacto:</strong> quem migrou esperando o mesmo recurso foi pego de surpresa</li>
+          <li><strong class="text-white">Saída:</strong> migrar pra adaptive thinking (Anthropic diz que supera extended em avaliações internas)</li>
+          <li><strong class="text-white">Bonus pegadinha:</strong> novo tokenizer no 4.7 pode usar até 35% mais tokens que versões anteriores</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Quando ativar effort alto</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Raciocínio multi-passo denso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Código com lógica de negócio complexa</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Análise jurídica/médica com nuance</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tarefa onde "errar" custa caro</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Quando NÃO ativar</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>FAQ, resumo simples, tradução</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Alto volume com baixa complexidade</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pra "garantir qualidade" sem motivo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>UX em tempo real (&lt; 500ms)</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎯 Quando usar cada um</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Decisão de bolso. <strong class="text-blue-400">A regra deve sair em 2 segundos</strong> — sem ela, todo mundo
+        defaulta no mesmo modelo (quase sempre o errado pra carga).
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🧭</span> Regra de bolso (decore)</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">Volume alto + latência crítica + tarefa bem-definida</strong> → <span class="text-blue-400">Haiku 4.5</span></li>
+          <li><strong class="text-white">Raciocínio moderado + contexto longo + pipeline de produto</strong> → <span class="text-blue-400">Sonnet 4.6</span></li>
+          <li><strong class="text-white">Agente autônomo + tarefa aberta + horas de execução</strong> → <span class="text-blue-400">Opus 4.7</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📋</span> Matriz de decisão por cenário</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>Cenário                              Modelo
+FAQ bot, classificação em lote       Haiku
+Pair programming, autocompletion     Haiku
+Sub-agente de pesquisa de arquivo    Haiku
+Code review de PR médio              Sonnet
+Refactor com dependências cruzadas   Sonnet
+Análise de repo inteiro              Sonnet/Opus
+Agente rodando &gt; 30 min              Opus
+Refactor crítico (legacy)            Opus
+Análise jurídica/médica complexa     Opus</code></pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Haiku</div><div class="text-sm text-neutral-400">Estagiário brilhante</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Sonnet</div><div class="text-sm text-neutral-400">Dev pleno</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Opus</div><div class="text-sm text-neutral-400">Arquiteto sênior</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Default</div><div class="text-sm text-neutral-400">O menor que resolve</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🚫 Erros típicos de quem usa o errado</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Cada modelo errado tem <strong class="text-blue-400">assinatura clara</strong>. Reconhecer o sintoma cedo evita
+        semanas otimizando o modelo errado.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Haiku onde precisava Sonnet/Opus</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente de coding perde fio após 10 passos</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Raciocínio incompleto em multi-step</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Falta memória entre tool calls</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>200k estoura em análise de repo grande</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sonnet onde Haiku bastava</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>$3/MTok pra responder "qual o horário?"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Latência 2-3s onde UX exigia &lt;500ms</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>3x desnecessário em pipeline alto volume</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Overhead em sub-agente simples</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Opus onde Sonnet bastava</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>5x custo sem ganho mensurável</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Latência moderada afetando UX real-time</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tokenizer 4.7 inflando custo +35%</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Migrar 4.6→4.7 esperando extended thinking</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Erros de escopo (qualquer modelo)</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Extended thinking em pergunta simples</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem prompt caching em system prompt longo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ignorar Batch API (perde 50% off)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>1M context com qualidade já degradada</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Em <strong>workshop com sala que tem painel de custo</strong>, abra o console.anthropic.com e mostre a divisão por modelo.
+          Quem vê o gráfico de Opus dominando "tarefas triviais" entende em 5 segundos o que demora 30 minutos pra explicar.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Haiku 4.5 / Sonnet 4.6 / Opus 4.7</strong><span class="text-neutral-400"> — três marchas, três perfis cognitivos</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">$1/$5, $3/$15, $5/$25 por MTok</strong><span class="text-neutral-400"> — decore. Prompt caching corta 60-90%</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Context 200k vs 1M</strong><span class="text-neutral-400"> — Haiku menor, Sonnet/Opus 1M no preço padrão</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Adaptive thinking + breaking change Opus 4.7</strong><span class="text-neutral-400"> — extended thinking foi removido. Tokenizer novo pode +35% custo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Regra de bolso em 2s</strong><span class="text-neutral-400"> — volume/latência → Haiku · contexto longo → Sonnet · agente autônomo → Opus</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Cada erro tem assinatura</strong><span class="text-neutral-400"> — sintoma → modelo errado → trocar antes de otimizar mais</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.5 — 🎯 Prompt ruim vs mega-prompt (anatomia, ROI, exemplos lado a lado)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="modulo-2-5.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 2.4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

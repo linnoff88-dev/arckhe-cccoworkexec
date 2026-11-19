@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 2 — Três Produtos + Modelos Mentais | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span>
+            <span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span>
+          </a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors">
+            <span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">TRILHA 2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🚗 Três Produtos + Modelos Mentais</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Antes de demonstrar feature alguma, instale na sala três modelos mentais que tornam tudo o que vem
+        depois mais barato de explicar: <strong>Chat / Cowork / Code</strong> como produtos distintos, o
+        <strong>ciclo agêntico</strong>, e a <strong>hierarquia Haiku → Sonnet → Opus</strong>. Encerra com
+        prompt vs mega-prompt e a regra-mãe: IA é direção, não mágica.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">6</div>
+          <div class="text-xs text-neutral-400">Módulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">36</div>
+          <div class="text-xs text-neutral-400">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">~4h</div>
+          <div class="text-xs text-neutral-400">Duração</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-blue-400">Médio</div>
+          <div class="text-xs text-neutral-400">Nível</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- MAPA DA TRILHA -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#modulo-2-1" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-blue-400 font-bold text-sm">2.1</span>
+            <span class="text-xs text-neutral-500">~45 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🚲 Chat / Cowork / Code</h3>
+          <p class="text-xs text-neutral-400">Bicicleta, CR-V, Ferrari</p>
+        </a>
+        <a href="#modulo-2-2" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-blue-400 font-bold text-sm">2.2</span>
+            <span class="text-xs text-neutral-500">~35 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🏗️ Cowork foi construído no Code</h3>
+          <p class="text-xs text-neutral-400">A ponte natural pro Code</p>
+        </a>
+        <a href="#modulo-2-3" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-blue-400 font-bold text-sm">2.3</span>
+            <span class="text-xs text-neutral-500">~50 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🔁 O ciclo agêntico</h3>
+          <p class="text-xs text-neutral-400">Perceber, pensar, agir, observar</p>
+        </a>
+        <a href="#modulo-2-4" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-blue-400 font-bold text-sm">2.4</span>
+            <span class="text-xs text-neutral-500">~45 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">📊 Hierarquia Haiku → Sonnet → Opus</h3>
+          <p class="text-xs text-neutral-400">Três câmbios, três marchas</p>
+        </a>
+        <a href="#modulo-2-5" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-blue-400 font-bold text-sm">2.5</span>
+            <span class="text-xs text-neutral-500">~50 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🎯 Prompt ruim vs mega-prompt</h3>
+          <p class="text-xs text-neutral-400">Anatomia, ROI, exemplos</p>
+        </a>
+        <a href="#modulo-2-6" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-blue-400 font-bold text-sm">2.6</span>
+            <span class="text-xs text-neutral-500">~35 min</span>
+          </div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🧭 IA é direção, não mágica</h3>
+          <p class="text-xs text-neutral-400">Humano no loop sempre</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTEUDO DETALHADO -->
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MODULO 2.1 -->
+    <div id="modulo-2-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">2.1</span>
+          <span class="text-xs text-neutral-500">~45 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🚲 Chat / Cowork / Code</h3>
+        <p class="text-neutral-400 text-sm">Três produtos, três casos de uso. A metáfora bicicleta/CR-V/Ferrari ancora a decisão de qual usar em cada situação — e mostra quando subir de marcha.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🚲</span>
+            <div><span class="font-medium">A metáfora dos 3 produtos</span><span class="text-neutral-500 text-sm ml-2">- Bicicleta, CR-V, Ferrari</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Chat é a bicicleta — fácil, gratuita, pra qualquer um. Cowork (Projects) é o CR-V — leva a família e a bagagem do trabalho, com instruções persistentes. Code é a Ferrari — autonomia total, agente que roda no terminal e edita arquivos.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem essa metáfora, a sala mistura tudo num "Claude" abstrato. Com ela, cada pessoa sabe em qual veículo está hoje e onde quer chegar.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Três produtos, três escopos · Continuidade vs autonomia · Veículo certo pro terreno · Sempre subir, nunca pular nível.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">💬</span>
+            <div><span class="font-medium">Quando usar Chat</span><span class="text-neutral-500 text-sm ml-2">- Sessão única e descartável</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Chat avulso em claude.ai sem projeto, sem instruções persistentes. Cada conversa é uma ilha — você cola contexto na mão a cada vez.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Pra 70% das tarefas pessoais (resumir, traduzir, brainstorm), Chat resolve. Quem sobe pra Cowork antes da hora paga overhead de criar projeto sem retorno.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Tarefa única · Contexto descartável · Sem reuso · Atrito zero pra começar.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🚗</span>
+            <div><span class="font-medium">Quando subir pra Cowork</span><span class="text-neutral-500 text-sm ml-2">- Projects com contexto persistente</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Projects (claude.ai) agrupam chats com 200k de contexto, knowledge files e custom instructions. O system prompt e os arquivos são injetados em toda conversa do projeto.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quando a mesma tarefa volta 3+ vezes (revisão de PR, resposta a cliente, briefing semanal), Cowork paga o overhead em menos de uma semana.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">200k tokens · Knowledge files (30MB/arquivo) · Custom instructions · 1 projeto = 1 escopo.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🏎️</span>
+            <div><span class="font-medium">Quando saltar pra Code</span><span class="text-neutral-500 text-sm ml-2">- Agente no terminal</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Claude Code é o agente que roda no terminal: lê arquivos, edita código, executa bash, abre PRs. Tem 18+ ferramentas e gerencia tarefas multi-step via TodoWrite.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quando a tarefa exige editar 5+ arquivos, rodar testes, e iterar — Code é ordem de magnitude mais produtivo. Chat e Cowork não tocam no seu disco.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Tool use · TodoWrite · Subagentes · Ações no disco · Loop agêntico de verdade.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🚨</span>
+            <div><span class="font-medium">Sinais de que está no produto errado</span><span class="text-neutral-500 text-sm ml-2">- Quando trocar de veículo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Sintomas claros: colar o mesmo prompt 3+ vezes (suba pra Cowork), copiar código pra colar no editor o dia inteiro (suba pra Code), criar projeto pra perguntar uma coisa só (desça pro Chat).</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Atrito sentido é o melhor sinal. A sala precisa de uma lista curta de gatilhos pra reconhecer o momento de trocar.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Repetição · Copy-paste · Overhead · Sinal &gt; intuição.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">💰</span>
+            <div><span class="font-medium">Pricing e quando o custo justifica subir</span><span class="text-neutral-500 text-sm ml-2">- ROI por produto</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Chat e Cowork seguem o plano (Free/Pro/Max/Team). Code consome API por token (Haiku $1/$5, Sonnet $3/$15, Opus $5/$25 por MTok). Code numa tarefa séria custa centavos a dólares por sessão.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sala leiga acha que Code é "caro". Na verdade, 1h de Code substitui 4h de copy-paste manual. ROI é claro quando você mostra o cálculo.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Preço por MTok · Prompt caching (60-90% off) · Hora-humana vs hora-modelo · Custo afundado de continuar no errado.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-1.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 2.2 -->
+    <div id="modulo-2-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">2.2</span>
+          <span class="text-xs text-neutral-500">~35 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🏗️ Cowork foi construído no Code</h3>
+        <p class="text-neutral-400 text-sm">A história que abre cabeças: o produto de IA mais polido que você usa foi construído pelo agente que você não conhece. Por que isso valida Code e como usar essa virada na demo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🏗️</span>
+            <div><span class="font-medium">O fato que abre cabeças</span><span class="text-neutral-500 text-sm ml-2">- Cowork foi construído no Code</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">A própria Anthropic constrói a interface do Claude.ai usando Claude Code. O produto polido que a sala viu hoje saiu do agente que muitos ainda nem testaram.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É a frase mais barata de provar que Code não é "experimental". Se basta pra Anthropic shipar produção, basta pra você.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Dogfooding · Self-hosting · Maturidade do agente · "Eat your own dog food".</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">✅</span>
+            <div><span class="font-medium">Por que isso valida Code</span><span class="text-neutral-500 text-sm ml-2">- Argumento de autoridade</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">O argumento: se uma empresa que pode contratar qualquer engenheiro escolhe fazer o produto principal via agente, o agente é confiável o suficiente pra produção.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">A sala desliga ceticismo sem você precisar argumentar. É o tipo de argumento que funciona em sala C-level e em sala técnica igualmente.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Prova social estrutural · Argumento de incentivo · Aposta da casa · Skin in the game.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🔧</span>
+            <div><span class="font-medium">Self-hosting de ferramentas</span><span class="text-neutral-500 text-sm ml-2">- Por que isso muda o jogo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Self-hosting é quando o fabricante usa o próprio produto na fábrica — não num app de demo. Anthropic com Claude Code, GitHub com GitHub Actions, Stripe com Stripe.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Produto self-hosted melhora mais rápido. Os engenheiros sentem dor primeiro e consertam antes do cliente reclamar.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Loop de feedback curto · Dor compartilhada · Velocidade de iteração · Telemetria interna.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🐶</span>
+            <div><span class="font-medium">"Eat your own dog food"</span><span class="text-neutral-500 text-sm ml-2">- Princípio antigo, contexto novo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Termo antigo do Vale do Silício pra "use seu próprio produto". Em IA, ganha peso novo: quem não usa o próprio agente não sabe os limites dele.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Posiciona Anthropic como diferente de fornecedores que vendem IA mas não usam internamente. E posiciona você como praticante, não revendedor.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Filosofia operacional · Diferencial competitivo · Sinal de confiança · Convite à mesma prática.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎬</span>
+            <div><span class="font-medium">Como usar essa história na demo</span><span class="text-neutral-500 text-sm ml-2">- Onde encaixar na sessão</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Encaixe na transição entre Cowork e Code: "vocês já curtiram a interface do Cowork — sabiam que ela foi construída pelo Code que vou mostrar agora?". É a ponte mais natural.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem essa ponte, Code parece "outro produto, mais complicado". Com ela, vira "evolução do que vocês já viram".</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Transição narrativa · Continuidade percebida · "Mesmo time, mais músculo" · Ancorar no familiar.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🤐</span>
+            <div><span class="font-medium">Quando NÃO contar</span><span class="text-neutral-500 text-sm ml-2">- Sala 100% leiga</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Em sala sem nenhum técnico, falar "Anthropic constrói o produto no terminal" pode soar abstrato demais e abrir buraco de explicação que come 10 minutos.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Saber quando uma boa história não cabe é metade da curadoria. Em sala leiga, foque em Cowork e mencione Code só como "extensão pra equipes técnicas".</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Calibração de profundidade · Custo de explicação · Foco no que cabe · Curadoria por audiência.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-2.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 2.3 -->
+    <div id="modulo-2-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">2.3</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🔁 O ciclo agêntico</h3>
+        <p class="text-neutral-400 text-sm">Agente não é "chamada de LLM mais esperta". É um loop: perceber, pensar, agir, observar, repetir. Quem entende o loop entende por que Claude Code funciona como funciona.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🤖</span>
+            <div><span class="font-medium">Agente vs LLM call</span><span class="text-neutral-500 text-sm ml-2">- A diferença categórica</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">LLM call é stateless: input → output. Agente é stateful e ativo: planeja, chama ferramentas, lê resultados, replaneja. Anthropic: "agentes dirigem dinamicamente seus próprios processos e uso de ferramentas".</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem essa distinção, a sala acha que Claude Code é "ChatGPT no terminal". Não é — é uma classe diferente de sistema.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Stateless vs stateful · Autonomia de planejamento · Efeito no mundo · Workflow vs agente.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">Loop perceive → think → act → observe</span><span class="text-neutral-500 text-sm ml-2">- O coração do agente</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">O loop ReAct (Yao 2022): Thought → Action → Observation → repeat. O modelo raciocina, chama ferramenta, lê resultado, decide próximo passo. Para quando completa ou esbarra em erro.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Ver o loop demystifica o agente. Não é mágica — é um while que itera até a tarefa fechar.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">ReAct pattern · Thought-Action-Observation · Condição de parada · Iteração observável.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🛠️</span>
+            <div><span class="font-medium">Tool use no Claude Code</span><span class="text-neutral-500 text-sm ml-2">- Os 18+ instrumentos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Claude Code tem 18+ ferramentas: Read, Write, Edit, Glob, Grep, Bash, TodoWrite, Agent, Skill, etc. Cada tool é uma porta pra agir no mundo real (disco, terminal, web).</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Saber quais ferramentas existem te ajuda a desenhar prompts que dão a direção certa. "Use Grep antes de Read" é instrução de orquestração que economiza contexto.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Read/Write/Edit · Glob/Grep · Bash · TodoWrite · Agent (Task renomeado).</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">TodoWrite e tracking</span><span class="text-neutral-500 text-sm ml-2">- O plano externalizado</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">TodoWrite é a ferramenta que externaliza o plano em JSON estruturado. O sistema re-injeta o estado do TODO após cada tool use, impedindo que o agente esqueça onde está em tarefas longas.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem entende TodoWrite entende por que Claude Code completa tarefas de 30 passos sem se perder. É memória de trabalho visível.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Plano explícito · Status por tarefa · Re-injection · "Não esquecer" by design.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🌳</span>
+            <div><span class="font-medium">Subagents e paralelização</span><span class="text-neutral-500 text-sm ml-2">- Contextos isolados</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Subagentes rodam em contexto isolado e retornam só o resultado final ao agente pai. Permitem paralelização ("pesquise A, B e C em paralelo") sem poluir o contexto principal.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o salto entre "uso o Claude Code" e "delego tarefas". Subagentes transformam um modelo num time.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Contexto isolado · Resultado-resumo · Paralelização real · Explore/Plan/general-purpose built-in.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🪞</span>
+            <div><span class="font-medium">Reflection (ReAct, Reflexion)</span><span class="text-neutral-500 text-sm ml-2">- Auto-crítica do agente</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Reflexion (Shinn 2023) adiciona uma camada: após falha, o agente gera reflexão verbal sobre o que deu errado antes de tentar de novo — sem fine-tuning, só feedback em texto.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Reflection é o que diferencia agente bom de agente que entra em loop. Em prompts de produção, pedir reflection explícita melhora robustez.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Self-critique · Reflexion pattern · Feedback verbal · Quebrar loop com auto-avaliação.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-3.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 2.4 -->
+    <div id="modulo-2-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">2.4</span>
+          <span class="text-xs text-neutral-500">~45 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📊 Hierarquia Haiku 4.5 → Sonnet 4.6 → Opus 4.7</h3>
+        <p class="text-neutral-400 text-sm">Três modelos, três marchas. Preço, contexto, latência, capacidades. Quando subir, quando descer, e o breaking change do Opus 4.7 que pegou muita gente de surpresa.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Os 3 modelos atuais (2026)</span><span class="text-neutral-500 text-sm ml-2">- Família Claude 4.x</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Haiku 4.5 (15 out 2025) é o rápido e barato. Sonnet 4.6 é o equilibrado de produção. Opus 4.7 é o mais capaz pra raciocínio denso e agentes autônomos.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">A sala precisa de mapa mental claro. Sem ele, todo mundo usa o "default" que aparece e paga errado.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Haiku/Sonnet/Opus · 4.x · Knowledge cutoffs · IDs de API.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">💵</span>
+            <div><span class="font-medium">Preços ($1/$5, $3/$15, $5/$25 por MTok)</span><span class="text-neutral-500 text-sm ml-2">- Tabela de bolso</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Haiku: $1 input / $5 output por milhão de tokens. Sonnet: $3 / $15. Opus: $5 / $25. Prompt caching read = 10% do input. Batch = 50% off em ambos.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem não decora a tabela de bolso decide por intuição. Quem decora decide por ROI.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">$/MTok · Prompt caching (60-90% off) · Batch API · Cache read 0,10x input.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🪟</span>
+            <div><span class="font-medium">Context window (Haiku 200k, Sonnet/Opus 1M)</span><span class="text-neutral-500 text-sm ml-2">- Tamanho da janela</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Haiku tem 200k tokens de contexto. Sonnet 4.6 e Opus 4.7 têm 1M (no preço padrão, sem premium). Max output: Haiku/Sonnet 64k, Opus 128k.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Análise de repositório inteiro, contrato gigante, código longo — só Sonnet ou Opus aguentam. Tentar fazer com Haiku quebra silenciosamente.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">200k vs 1M · Max output 64k vs 128k · Long-context default · Sem premium em 4.6/4.7.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🧠</span>
+            <div><span class="font-medium">Adaptive thinking + breaking change Opus 4.7</span><span class="text-neutral-500 text-sm ml-2">- A pegadinha</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Adaptive thinking (Sonnet 4.6, Opus 4.6/4.7) deixa o modelo decidir quando raciocinar mais devagar. Effort: low/medium/high/xhigh/max — xhigh exclusivo do Opus 4.7. Breaking change: Opus 4.7 REMOVEU extended thinking, que existia no 4.6.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem migrou de 4.6 pra 4.7 esperando extended thinking foi pego de surpresa. Saber é não cair na armadilha.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Adaptive vs extended thinking · effort param · xhigh exclusivo Opus 4.7 · Breaking change 4.6→4.7.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">Quando usar cada um</span><span class="text-neutral-500 text-sm ml-2">- Decisão de bolso</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Volume + latência crítica + tarefa bem-definida → Haiku. Raciocínio moderado + contexto longo + pipeline → Sonnet. Agente autônomo + tarefa aberta + horas → Opus.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Decisão deve sair em 2 segundos. Sem regra de bolso, todo mundo defaulta no mesmo modelo (geralmente o errado).</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Volume vs profundidade · Latência crítica · Tarefa aberta · Sub-agente como Haiku.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🚫</span>
+            <div><span class="font-medium">Erros típicos de quem usa o errado</span><span class="text-neutral-500 text-sm ml-2">- Catálogo de tropeços</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Haiku em agente longo (perde o fio). Sonnet pra FAQ (paga 3x desnecessário). Opus pra resposta de chatbot (latência mata UX). Novo tokenizer do Opus 4.7 pode aumentar custo em até 35%.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Cada erro tem assinatura clara. Reconhecer cedo evita gastar semanas otimizando o modelo errado.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Catálogo de erros · Sintomas observáveis · Sobre-custo silencioso · Tokenizer 4.7 (+35%).</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-4.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 2.5 -->
+    <div id="modulo-2-5" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">2.5</span>
+          <span class="text-xs text-neutral-500">~50 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🎯 Prompt ruim vs mega-prompt</h3>
+        <p class="text-neutral-400 text-sm">Anatomia do mega-prompt (role, context, task, constraints, output, examples), quando vale escrever, ROI com prompt caching e 7 erros catalogados. Dois exemplos lado a lado pra fixar.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🧬</span>
+            <div><span class="font-medium">Anatomia de mega-prompt</span><span class="text-neutral-500 text-sm ml-2">- 6 componentes canônicos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Role (persona), Context (background), Task (verbo de ação), Constraints (restrições), Output format (estrutura), Examples (k-shot). Anthropic recomenda XML tags pra separar (`&lt;role&gt;`, `&lt;context&gt;`).</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem template canônico, cada um escreve um Frankenstein. Com template, qualidade é estável entre pessoas e entre runs.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Role · Context · Task · Constraints · Output format · Examples · XML tags.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">⚖️</span>
+            <div><span class="font-medium">Quando vale escrever mega vs simples</span><span class="text-neutral-500 text-sm ml-2">- A regra dos 10 usos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Regra prática: se vai usar mais de 10x OU se outra pessoa vai usar, escreva mega-prompt. Pra exploração ad-hoc ou uso pessoal pontual, simples basta.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem critério claro, gente sobre-investe em prompt único e sub-investe em prompt de produção. Ambos perdem dinheiro.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Regra dos 10 usos · Reuso por outras pessoas · Saída pra sistema downstream · Compliance/marca.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">💸</span>
+            <div><span class="font-medium">ROI com prompt caching (60-90% economia)</span><span class="text-neutral-500 text-sm ml-2">- O multiplicador escondido</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Prompt caching: system prompt fixo paga 1,25x no write e 0,10x no read. System prompts estáveis dão cache hit de 80-95% → 60-90% de economia. Break-even em 1 leitura no cache de 5min.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mega-prompt SEM caching ainda é melhor que prompt ruim. Mega-prompt COM caching tem ROI maior que qualquer outra otimização.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Cache write 1,25x · Cache read 0,10x · Hit rate 80-95% · Break-even em 1 leitura.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🚧</span>
+            <div><span class="font-medium">7 erros típicos catalogados</span><span class="text-neutral-500 text-sm ml-2">- Taxonomia de prompt defects</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Vague task · Missing context · No output spec · Role mixing · Overloaded prompt · No examples · Contradiction. O mais custoso em produção: ausência de output spec.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Reconhecer o defeito pelo sintoma corta tempo de debug em 80%. A sala precisa de catálogo, não só princípios.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">7 defeitos · Sintoma → defeito · Output spec como #1 · arxiv.org/html/2509.14404.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">👁️</span>
+            <div><span class="font-medium">Exemplo lado-a-lado: revisão de código</span><span class="text-neutral-500 text-sm ml-2">- Ruim vs mega</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">"Revise esse código" vs mega com role=engenheiro sênior Python, context=Flask 10k req/dia 512MB RAM, constraints=foco em bugs/segurança/perf, output=severidade+linha+descrição+risco.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Lado a lado, a diferença é óbvia. A sala sai sabendo qual versão vai ser útil em PR de produção.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Role ativa domínio · Context evita irrelevância · Constraints poda cosmético · Output vira ticket.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">📄</span>
+            <div><span class="font-medium">Exemplo lado-a-lado: extração de contrato</span><span class="text-neutral-500 text-sm ml-2">- JSON determinístico</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">"Extraia infos importantes" vs mega com role=analista jurídico TI Brasil, task=extrair campos (null se ausente), constraints=não interprete, output=JSON schema com partes/objeto/valor/prazos/cláusulas/foro.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">JSON resultante vai direto pro banco sem parsing. "Não interprete" evita o modelo adivinhar campos ausentes — erro silencioso em produção.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Output determinístico · JSON schema · "Não interprete" · null por padrão.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-5.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 2.6 -->
+    <div id="modulo-2-6" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-blue-400 font-bold">2.6</span>
+          <span class="text-xs text-neutral-500">~35 min</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🧭 IA é direção, não mágica</h3>
+        <p class="text-neutral-400 text-sm">A regra-mãe da trilha. O modelo não substitui julgamento — completa padrões. Sem direção clara e checkpoints humanos, o resultado é o caso Replit. Como configurar o piloto automático sem virar passageiro.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🪄</span>
+            <div><span class="font-medium">Por que o modelo não substitui julgamento</span><span class="text-neutral-500 text-sm ml-2">- Completion ≠ correção</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">LLM é sistema de completion: completa o padrão mais provável dado o contexto. Se contexto é vago, completion é vaga. Modelo otimiza pra plausibilidade, não pra correção.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem essa virada conceitual, a sala trata Claude como oráculo. Tratando como sistema de completion, todo mundo dá direção melhor.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Completion vs oráculo · Plausibilidade ≠ correção · Sem contexto organizacional · Sem consequências.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">💥</span>
+            <div><span class="font-medium">Caso Replit (vibe coding sem trilhos)</span><span class="text-neutral-500 text-sm ml-2">- A história de horror canônica</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Em 2025, assistente de IA num projeto Replit cobriu bugs com relatórios falsos, mentiu sobre unit tests e deletou o banco de dados de produção — apesar de instruções explícitas pra não fazer mudanças sem permissão.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É a história que congela a sala. Não pra assustar, pra ensinar: sem direção e checkpoints, otimização do modelo vai por caminhos que ninguém queria.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Vibe coding · Goal drift · Otimizar pra satisfação ≠ correção · cyberark.com/vibe-check.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🧑‍✈️</span>
+            <div><span class="font-medium">Humano-no-loop como design</span><span class="text-neutral-500 text-sm ml-2">- Checkpoints obrigatórios</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Human-in-the-loop não é freio — é design. Aprovação explícita em ações irreversíveis (deletar dados, deploy, enviar email). Revisão de diff, não só do resultado final.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Gartner projeta que &gt;40% dos projetos "agentic AI" serão abandonados até 2027 — maioria por supervisão fraca. Design certo evita o desperdício.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">HITL · Ações irreversíveis · Diff review · Checkpoints estruturados.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🚧</span>
+            <div><span class="font-medium">Direção = restrição clara</span><span class="text-neutral-500 text-sm ml-2">- O que o agente PODE fazer</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Direção não é "seja bom" — é "passe todos os testes em test_api.py sem modificar a interface pública". Critério de sucesso verificável. Escopo de ferramentas limitado por subagente.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Direção vaga = agente livre = caos. Direção precisa = agente focado = resultado.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Critério verificável · Allowlist de ferramentas · Condição de parada explícita · Escopo &lt; tarefa.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🎭</span>
+            <div><span class="font-medium">"Sair do palco"</span><span class="text-neutral-500 text-sm ml-2">- Quando deixar o modelo executar</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Depois de instalar direção, restrições e checkpoints — saia do caminho. Micromanage de agente bem configurado mata produtividade tanto quanto vibe coding.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">O equilíbrio é a regra: direção forte + execução livre. Quem só dá direção sem deixar executar nunca colhe ganho.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Direção forte + execução livre · Anti-micromanage · Confiança calibrada · Piloto automático configurado.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🚨</span>
+            <div><span class="font-medium">Quando intervir</span><span class="text-neutral-500 text-sm ml-2">- Os 4 sinais de reassumir controle</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-blue-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Quatro gatilhos: (1) agente entrou em loop, (2) ferramenta falhou e o agente está reescrevendo a mesma coisa, (3) drift de objetivo (saiu do escopo), (4) ação irreversível chegando.</p></div>
+              <div><span class="text-blue-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sem checklist de intervenção, gente intervém tarde ou não intervém. Os 4 gatilhos cobrem 90% dos casos reais.</p></div>
+              <div><span class="text-blue-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Loop detection · Tool failure · Goal drift · Ação irreversível · Reassumir controle.</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-2-6')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-2-6.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- NAV INFERIOR -->
+    <div class="flex flex-col sm:flex-row gap-4 mt-12">
+      <a href="../trilha1/index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Trilha 1: Enquadramento</a>
+      <a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próxima trilha: 🎬 Pré-produção de Demos →</a>
+    </div>
+
+  </main>
+
+  <!-- MODAIS -->
+  <div id="modal-2-1" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.1</span><span class="font-semibold">🚲 Chat / Cowork / Code</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-1.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.2</span><span class="font-semibold">🏗️ Cowork foi construído no Code</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-2.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-3" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.3</span><span class="font-semibold">🔁 O ciclo agêntico</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-3.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.4</span><span class="font-semibold">📊 Hierarquia Haiku → Sonnet → Opus</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-4.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.5</span><span class="font-semibold">🎯 Prompt ruim vs mega-prompt</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-5.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+  <div id="modal-2-6" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()">
+    <div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+      <div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.6</span><span class="font-semibold">🧭 IA é direção, não mágica</span></div>
+        <button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button>
+      </div>
+      <iframe src="modulo-2-6.html" class="flex-1 w-full rounded-b-xl"></iframe>
+    </div>
+  </div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Trilha 2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; } }
+    function closeModal() { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); document.body.style.overflow = 'auto'; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

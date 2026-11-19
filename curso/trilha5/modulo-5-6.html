@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5.6 — Estudos de caso e variações por público | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13, 148, 136, 0.10); }
+    html:not(.dark) .bg-teal-900\/30 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-teal-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-teal-400">Trilha 5</a>
+      <span>/</span>
+      <span class="text-teal-400">Módulo 5.6</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MÓDULO 5.6</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎒 Estudos de caso e variações por público</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        O playbook do curso é genérico de propósito. Mas o setor do cliente reescreve metade das prioridades. Saúde
+        coloca compliance no centro; jurídico, confidencialidade; e-commerce, volume; startup, velocidade; governo, política.
+        Este módulo final percorre 5 casos reais e fecha com a regra de adaptação. É o último módulo do curso.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">5</div><div class="text-xs text-neutral-400">Setores</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Aplicado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Casos</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏥 Caso 1 — empresa de saúde (compliance)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Saúde é o setor onde o playbook genérico mais quebra. <strong class="text-teal-400">LGPD + dados de paciente +
+        risco de alucinação clínica</strong> formam um triângulo que muda o tom do workshop antes de começar. Bloco de
+        compliance vira segundo bloco da agenda (não opcional ao fim), e exemplos não-clínicos dominam a sessão hands-on.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🩺</span> Ajustes no playbook</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Bloco LGPD vira o 2º slot</strong> da agenda, logo após abertura do sponsor</li>
+          <li><strong class="text-white">Demos não usam dados de paciente</strong> nem fictícios realistas — usa-se relatório administrativo, ata, comunicação interna</li>
+          <li><strong class="text-white">"Não cole prontuário no chat"</strong> é regra repetida 3x na sessão</li>
+          <li><strong class="text-white">Casos de uso seguros:</strong> resumo de literatura, rascunho de comunicação ao paciente, padronização de relatório operacional</li>
+          <li><strong class="text-white">Sponsor obrigatório:</strong> Diretor Médico + CISO juntos no kick-off</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Casos de uso seguros</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Resumo de literatura científica recente</li>
+            <li>Padronização de relatório administrativo</li>
+            <li>Rascunho de comunicação a paciente (revisada por humano)</li>
+            <li>Tradução de procedimento interno</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Casos a evitar no workshop</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Diagnóstico ou hipótese clínica</li>
+            <li>Análise de imagem médica em chat</li>
+            <li>Resumo de prontuário ao vivo</li>
+            <li>Qualquer dado com CPF/identificador</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚖️ Caso 2 — jurídico (confidencialidade)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Escritório jurídico tem dois medos sobrepostos: <strong class="text-teal-400">vazar segredo de cliente</strong> e
+        <strong class="text-teal-400">alucinar precedente</strong>. O workshop precisa enfrentar os dois explicitamente.
+        O caso famoso do advogado dos EUA citando jurisprudência inventada (2023) é abertura útil — quebra a ilusão de
+        infalibilidade e mostra que o time precisa entender o produto, não fugir dele.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📋</span> Política mínima sugerida ao escritório</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>POLÍTICA DE USO DE IA — Escritório [Nome]
+─────────────────────────────────────────────
+
+1. Conta corporativa Claude/ChatGPT/Gemini com SSO.
+   Conta pessoal está proibida para trabalho.
+
+2. Nada de nome de cliente, número de processo,
+   CPF/CNPJ ou trecho literal de contrato no chat.
+   Anonimizar SEMPRE antes de colar.
+
+3. Toda citação de lei, súmula ou jurisprudência
+   gerada por IA deve ser verificada na fonte
+   original antes de uso. Sem exceção.
+
+4. Documentos finais com assistência de IA passam
+   por revisão humana sênior obrigatória.
+
+5. Em caso de dúvida sobre uso permitido, perguntar
+   ao [responsável] ANTES, não depois.
+
+Assinatura: ______________________
+</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📚</span> Casos de uso que funcionam em jurídico</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Resumo de contrato anonimizado:</strong> partes substituídas por "Parte A" e "Parte B"</li>
+          <li><strong class="text-white">Extração estruturada:</strong> cláusulas, prazos, multas em tabela</li>
+          <li><strong class="text-white">Rascunho de petição padrão:</strong> com revisão humana</li>
+          <li><strong class="text-white">Comparação de versões:</strong> contrato antes/depois</li>
+          <li><strong class="text-white">Tradução técnica:</strong> juridiquês ↔ linguagem para cliente</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Mostre o caso do advogado punido por citar jurisprudência alucinada (Mata v. Avianca, 2023) na <strong>abertura</strong>,
+          não no fim. Quando a sala já entende o risco, fica receptiva a aprender o uso correto. Quando se mostra no fim,
+          parece desestímulo.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🛒 Caso 3 — e-commerce (volume)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        E-commerce é o setor onde IA gera ROI mais rápido e mais visível — porque
+        <strong class="text-teal-400">tudo é volume</strong>. Cadastro de produto, descrição, suporte, categorização, FAQ
+        automatizado. O workshop daqui é menos sobre "se" e mais sobre "como industrializar". Prompt caching e modelo Haiku
+        4.5 viram protagonistas — economia de 60-90% via cache mata qualquer dúvida sobre viabilidade.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📦</span> Pilha técnica que o workshop precisa cobrir</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Haiku 4.5</strong> — modelo rápido e barato pro volume ($1/$5 por MTok)</li>
+          <li><strong class="text-white">Prompt caching</strong> — system prompt de catálogo cacheado, economia 60-90%</li>
+          <li><strong class="text-white">Batch API</strong> — processar 10k descrições de uma vez, custo reduzido</li>
+          <li><strong class="text-white">Structured outputs</strong> — JSON pra plugar direto no PIM</li>
+          <li><strong class="text-white">Scheduled tasks</strong> — atualização noturna de categorização</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">💰</span> Conta típica que abre a cabeça</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Cenário: 50.000 SKUs sem descrição padronizada
+
+Sem IA:
+  · Redator: ~5 min por descrição
+  · 50.000 × 5 min = 4.166 h
+  · Custo a R$ 50/h = R$ 208.000
+  · Prazo realista: 6-9 meses
+
+Com IA (Haiku 4.5 + caching):
+  · ~2k tokens entrada (cacheada) + 300 saída
+  · Custo por descrição: ~US$ 0,002
+  · 50.000 × US$ 0,002 = US$ 100 (~R$ 500)
+  · Prazo: 1-2 dias com Batch API
+  · Revisão humana sobre 10% amostral: R$ 10.000
+
+Total IA: ~R$ 10.500   |   Sem IA: ~R$ 208.000
+Redução: ~95%</code></pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Haiku</div><div class="text-sm text-neutral-400">Modelo do volume</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Cache</div><div class="text-sm text-neutral-400">-60 a -90%</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Batch</div><div class="text-sm text-neutral-400">10k de uma vez</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">JSON</div><div class="text-sm text-neutral-400">Plug no PIM</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🚀 Caso 4 — startup técnica (Claude Code)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Time de engenharia em startup é o público mais hostil ao workshop introdutório — porque já está usando IA
+        diariamente. O playbook genérico aqui é desperdício. <strong class="text-teal-400">Workshop para sala técnica
+        é deep dive em Claude Code, agente, subagents, hooks, plugins e Sonnet/Opus 4.x</strong>. Sai dos três produtos
+        (Chat/Cowork/Code) e mergulha direto no Code.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">⚙️</span> Agenda redesenhada</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">1.</strong> Pular intro de prompt básico — todos sabem</li>
+          <li><strong class="text-white">2.</strong> Mostrar Claude Code rodando em repo real (com permissão prévia)</li>
+          <li><strong class="text-white">3.</strong> Adaptive thinking (low/medium/high/xhigh/max) e quando usar cada</li>
+          <li><strong class="text-white">4.</strong> Subagents (Agent tool) e dispatch paralelo</li>
+          <li><strong class="text-white">5.</strong> Skills, plugins, hooks — bundle reusável da equipe</li>
+          <li><strong class="text-white">6.</strong> Prompt caching no SDK, batch, structured outputs</li>
+          <li><strong class="text-white">7.</strong> Quando Opus 4.7 vale o custo (raciocínio denso) vs Sonnet 4.6</li>
+          <li><strong class="text-white">8.</strong> Hackathon: cada dupla cria 1 skill útil pro time</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🧪</span> Exemplo de skill criada em hackathon</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>.claude/skills/pr-review/SKILL.md
+─────────────────────────────────────────
+---
+name: pr-review
+description: Revisa PR aplicando o style guide
+  interno + checklist de segurança da empresa.
+  Use ao revisar PRs ou quando o usuário pede
+  "review this PR".
+---
+
+Você é revisor sênior. Aplique nesta ordem:
+
+1. Style guide em docs/STYLE.md
+2. Checklist de segurança em docs/SECURITY.md
+3. Cobertura de testes (mínimo 80%)
+4. Performance: queries N+1 e loops aninhados
+5. Mensagem de commit segue convenção
+
+Saída em 4 blocos:
+  - Críticos (bloqueia merge)
+  - Importantes (resolver antes de merge)
+  - Sugestões (opcional)
+  - Elogios (1-2 pontos positivos)</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Em sala técnica, deixe o time digitar o prompt na frente de você logo no primeiro bloco. A pior posição é a do
+          "consultor que demonstra". A melhor é a do "par sênior que mostra um truque a mais". Dispute de fronteira técnica
+          é onde a sala fecha cabeça — não dispute, colabore.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏛️ Caso 5 — governo (políticas)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Governo soma três fricções: <strong class="text-teal-400">compras públicas, soberania de dados e
+        transparência</strong>. O workshop precisa contemplar que a ferramenta usada hoje pode não ser a contratada amanhã,
+        e que toda comunicação assistida por IA pode ser objeto de pedido de acesso à informação. O playbook genérico vira
+        playbook "amarrado em política" — e isso é virtude, não defeito.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📜</span> Restrições típicas no setor</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">Soberania:</strong> preferência por hospedagem nacional ou em jurisdição compatível</li>
+          <li><strong class="text-white">LGPD reforçada:</strong> dado de cidadão tem proteção maior que dado de cliente</li>
+          <li><strong class="text-white">Acesso à informação:</strong> log de uso pode ser solicitado por LAI</li>
+          <li><strong class="text-white">Procurement:</strong> ferramenta de hoje pode ser substituída por concorrente em licitação</li>
+          <li><strong class="text-white">Auditoria interna:</strong> rastreabilidade de decisão assistida por IA</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">📝</span> Política mínima pra órgão público</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>POLÍTICA DE USO DE IA — [Órgão]
+─────────────────────────────────────────────
+
+1. Uso autorizado apenas em ferramentas listadas
+   em ato administrativo vigente.
+
+2. Vedação absoluta: dado pessoal sensível, dado
+   sigiloso, processo em segredo de justiça.
+
+3. Documento oficial assistido por IA deve constar
+   em metadados: "auxílio de IA — revisão humana".
+
+4. Decisões administrativas com efeito sobre direito
+   de cidadão NÃO podem ser tomadas por IA. Apoio
+   informacional é permitido; decisão final é humana.
+
+5. Registro de uso: log mínimo de prompts e datas,
+   passível de auditoria pelo controle interno.
+
+6. Servidor em dúvida: consultar [comissão] ANTES.
+
+Aprovado por: [autoridade]   Data: __/__/____</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Usos compatíveis</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Resumo de literatura técnica e normas</li>
+            <li>Rascunho de comunicação interna</li>
+            <li>Sumário de relatórios longos</li>
+            <li>Linguagem clara: traduzir norma pro cidadão</li>
+            <li>Brainstorm em fase pré-decisória</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Usos vedados ou de alto risco</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Decisão sobre direito de cidadão</li>
+            <li>Análise de processo em segredo</li>
+            <li>Dados pessoais sensíveis</li>
+            <li>Parecer técnico sem revisão humana</li>
+            <li>Resposta a pedido de LAI sem checagem</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧭 Como adaptar o playbook por setor</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A regra geral cabe em uma frase: <strong class="text-teal-400">descubra o medo dominante e ataque ele no segundo
+        slot da agenda</strong>. Saúde teme vazar paciente. Jurídico teme alucinar precedente. E-commerce teme custo
+        operacional. Startup teme parecer ingênua. Governo teme infração de política. Cada um pede uma rearrumação cirúrgica
+        do mesmo playbook.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🔍</span> Matriz de adaptação rápida</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-neutral-300">
+            <thead>
+              <tr class="border-b border-dark-600 text-teal-400">
+                <th class="text-left py-2 pr-4">Setor</th>
+                <th class="text-left py-2 pr-4">Medo dominante</th>
+                <th class="text-left py-2">Slot #2 da agenda</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-dark-600">
+              <tr><td class="py-2 pr-4">Saúde</td><td class="py-2 pr-4">Vazar paciente</td><td class="py-2">LGPD + dados clínicos</td></tr>
+              <tr><td class="py-2 pr-4">Jurídico</td><td class="py-2 pr-4">Alucinar precedente</td><td class="py-2">Caso Mata v. Avianca + revisão obrigatória</td></tr>
+              <tr><td class="py-2 pr-4">E-commerce</td><td class="py-2 pr-4">Custo operacional</td><td class="py-2">Haiku + caching + Batch API</td></tr>
+              <tr><td class="py-2 pr-4">Startup técnica</td><td class="py-2 pr-4">Parecer ingênua</td><td class="py-2">Direto em Claude Code, skills, subagents</td></tr>
+              <tr><td class="py-2 pr-4">Governo</td><td class="py-2 pr-4">Infringir política</td><td class="py-2">Política interna + rastreabilidade</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que NÃO muda entre setores</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Estrutura "show-then-do" (3.4)</li>
+            <li>Demos gravadas como backup (3.4)</li>
+            <li>Survey antes/depois (5.4)</li>
+            <li>Fechamento 1-2-3 (5.1)</li>
+            <li>Cadência D+0/D+2/D+7/D+30 (5.5)</li>
+            <li>Métricas de 4 dimensões (5.4)</li>
+          </ul>
+        </div>
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">🎯 O que SEMPRE muda por setor</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Casos de uso da prática hands-on</li>
+            <li>Política/governança apresentada no slot 2</li>
+            <li>Stack técnica enfatizada (Haiku x Opus x Code)</li>
+            <li>Sponsor obrigatório (CISO, jurídico, etc.)</li>
+            <li>Linguagem: clínico, técnico, administrativo</li>
+            <li>Casos a evitar nas demos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Pergunta única na call de descoberta com o sponsor: <em>"qual é o pior cenário que você imagina acontecendo
+          numa equipe usando IA hoje?"</em>. A resposta dele é literalmente o tópico do slot 2 do workshop. Use a frase
+          dele de volta no kick-off — sponsor sente que foi ouvido e a sala sente que o consultor entendeu o contexto.
+        </p>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🎬</span> Final do curso</h3>
+        <p class="text-neutral-300 leading-relaxed">
+          Esse é o último módulo. Você cobriu enquadramento e autoridade (T1), os três produtos e modelos mentais (T2),
+          pré-produção de demos (T3), tour guiado da interface (T4) e fechamento/continuidade (T5). O playbook completo
+          está na sua mão. <strong class="text-teal-400">A próxima turma é sua.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo (e do curso)</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Saúde: LGPD + dados clínicos no slot 2</strong><span class="text-neutral-400"> — nada de prontuário no chat</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Jurídico: caso Mata v. Avianca abre a sessão</strong><span class="text-neutral-400"> — revisão humana obrigatória</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">E-commerce: Haiku + caching + Batch</strong><span class="text-neutral-400"> — ROI imediato em volume</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Startup técnica: direto em Claude Code</strong><span class="text-neutral-400"> — pular intro, mergulhar em skills/subagents</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Governo: política e rastreabilidade no slot 2</strong><span class="text-neutral-400"> — decisão final é humana</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Regra geral: ataque o medo dominante no slot 2</strong><span class="text-neutral-400"> — pergunta única ao sponsor descobre qual</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-teal-400 mb-2">Você terminou o curso 🎉</h3>
+          <p class="text-neutral-300">Trilhas 1 a 5 concluídas. Playbook completo na mão. Próximo passo: marcar a primeira turma.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-5-5.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors">Voltar à landing →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 5.6 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

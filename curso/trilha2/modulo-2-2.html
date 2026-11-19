@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.2 — Cowork foi construído no Code | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .text-amber-400 { color: #b45309; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.2</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏗️ Cowork foi construído no Code</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        A história que abre cabeças e cria a ponte mais natural pra demonstrar o Code: o produto polido
+        que a sala usou agorinha no claude.ai foi construído pelo próprio agente que muitos ainda nem
+        testaram. Self-hosting como prova social estrutural.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">35</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Médio</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Story</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏗️ O fato que abre cabeças</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A Anthropic constrói a interface do claude.ai usando o próprio
+        <strong class="text-blue-400">Claude Code</strong>. O produto polido que sua sala viu hoje saiu do
+        agente que muitos ainda não testaram. É a frase mais barata pra provar que Code não é experimental —
+        já está em produção crítica.
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> A frase de impacto</h3>
+        <p class="text-neutral-300 mb-3">
+          <em>"A interface do Claude que vocês acabaram de usar foi construída pela própria Anthropic usando Claude Code — o agente
+          que vou mostrar a seguir."</em>
+        </p>
+        <p class="text-neutral-300">
+          Geralmente vem uma pausa de 2-3 segundos na sala. Esse silêncio é o ganho — a partir dele, o ceticismo cai e
+          a atenção sobe.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que essa frase carrega</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Code é confiável o suficiente pra produção</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Anthropic come o próprio dog food</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Não é beta experimental — é stack interno</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Os engenheiros sentem a dor antes do cliente</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que NÃO funciona no lugar</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Code é o futuro" (genérico, sem prova)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Citar benchmarks SWE-bench (perde 80%)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Big tech tá usando" (vago demais)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Listar clientes corporativos sem contexto</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Não anuncie como bombástico — fale <strong>casual</strong>, como se fosse óbvio. "Aliás, isso aqui foi feito pelo Code." Quanto mais
+          casual, mais a sala internaliza como fato cotidiano.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">✅ Por que isso valida Code</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O argumento de fundo é de <strong class="text-blue-400">incentivos alinhados</strong>: se a empresa que tem
+        acesso a qualquer engenheiro do mundo opta por usar o próprio agente pra produzir o produto principal, é
+        porque <em>na conta interna</em> isso é mais rápido e melhor que o jeito tradicional.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">⚖️</span> A lógica de incentivos</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-white">Anthropic não precisa</strong> usar Code — pode contratar engenheiros sêniors em qualquer escala</li>
+          <li><strong class="text-white">Mesmo assim escolhe</strong> — sinal de que o ROI é positivo até pra quem tem alternativa cara</li>
+          <li><strong class="text-white">A casa apostou no carro</strong> — skin in the game institucional</li>
+          <li><strong class="text-white">Se quebrar, machuca eles primeiro</strong> — incentivo pra consertar rápido</li>
+        </ul>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Camada técnica</h4>
+            <p class="text-neutral-300 text-sm">"O Code resolve bugs que cruzam 5 arquivos sem perder o fio. Se Anthropic confia nele pra UI do produto principal, posso confiar no meu monorepo médio."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Camada C-level</h4>
+            <p class="text-neutral-300 text-sm">"Empresas que se levam a sério usam internamente o que vendem. Anthropic faz isso. É um sinal de maturidade do produto, não de marketing."</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Camada de adoção</h4>
+            <p class="text-neutral-300 text-sm">"Se eles usam pra construir o que eu uso, faz sentido eu usar pro que eu construo." Argumento que funciona em qualquer sala.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Se a sala tiver alguém com perfil de <strong>compliance/risco</strong>, esse argumento é ouro. "Usar Code não é apostar em algo
+          experimental — é seguir o mesmo padrão que o fornecedor segue internamente."
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔧 Self-hosting de ferramentas</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        <strong class="text-blue-400">Self-hosting</strong> é quando o fabricante usa o próprio produto na linha
+        de produção — não num app de demo. O loop de feedback é curto: a mesma equipe que sente o atrito é a
+        que tem poder de consertar.
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📚</span> Outros exemplos canônicos</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">GitHub Actions:</strong> GitHub roda seus próprios pipelines em GitHub Actions</li>
+          <li><strong class="text-white">Stripe:</strong> Stripe usa Stripe pra cobrar Stripe (não SAP)</li>
+          <li><strong class="text-white">Vercel:</strong> vercel.com é deploy em Vercel</li>
+          <li><strong class="text-white">Anthropic:</strong> claude.ai construído com Claude Code</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Feedback curto</div><div class="text-sm text-neutral-400">Dev sente bug primeiro</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Telemetria real</div><div class="text-sm text-neutral-400">Métricas de uso interno</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Iteração rápida</div><div class="text-sm text-neutral-400">Fix sem ticket externo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Roadmap honesto</div><div class="text-sm text-neutral-400">Prioridade = dor real</div></div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Por que importa pro usuário final</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Produto self-hosted melhora em ciclo mais curto que produto "vendido"</li>
+          <li>Bugs críticos pra workflows internos viram prioridade automática</li>
+          <li>Roadmap reflete uso real, não wishlist de cliente sem skin in the game</li>
+          <li>Versão "interna" e versão "pública" tendem a convergir (não bifurcar)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🐶 "Eat your own dog food"</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Termo do Vale do Silício dos anos 80, popularizado por Microsoft.
+        <strong class="text-blue-400">Em IA, ganha peso novo</strong>: quem não usa o próprio agente em produção
+        não sabe os limites dele. Fornecedor que vende IA mas não usa internamente é red flag.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📜</span> Origem do termo</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>1988, Microsoft. Diretor de teste envia memo
+interno: "We are eating our own dog food".
+Significa: usamos nossas próprias ferramentas
+para construir nossas próprias ferramentas,
+antes de empurrar pro cliente.
+
+Sinônimo moderno: dogfooding.</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Sinais de dogfooding real</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Engenheiros publicam case studies do próprio uso</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Bugs corrigidos rápido após release</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Features novas têm uso interno antes da venda</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Roadmap público bate com uso documentado</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sinais de "vendem mas não usam"</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Caso de uso só em deck de marketing</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Bugs críticos abertos há meses</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Versão "interna" muito diferente da pública</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Devs internos usam concorrente em silêncio</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Posicione-se como <strong>praticante</strong>, não revendedor. Mostre seu próprio uso de Claude no seu workflow. "Eu uso Code nas minhas
+          tarefas todo dia" vale mais que "Code é ótimo".
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎬 Como usar essa história na demo</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A história tem <strong class="text-blue-400">um lugar canônico</strong>: na <em>transição entre Cowork e Code</em>.
+        É a ponte mais natural possível, porque a sala acabou de experimentar Cowork e agora você precisa explicar
+        por que Code merece atenção.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🪜</span> Roteiro da ponte (60s)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>1. "Vocês viram o Cowork — projetos, knowledge,
+   instruções persistentes. Bonito, polido."
+
+2. "Quem aqui sabe quem construiu essa interface?"
+   [pausa, espera 1-2 chutes]
+
+3. "Foi o próprio Claude Code. Anthropic constrói
+   o produto principal usando o agente que vou
+   mostrar agora."
+
+4. "Então, em vez de ser 'o próximo produto',
+   o Code é o produto pelo qual o produto que
+   vocês acabaram de ver existe."
+
+5. [abre terminal] "Bora ver."</code></pre>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">A</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Variação curta (15s)</h4>
+            <p class="text-neutral-300 text-sm">"Aliás, a interface do Cowork foi construída pelo próprio Code. Bora ver." Funciona quando a sala já está engajada e o tempo aperta.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">B</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Variação detalhada (2 min)</h4>
+            <p class="text-neutral-300 text-sm">Adiciona contexto de incentivos ("Anthropic não precisa, mas escolhe") e cita exemplo de outras empresas (GitHub Actions, Stripe). Bom pra sala C-level que pesa risco.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Quando</div><div class="text-sm text-neutral-400">Entre Cowork e Code</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Tom</div><div class="text-sm text-neutral-400">Casual, factual</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Duração</div><div class="text-sm text-neutral-400">15-90s</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold mb-1">Próximo</div><div class="text-sm text-neutral-400">Abrir terminal</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🤐 Quando NÃO contar</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A história é boa, mas <strong class="text-blue-400">não cabe em toda sala</strong>. Em sala 100% leiga (RH,
+        vendas sem fluência técnica, executivos não-técnicos), falar "Anthropic constrói no terminal" pode soar abstrato
+        e abrir um buraco de explicação que come 10 minutos.
+      </p>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-4 flex items-center"><span class="mr-2">⛔</span> Sintomas de "não conte"</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Sala onde nenhuma mão sobe pra "quem aqui escreve código?"</li>
+          <li>Workshop de IA pra adoção corporativa em áreas não-técnicas</li>
+          <li>Tempo apertado (&lt;45 min total) e foco em Cowork</li>
+          <li>Audiência onde "agente no terminal" ainda precisa ser explicado do zero</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Versão pra sala leiga</h4>
+          <p class="text-sm text-neutral-300 italic">
+            "Pra quem é técnico, existe uma extensão chamada Claude Code — mas isso é assunto pra outra hora. Hoje vamos focar
+            no que vocês podem usar a partir de amanhã: o Cowork."
+          </p>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Versão pra sala mista</h4>
+          <p class="text-sm text-neutral-300 italic">
+            "Quem é da área técnica, dá uma olhada no Claude Code depois — inclusive a Anthropic constrói o produto com ele.
+            Pros demais, foco no Cowork — já basta pra transformar suas semanas."
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Saber <strong>quando uma boa história não cabe</strong> é metade da curadoria. Em sala leiga, mencione Code só como "extensão
+          pra equipes técnicas" e gaste o tempo onde retorna mais — Cowork na prática.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Anthropic constrói claude.ai com Claude Code</strong><span class="text-neutral-400"> — a frase que abre cabeças</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Incentivos alinhados</strong><span class="text-neutral-400"> — quem tem alternativa cara escolhe o agente, então o ROI é positivo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Self-hosting = loop curto</strong><span class="text-neutral-400"> — dor sentida internamente vira prioridade automática</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">"Eat your own dog food"</strong><span class="text-neutral-400"> — termo antigo, peso novo em IA</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Use na transição Cowork → Code</strong><span class="text-neutral-400"> — ponte natural, 15-90s</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Em sala leiga, omita</strong><span class="text-neutral-400"> — saber quando NÃO contar é metade da curadoria</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">2.3 — 🔁 O ciclo agêntico (perceber, pensar, agir, observar — o coração do agente)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a>
+          <a href="modulo-2-3.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 2.2 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

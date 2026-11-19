@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.1 — Você é a pessoa certa | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.1</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🛠️ Você é a pessoa certa</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Autoridade em IA vem de horas, não de títulos. Este módulo desmonta a crença de que você precisa de uma
+        credencial formal pra ensinar Claude Cowork — e mostra como construir o tipo de autoridade que a sala
+        realmente reconhece nos primeiros 30 segundos.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Mindset</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1: AUTORIDADE POR PRATICA -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🛠️ Autoridade vem da prática, não do título</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Em campos com 30 anos de maturidade, credencial importa. Em IA generativa,
+        <strong class="text-emerald-400">cada 6 meses</strong> a paisagem se reorganiza — novos modelos, novos paradigmas
+        (Skills, Connectors, Adaptive thinking), novos modos de uso. Quem está há um ano usando Claude todo dia tem
+        intuição que ninguém formou em sala de aula.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> A regra-base</h3>
+        <p class="text-neutral-300 mb-4">
+          <strong>Autoridade prática = horas × variedade × cicatriz.</strong> Não é só tempo de uso — é variedade
+          de tarefas (código, escrita, análise, automação) e o número de vezes que algo falhou e você descobriu por quê.
+        </p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Horas:</strong> volume real, mão na ferramenta</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Variedade:</strong> 5+ tipos diferentes de tarefa, não só copy</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Cicatriz:</strong> falhas catalogadas, com lição aprendida</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Autoridade que a sala reconhece</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Uso Claude todo dia há 8 meses, em 4 projetos diferentes"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Quebrei a cara aqui — vou te mostrar como evitar"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Repositório público com projetos Claude</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Histórias específicas com data e número</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Autoridade que afasta a sala</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Tenho certificação X em IA da plataforma Y"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Citar 30 papers sem mostrar prática</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Estudei machine learning na faculdade Z"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Listar empresas onde palestrou (sem mostrar resultado)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Mantenha um arquivo <code class="bg-dark-700 px-2 py-0.5 rounded text-sm font-mono text-emerald-400">cicatrizes.md</code>
+          no seu Claude Projects. Toda vez que algo falhar, anote o caso em 3 linhas: contexto, o que tentou, o que aprendeu. Em 3 meses você tem 50+ histórias
+          de bolso — material infinito pra qualquer workshop.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Cicatriz</div><div class="text-sm text-neutral-400">História específica de erro</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Horas-prática</div><div class="text-sm text-neutral-400">Volume mão-na-massa</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Variedade</div><div class="text-sm text-neutral-400">5+ tipos de tarefa</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Recência</div><div class="text-sm text-neutral-400">Algo desta semana</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 2: AS 100 HORAS -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🕐 As 100 horas que valem mais que um curso</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O limiar mensurável: <strong class="text-emerald-400">100 horas ativas</strong> com Claude — sua vez digitando,
+        seu projeto, seu problema — te colocam acima da mediana de quem dá aula. Abaixo, prefira amplificar o material
+        de quem está mais adiante. Acima, é a sua vez.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📈</span> Por que 100h?</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-white">~30h:</strong> você descobre o que <em>Claude faz bem</em></li>
+          <li><strong class="text-white">~60h:</strong> você descobre o que ele faz mal e como contornar</li>
+          <li><strong class="text-white">~100h:</strong> você desenvolve intuição de qual modelo usar pra qual tarefa</li>
+          <li><strong class="text-white">~200h+:</strong> você começa a construir <em>workflows</em>, não conversas avulsas</li>
+        </ul>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Semanas 1-2 (~20h)</h4>
+            <p class="text-sm text-neutral-400 mb-3">Descoberta</p>
+            <p class="text-neutral-300 text-sm">Você testa Claude pra tudo — copy, código, brainstorm, traduções. Algumas tarefas viram WOW, outras decepcionam. Não tenta workflow ainda — só observa o que funciona.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Semanas 3-6 (~40h)</h4>
+            <p class="text-sm text-neutral-400 mb-3">Padrões emergem</p>
+            <p class="text-neutral-300 text-sm">Você começa a reaproveitar prompts. Cria 2-3 projetos no Claude com instruções salvas. Descobre que prompt curto resolve 70% e mega-prompt resolve os 30% chatos.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Semanas 7-10 (~40h)</h4>
+            <p class="text-sm text-neutral-400 mb-3">Intuição de modelo</p>
+            <p class="text-neutral-300 text-sm">Você começa a sentir quando subir do Sonnet 4.6 pro Opus 4.7 (raciocínio denso, código longo) e quando descer pro Haiku 4.5 (resumos rápidos, classificações em lote). Vira escolha automática.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Acima de 100h</h4>
+            <p class="text-sm text-neutral-400 mb-3">Workflows e Code</p>
+            <p class="text-neutral-300 text-sm">Você experimenta Claude Code, Connectors, Scheduled Tasks. Não conversa mais "avulso" — encadeia. É o estágio em que você pode ensinar com autoridade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Ativas</div><div class="text-sm text-neutral-400">Você digitando</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Passivas</div><div class="text-sm text-neutral-400">Vendo vídeo (não conta)</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Log</div><div class="text-sm text-neutral-400">Anotar projeto por projeto</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Threshold</div><div class="text-sm text-neutral-400">Critério mensurável</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 3: CURRICULO VS CICATRIZES -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎓 Currículo de IA vs cicatrizes reais</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A sala consegue distinguir uma <strong class="text-emerald-400">história específica</strong> de uma
+        <strong class="text-red-400">declaração genérica</strong> em segundos. Específico vende. Genérico afasta.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Declaração genérica</h4>
+          <p class="text-sm text-neutral-300 italic">"Claude é muito bom pra produtividade, eu uso bastante e recomendo. Já vi que ele consegue resolver muitas tarefas do dia a dia."</p>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Cicatriz específica</h4>
+          <p class="text-sm text-neutral-300 italic">"Terça passada perdi 40 minutos porque pedi pro Claude refatorar uma função grande sem dar contexto. Ele renomeou 3 callers errados. Aprendi: sempre passar os usos da função antes de pedir refatoração."</p>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📝</span> Template de cicatriz (anota essa)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code>QUANDO:  [data, contexto]
+TENTEI:  [o que pedi, qual modelo, qual prompt resumido]
+DEU:     [o que aconteceu de errado, em 1 frase]
+LIÇÃO:   [a regra que você passou a seguir depois]</code></pre>
+        <p class="text-neutral-400 text-sm mt-4">Cada cicatriz vira um slide, um exemplo, ou uma resposta de Q&amp;A pronta.</p>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Cicatriz boa tem <strong>data, número e nome de feature</strong>. "Semana passada quebrei o contexto colocando 3 PDFs gigantes
+          num projeto sem habilitar 1M de context window — Sonnet 4.6 começou a alucinar nas referências cruzadas." Específico, datado, nominal.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 4: IMPOSTOR INVERSO -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🪞 Síndrome do impostor inverso</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Em IA, o padrão se inverteu: <strong class="text-emerald-400">quem mais poderia ensinar evita</strong>, enquanto
+        quem ensina muitas vezes tem menos prática real. Se você fechou os 6 tópicos da seção anterior em "sim, eu faço isso" —
+        você está acima da mediana de palco.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🧠</span> O padrão</h3>
+        <p class="text-neutral-300 mb-3">
+          Quem tem 100h+ tende a achar que "ainda não sabe o suficiente" — porque <em>vê</em> tudo que ainda não testou.
+          Quem tem 10h tende a achar que sabe — porque ainda não viu o que falta. Resultado: o palco fica com o segundo grupo.
+        </p>
+        <p class="text-neutral-300">
+          Reconhecer o padrão é a permissão pra começar. Você não precisa de mais 100h pra ensinar as 100h que já tem.
+        </p>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> O que pesquisas de adoção mostram</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong>~60%</strong> dos profissionais que usam IA generativa diariamente acham que "ainda não dominam o suficiente pra ensinar"</li>
+          <li><strong>~80%</strong> de quem dá workshop público de IA tem menos de 50h de uso ativo</li>
+          <li>O <strong>gap</strong> entre quem pode ensinar e quem ensina é estrutural — abre espaço pra quem decidir cruzar a linha</li>
+          <li class="text-xs text-neutral-500 italic">Números de adoção corporativa: McKinsey AI State 2024, BCG GenAI Survey 2025 — magnitude, não citação exata</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Antídotos que funcionam</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Começar pequeno: workshop de 1h pra 5 colegas</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Gravar e revisar — você vai ver que foi melhor do que sentiu</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Listar 10 coisas que você ensinou sem pensar — sua "intuição"</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Armadilhas comuns</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esperar "dominar tudo" antes de ensinar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Comparar-se com palestrantes globais</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Achar que precisa ler todos os papers</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5: COMO SE APRESENTAR -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🗣️ Como se apresentar sem credenciais oficiais</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Os primeiros 30 segundos decidem se a sala vai ouvir você. Liste prática, não diploma. Use a estrutura
+        <strong class="text-emerald-400">desde quando + quantos projetos + experiência recente</strong>.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📜</span> Template de abertura (30s)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Oi, [seu nome].
+
+Uso Claude desde [mês/ano] — hoje rodo [X] projetos
+em paralelo, dos quais o mais usado é [um exemplo
+concreto: "um agente que organiza meu inbox" / "um
+copiloto pra revisão de contratos"].
+
+Esta semana mesmo, [história curta de 1 frase: o que
+você tentou, o que aprendeu]. Por isso estou aqui —
+não pra apresentar IA em tese, mas pra mostrar o que
+faço todo dia e como vocês podem fazer também.</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Versão eficaz</h4>
+          <p class="text-sm text-neutral-300 italic">
+            "Sou João. Uso Claude desde março de 2025, rodo 4 projetos: revisão de contratos, organização de inbox,
+            geração de propostas comerciais e suporte a code review. Ontem mesmo descobri que mudar do Sonnet
+            pro Opus reduziu meu tempo de revisão de PR em 40%. Esse é o tipo de coisa que a gente vai ver hoje."
+          </p>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Versão que perde a sala</h4>
+          <p class="text-sm text-neutral-300 italic">
+            "Sou João, formado em ciência da computação pela XYZ, com MBA em gestão de tecnologia. Trabalhei na A,
+            na B e na C. Sou apaixonado por IA e venho estudando o tema há algum tempo. Hoje vou apresentar
+            sobre Claude e como ele pode revolucionar..."
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Treine sua abertura <strong>cronometrada</strong>: ela deve caber em 30-40 segundos. Acima disso, a sala já está
+          conferindo o celular. Grave-se com o celular uma vez por semana — é o exercício de maior ROI no mês.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 6: PROVAS SOCIAIS -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📊 Provas sociais que substituem MBA em IA</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Em IA, certificações ainda não consolidaram autoridade — o mercado avalia por
+        <strong class="text-emerald-400">artefato</strong>. Cada artefato público vira sua nova credencial.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🏗️</span> Hierarquia de artefatos</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">Nível 1 — Tweet/post:</strong> conta um experimento ou cicatriz, leva 10 minutos. Acumular 50 desses em 3 meses já é portfólio.</li>
+          <li><strong class="text-white">Nível 2 — Repositório público:</strong> um projeto Claude com README explicando o que faz. GitHub Pages funciona como apresentação.</li>
+          <li><strong class="text-white">Nível 3 — Vídeo de demo (5-10min):</strong> tela gravada, narração por cima, mostrando um caso real. Distribui pelo LinkedIn.</li>
+          <li><strong class="text-white">Nível 4 — Workshop público gravado:</strong> uma sessão completa publicada. Vira sua landing page de consultoria.</li>
+          <li><strong class="text-white">Nível 5 — Curso ou playbook:</strong> material estruturado tipo este. Vira sua oferta de continuidade.</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📈</span> Build in public — números</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Quem posta <strong>1 artefato por semana</strong> sobre Claude tende a receber convite pra primeiro workshop em ~3 meses</li>
+          <li>Cada workshop gravado e publicado costuma gerar de <strong>2 a 5 novos convites</strong> nos 60 dias seguintes</li>
+          <li>Ofertas de consultoria recorrente costumam vir <strong>depois do 3º workshop público</strong> — quando você acumula portfólio visível</li>
+          <li class="text-xs text-neutral-500 italic">Padrões observados em communities de practitioners; ordens de magnitude, não estatística rigorosa</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Cadência</div><div class="text-sm text-neutral-400">1 artefato/semana</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Público</div><div class="text-sm text-neutral-400">LinkedIn, X, GitHub</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Específico</div><div class="text-sm text-neutral-400">Caso real, número</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Visual</div><div class="text-sm text-neutral-400">Print, vídeo, gif</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Autoridade prática = horas × variedade × cicatriz</strong><span class="text-neutral-400"> — credencial não substitui mão na ferramenta</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">100h ativas é o threshold</strong><span class="text-neutral-400"> — abaixo, amplifique outros; acima, é a sua vez</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Cicatriz específica &gt; declaração genérica</strong><span class="text-neutral-400"> — data, número, feature, lição</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Impostor inverso é o padrão dominante</strong><span class="text-neutral-400"> — reconhecer libera</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Abertura em 30s, sem credencial formal</strong><span class="text-neutral-400"> — desde quando + projetos + experiência recente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Artefatos &gt; certificados</strong><span class="text-neutral-400"> — 5 níveis, do tweet ao playbook</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">1.2 — 👥 Lendo a sala (10 vs 300, técnicos vs leigos, calibração em tempo real)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 1.1 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

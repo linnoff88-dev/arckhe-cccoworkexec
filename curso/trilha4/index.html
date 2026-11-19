@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 4 — Tour Guiado da Interface | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span>
+            <span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">TRILHA 4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧭 Tour Guiado da Interface</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        A maior trilha do curso. Aqui o treinador ganha intimidade com cada superfície do Claude — Projects,
+        Adaptive Thinking, YOLO, Instructions, Scheduled Tasks, Artifacts, Subagents, Skills/Connectors/Plugins
+        e o Subagente Guide. Sem decorar feature: você sai sabendo quando usar, quando NÃO usar, e o que mostrar
+        em demo.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">9</div><div class="text-xs text-neutral-400">Módulos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">54</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~3h</div><div class="text-xs text-neutral-400">Duração</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#modulo-4-1" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.1</span><span class="text-xs text-neutral-500">~25 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">📁 Projetos e raio de impacto</h3>
+          <p class="text-xs text-neutral-400">200K context, knowledge files, escopo</p>
+        </a>
+        <a href="#modulo-4-2" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.2</span><span class="text-xs text-neutral-500">~25 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">🧠 Adaptive thinking</h3>
+          <p class="text-xs text-neutral-400">5 níveis, xhigh é Opus 4.7</p>
+        </a>
+        <a href="#modulo-4-3" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.3</span><span class="text-xs text-neutral-500">~20 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">⚡ Modo YOLO</h3>
+          <p class="text-xs text-neutral-400">--dangerously vs Auto Mode</p>
+        </a>
+        <a href="#modulo-4-4" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.4</span><span class="text-xs text-neutral-500">~20 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">📜 Instructions</h3>
+          <p class="text-xs text-neutral-400">System prompt do projeto</p>
+        </a>
+        <a href="#modulo-4-5" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.5</span><span class="text-xs text-neutral-500">~20 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">🕐 Scheduled tasks</h3>
+          <p class="text-xs text-neutral-400">Session-scoped vs Routines</p>
+        </a>
+        <a href="#modulo-4-6" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.6</span><span class="text-xs text-neutral-500">~20 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">🎨 Artifacts ao vivo</h3>
+          <p class="text-xs text-neutral-400">MCP, storage, AI-powered</p>
+        </a>
+        <a href="#modulo-4-7" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.7</span><span class="text-xs text-neutral-500">~25 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">📤 Dispatch e subagents</h3>
+          <p class="text-xs text-neutral-400">Agent tool, AGENT.md, escopos</p>
+        </a>
+        <a href="#modulo-4-8" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.8</span><span class="text-xs text-neutral-500">~25 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">🧩 Skills, connectors, plugins</h3>
+          <p class="text-xs text-neutral-400">Três camadas, uma gallery</p>
+        </a>
+        <a href="#modulo-4-9" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.9</span><span class="text-xs text-neutral-500">~20 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">🤖 Subagente Claude Code Guide</h3>
+          <p class="text-xs text-neutral-400">Doc canônica e padrões</p>
+        </a>
+      </div>
+    </section>
+
+    <h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+
+    <!-- MODULO 4.1 -->
+    <div id="modulo-4-1" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.1</span><span class="text-xs text-neutral-500">~25 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📁 Projetos e raio de impacto</h3>
+        <p class="text-neutral-400 text-sm">Project não é "pasta com chats" — é um sandbox de contexto com 200K tokens, instructions e knowledge files persistentes. Entender o raio de impacto evita 80% dos erros de "Claude esqueceu".</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📁</span><div><span class="font-medium">O que é um Projeto</span><span class="text-neutral-500 text-sm ml-2">- 200K, instructions, knowledge</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Project agrupa chats que compartilham 200K de contexto, custom instructions e knowledge files. Disponível em Pro, Max, Team e Enterprise.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem trata project como pasta perde o ganho. Quem entende que é sandbox de contexto começa a desenhar fluxo de trabalho ao invés de conversa avulsa.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Contexto persistente · ~500 páginas · Custom instructions · Knowledge files compartilhados.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">💥</span><div><span class="font-medium">Raio de impacto</span><span class="text-neutral-500 text-sm ml-2">- Escopo isolado</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">"Raio de impacto" = tudo que aquele project enxerga e influencia. Um chat fora do project não vê instructions nem files. Dois projects nunca se cruzam.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mistura de escopos é causa #1 de "Claude inventou coisa que não tem". Mantendo raios disjuntos, a memória do projeto fica limpa.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Isolamento · 1 projeto = 1 escopo · Cross-talk zero · Higiene de contexto.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🆕</span><div><span class="font-medium">Quando criar novo</span><span class="text-neutral-500 text-sm ml-2">- Vs continuar no existente</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Critério: mudou o domínio, mudou o cliente, mudou o "personagem" — novo project. Mesma tarefa em série — mesmo project.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Acumular tudo num project só estoura contexto. Quebrar demais perde sinergia. O critério "personagem" resolve.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Trigger de novo project · Cliente novo · Domínio novo · Reset de tom.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📚</span><div><span class="font-medium">Knowledge files</span><span class="text-neutral-500 text-sm ml-2">- 30 MB por arquivo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Arquivos colados no project ficam disponíveis em toda conversa. Limite por arquivo: 30 MB. Número ilimitado (até a janela de contexto).</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o jeito mais barato de dar contexto persistente — PDFs &lt; 100 páginas têm análise visual+texto, &gt; 1000 só texto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">30 MB cap · Persistente · Imagens (PNG/JPG/GIF/WebP) · PDF visual até 100 pgs.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📜</span><div><span class="font-medium">Instruções persistentes</span><span class="text-neutral-500 text-sm ml-2">- Custom instructions na UI</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Custom instructions = system prompt do projeto. Injetadas em toda conversa daquele project. Defina tom, persona, restrições.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Repetir "responda formal em PT-BR" em cada chat queima energia. Instructions resolve isso uma vez só.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Sem limite duro de caracteres · Persona · Restrição · Idioma.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🗂️</span><div><span class="font-medium">Estrutura de pastas mentais</span><span class="text-neutral-500 text-sm ml-2">- 1 projeto = 1 escopo</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Regra mental: cada project só responde a um escopo. "Cliente X — Vendas", "Pessoal — Estudo", "Empresa — Operações".</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Acaba o "vou criar mais um chat sobre isso" desorganizado. Vira biblioteca navegável.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Nomenclatura clara · Cliente — Tema · 5-10 projects ativos · Arquivar inativos.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-1')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-1.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.2 -->
+    <div id="modulo-4-2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.2</span><span class="text-xs text-neutral-500">~25 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🧠 Adaptive thinking</h3>
+        <p class="text-neutral-400 text-sm">Esqueça o botão "extended thinking" liga/desliga. Adaptive Thinking é o modo atual — Claude decide quanto pensar, e você controla via 5 níveis de effort.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">🧠</span><div><span class="font-medium">O que substituiu extended</span><span class="text-neutral-500 text-sm ml-2">- Dinâmico, não binário</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Adaptive thinking (Opus 4.6+, Sonnet 4.6+) = Claude decide quando e quanto pensar. API: <code>thinking: {type: "adaptive"}</code>. Extended thinking continua disponível mas é legado.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Anthropic recomenda migrar. Adaptive supera extended de forma consistente em avaliações internas.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Adaptive vs Extended · Decisão dinâmica · API param · Effort separado.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">🎚️</span><div><span class="font-medium">5 níveis de effort</span><span class="text-neutral-500 text-sm ml-2">- low/medium/high/xhigh/max</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">low = minimiza pensamento. medium = moderado. high = padrão. xhigh = exploração profunda estendida (só Opus 4.7). max = sempre pensa, sem limite.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Effort é o controle principal de tradeoff inteligência × velocidade × custo no Opus 4.7.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">5 níveis · Tradeoff · Velocidade vs profundidade · Custo de thinking tokens.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">👑</span><div><span class="font-medium">xhigh é exclusivo Opus 4.7</span><span class="text-neutral-500 text-sm ml-2">- O modo "pensa demais"</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">xhigh só existe no Opus 4.7 — exploração profunda estendida. Sonnet/Haiku não têm.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Pra problemas onde você prefere esperar 90s e receber a resposta certa, ao invés de 5s e iterar 4 vezes.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Diferenciação de modelo · Quando vale o custo · Análise densa · Reasoning longo.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">🎯</span><div><span class="font-medium">Quando ativar</span><span class="text-neutral-500 text-sm ml-2">- Raciocínio denso, código complexo</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Use high/xhigh em: design de arquitetura, debug de bug que você já tentou 3x, análise jurídica, código longo.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Saber escolher economiza tempo e dinheiro. Low pra resumo, max pra problema cabeludo.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Heurística de uso · Tarefa simples = low · Tarefa densa = high/xhigh.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">💰</span><div><span class="font-medium">Custo de thinking tokens</span><span class="text-neutral-500 text-sm ml-2">- Não é grátis</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Thinking tokens são cobrados como output tokens. xhigh pode gerar milhares de tokens "pensando" antes de responder.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Em batch grande, abusar de xhigh estoura orçamento. Calibre por tipo de tarefa.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Tokens cobrados · Output rate · Batch caro · Default em high é equilibrado.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">👁️</span><div><span class="font-medium">Ver o que ele pensou</span><span class="text-neutral-500 text-sm ml-2">- Chain of thought</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Nas UIs (claude.ai e Claude Code), o "chain of thought" é exibido em bloco recolhível antes da resposta.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Auditar o raciocínio é onde o ouro mora — você descobre por que ele errou, e ajusta o prompt.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">CoT visível · Debug de prompt · Aprender com o erro do modelo.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-2')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-2.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.3 -->
+    <div id="modulo-4-3" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.3</span><span class="text-xs text-neutral-500">~20 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">⚡ Modo YOLO</h3>
+        <p class="text-neutral-400 text-sm">"--dangerously-skip-permissions" não é coragem, é negligência. Auto Mode (mar/2026) é a versão sensata: classifiers ML + backstop de 3 negações.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">⚡</span><div><span class="font-medium">--dangerously-skip-permissions</span><span class="text-neutral-500 text-sm ml-2">- O que faz</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Flag do Claude Code que desliga TODOS os prompts de permissão. Claude executa Bash, Write, Edit sem perguntar.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o nome real do "YOLO mode". Sem proteções nenhuma. Risco: comando destrutivo em prod.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Flag CLI · Zero guardrail · Inseguro por padrão · Use só em sandbox.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">🤖</span><div><span class="font-medium">Auto Mode (mar/2026)</span><span class="text-neutral-500 text-sm ml-2">- Classifiers ML</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Alternativa segura ao --dangerously. Classifiers de ML analisam cada ação. 93% dos prompts que humanos aprovariam viram automáticos.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o caminho recomendado pra produtividade sem expor o pé.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Classifier ML · 93% automatizados · Backstop · Multi-agent handoff guarda.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">⚠️</span><div><span class="font-medium">Riscos reais</span><span class="text-neutral-500 text-sm ml-2">- O que pode dar errado</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">rm -rf indevido, commit em main, push de secret, deploy errado, alteração em DB de prod.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem nunca pagou o preço subestima. Listar os 5 desastres possíveis evita o sexto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Comandos destrutivos · Repos com secrets · Prod · Backup como mitigação.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">🟢</span><div><span class="font-medium">Quando ligar</span><span class="text-neutral-500 text-sm ml-2">- Sandbox seguro</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Container Docker descartável, VM efêmera, repo throwaway, devcontainer isolado. Onde "perder tudo" é OK.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Velocidade absoluta sem risco. Demo cinemática sai daí.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Docker · VM · Devcontainer · Throwaway repo.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">🔴</span><div><span class="font-medium">Quando NUNCA ligar</span><span class="text-neutral-500 text-sm ml-2">- Prod, secrets</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Repo principal da empresa, máquina com SSH key, ambiente com kubectl apontado pra prod, qualquer máquina com .env.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">A regra inegociável. Se a sala estiver em laptop corporativo, fala pra usar Auto Mode.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Prod · Secrets locais · kubectl perigoso · SSH key exposta.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">↔️</span><div><span class="font-medium">YOLO vs auto-accept</span><span class="text-neutral-500 text-sm ml-2">- Diferença sutil</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Auto-accept (VS Code extension) aceita edits sem perguntar, mas mantém Bash sob prompt. YOLO desliga tudo.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Confundir os dois leva a relaxar onde não deveria.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">VS Code initialPermissionMode · Edit ≠ Bash · Granularidade.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-3')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-3.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.4 -->
+    <div id="modulo-4-4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.4</span><span class="text-xs text-neutral-500">~20 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📜 Instructions (system prompt do projeto)</h3>
+        <p class="text-neutral-400 text-sm">Custom Instructions é o lugar onde você escreve quem Claude é dentro deste projeto. Role + style + constraints. NÃO é o lugar pra colocar a tarefa.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">📜</span><div><span class="font-medium">O que vai em instructions</span><span class="text-neutral-500 text-sm ml-2">- Persona, domínio, restrições</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Instructions = tom, persona, domínio, restrições. O que vale em todo chat do projeto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem coloca tarefa específica em instructions perde flexibilidade. Quem coloca persona ganha consistência.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Persistente · Tom · Domínio · Restrições.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">🏗️</span><div><span class="font-medium">Estrutura recomendada</span><span class="text-neutral-500 text-sm ml-2">- Role / Style / Constraints</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">3 blocos: Role (quem é), Style (como fala), Constraints (o que não faz). Cada bloco em até 5 linhas.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Estrutura clara facilita manutenção e debug do comportamento do modelo.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Role · Style · Constraints · Cada bloco curto.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">🚫</span><div><span class="font-medium">O que NÃO colocar</span><span class="text-neutral-500 text-sm ml-2">- Tarefa específica</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Não coloque "redija o e-mail para Maria sobre o produto X" — isso é prompt de chat, não instruction.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Tarefa em instructions deixa o projeto travado em um único uso.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Separação tarefa/persona · Sem hardcode · Reutilizável.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">🔄</span><div><span class="font-medium">Quando atualizar</span><span class="text-neutral-500 text-sm ml-2">- Mudança de tom ou escopo</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Atualize quando o projeto incorpora um cliente novo, muda tom (formal→informal), ou ganha restrição (compliance).</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Instructions estagnadas viram "dívida" e o modelo começa a divergir.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Manutenção periódica · Trigger de update · Versionar mudanças.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">💾</span><div><span class="font-medium">Versionar em .md</span><span class="text-neutral-500 text-sm ml-2">- Copia em arquivo</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Mantenha cópia das instructions em arquivo .md no repo ou na knowledge do projeto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">UI da Anthropic não tem histórico. Sem cópia, você perde a versão anterior pra sempre.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Git para prompt · Histórico recuperável · Diff entre versões.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">👥</span><div><span class="font-medium">Equipe vs pessoal</span><span class="text-neutral-500 text-sm ml-2">- Compartilhado vs privado</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Em Team/Enterprise, projects podem ser compartilhados — instructions ficam visíveis pra todos do time.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Instructions de equipe são contrato. Erros viram bug de todo mundo.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Project compartilhado · Revisão por pares · Convenção do time.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-4')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-4.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.5 -->
+    <div id="modulo-4-5" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.5</span><span class="text-xs text-neutral-500">~20 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🕐 Scheduled tasks — Zapier/n8n lite</h3>
+        <p class="text-neutral-400 text-sm">Dois mecanismos: session-scoped (local, só com Claude Code ligado) vs Routines (infra da Anthropic, rodam sem sua máquina). Os dois usam cron.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">🕐</span><div><span class="font-medium">Session-scoped vs Routines</span><span class="text-neutral-500 text-sm ml-2">- Local vs Anthropic</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Session-scoped: cron dentro de sessão Claude Code ativa. Routines: rodam em infra Anthropic, mesmo com PC desligado.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Escolha errada = tarefa "fantasma" que nunca dispara.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">/loop · /schedule · CLAUDE_CODE_DISABLE_CRON · 7 dias --resume.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">📐</span><div><span class="font-medium">Sintaxe /schedule</span><span class="text-neutral-500 text-sm ml-2">- Cron vixie</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Cron vixie padrão. 0/7 = domingo. Não aceita L/W/?, sem aliases MON/JAN.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Usar sintaxe estendida silenciosamente quebra o cron sem aviso.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">5 campos · DOM+DOW match qualquer um · Sem extensões.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">🎯</span><div><span class="font-medium">Casos de uso</span><span class="text-neutral-500 text-sm ml-2">- PR review, monitor, audit</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Revisão matinal de PR, análise overnight de CI failures, auditoria semanal de deps, sync de docs pós-merge.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Casos certos = Routines. Casos errados → Zapier/n8n.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Trigger cron · API · GitHub event · Saída em PR/issue.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">🛑</span><div><span class="font-medium">Limites</span><span class="text-neutral-500 text-sm ml-2">- Frequência, duração, catch-up</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Session-scoped: dispara só quando Claude Code está ocioso, sem catch-up. Routines: roda independente.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Esperar catch-up no session-scoped é frustração garantida.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Sem catch-up · Ocioso só · Limpa em nova conversa.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">⚖️</span><div><span class="font-medium">Claude vs Zapier</span><span class="text-neutral-500 text-sm ml-2">- Decisão arquitetural</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Claude Routines: tarefa precisa de raciocínio. Zapier/n8n: tarefa é "se X então Y" determinístico.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Usar Claude pra mover dado entre planilhas é caro. Usar Zapier pra revisar PR é impossível.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Raciocínio vs determinismo · Custo por execução · Ferramenta certa.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">🐛</span><div><span class="font-medium">Debug de tarefa que não rodou</span><span class="text-neutral-500 text-sm ml-2">- Checklist</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Checklist: (1) Claude Code estava aberto e ocioso? (2) sintaxe cron correta? (3) CLAUDE_CODE_DISABLE_CRON setado? (4) ambiente é Routine ou local?</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">90% dos "meu cron não rodou" caem em um desses 4 itens.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Debug em ordem · Confirmar ambiente · Variável de env.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-5')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-5.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.6 -->
+    <div id="modulo-4-6" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.6</span><span class="text-xs text-neutral-500">~20 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🎨 Artifacts ao vivo</h3>
+        <p class="text-neutral-400 text-sm">Artifacts saíram do "preview ao lado" e viraram apps. Out/2025: MCP + storage persistente. AI-powered: artifact que chama Claude por dentro, sem você gerenciar API key.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">🎨</span><div><span class="font-medium">O que é Artifact</span><span class="text-neutral-500 text-sm ml-2">- Code, HTML, React, SVG</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Painel separado ao lado do chat onde Claude gera conteúdo independente: código, documento, SVG, React, HTML/CSS/JS, diagrama.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É a feature que vira demo "wow" — artifact com preview ao vivo prende a sala.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Painel separado · Preview ao vivo · Tipos suportados · Mobile incluso.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">📅</span><div><span class="font-medium">Mudança out/2025</span><span class="text-neutral-500 text-sm ml-2">- MCP + storage</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Out/2025: artifacts ganharam suporte a MCP e storage persistente. App de artifact agora pode lembrar estado entre sessões.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Transformou artifact de demo descartável em mini-app real.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">MCP em artifact · Storage persistente · Stateful · App real.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">🤖</span><div><span class="font-medium">AI-powered artifacts</span><span class="text-neutral-500 text-sm ml-2">- Chama Claude por dentro</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Artifact pode integrar chamada à API do Claude sem você gerenciar key — quem abre o artifact paga via sua conta Claude.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mini-apps com IA distribuíveis por URL — sem deploy, sem backend.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">API embarcada · Sem gerenciamento de key · Apps IA distribuíveis.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">🔗</span><div><span class="font-medium">Compartilhamento por URL</span><span class="text-neutral-500 text-sm ml-2">- Sem hospedagem</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Artifact publicado vira link público. Recebedor abre sem login, vê o app rodando.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Mata o passo "preciso fazer deploy" pra apresentar uma ideia.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Link público · Sem deploy · Prova de conceito instantânea.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">⚖️</span><div><span class="font-medium">Artifact vs Project</span><span class="text-neutral-500 text-sm ml-2">- Quando cada um</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Project = contexto persistente, instructions, knowledge. Artifact = produto entregável da conversa.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Não são alternativas — são complementares. Project gera artifact.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Context vs output · Complementares · Persistência diferente.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">🚧</span><div><span class="font-medium">Limitações</span><span class="text-neutral-500 text-sm ml-2">- O que ainda não vai</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Artifacts não são substituto de deploy real — sem domínio próprio, autenticação avançada limitada, dependente da infra Anthropic.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Saber o limite evita vender o que não entrega.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Sem domínio próprio · Auth limitada · Dependência infra · POC, não produção.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-6')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-6.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.7 -->
+    <div id="modulo-4-7" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.7</span><span class="text-xs text-neutral-500">~25 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">📤 Dispatch e subagents</h3>
+        <p class="text-neutral-400 text-sm">Subagent = Claude Code com contexto isolado, recebendo só a tarefa e devolvendo só o resumo. Quem entende isso para de quebrar o contexto do orchestrator.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">🛠️</span><div><span class="font-medium">Agent tool (era Task)</span><span class="text-neutral-500 text-sm ml-2">- Renomeado v2.1.63</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Ferramenta do Claude Code pra delegar tarefa a um subagente. Aliases Task(...) ainda funcionam por compatibilidade.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem ouviu falar de "Task tool" e procura documentação não acha — agora é Agent.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Rename · Aliases legados · Agent é o nome novo.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">📄</span><div><span class="font-medium">AGENT.md com frontmatter</span><span class="text-neutral-500 text-sm ml-2">- Como declarar</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Arquivo .md com YAML frontmatter: name, description, model, tools, disallowedTools. Conteúdo do arquivo é o system prompt do subagente.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Description bem escrita é o que faz Claude decidir delegar pro subagente certo.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Frontmatter YAML · Allowlist/denylist · Description é roteamento.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">🔍</span><div><span class="font-medium">Subagent vs main</span><span class="text-neutral-500 text-sm ml-2">- Contexto isolado</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Subagent roda em contexto separado. Orchestrator recebe só o resumo do resultado, não o histórico.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Preserva o context window do principal. Tarefas exploratórias não poluem.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Isolamento de contexto · Resumo de retorno · Window protection.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">⚡</span><div><span class="font-medium">Paralelização</span><span class="text-neutral-500 text-sm ml-2">- N subagents em paralelo</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Instrução em natural language: "research auth, db e API em paralelo". Claude spawna múltiplos subagentes simultâneos.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Acelera tarefas exploratórias de minutos para segundos.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Natural language fork · 3-N agentes simultâneos · Síntese final.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">💾</span><div><span class="font-medium">Memória em 3 escopos</span><span class="text-neutral-500 text-sm ml-2">- user / project / local</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">~/.claude/agent-memory/ (user) · .claude/agent-memory/ (project) · .claude/agent-memory-local/ (local). Recomendado: project como padrão.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Memória no escopo errado vaza segredo de projeto pra outro projeto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">3 escopos · Persistência por escopo · Project default.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">📤</span><div><span class="font-medium">Quando dispatchar</span><span class="text-neutral-500 text-sm ml-2">- Critério prático</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Dispatch quando: tarefa é exploratória (Explore), envolve N arquivos a ler, ou pode rodar em paralelo. Faça direto quando é edição cirúrgica.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Dispatch demais vira overhead. Pouco demais estoura contexto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Exploratório dispatch · Edição direto · Paralelo dispatch.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-7')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-7.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.8 -->
+    <div id="modulo-4-8" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.8</span><span class="text-xs text-neutral-500">~25 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🧩 Skills, connectors, plugins</h3>
+        <p class="text-neutral-400 text-sm">Três conceitos confundidos. Skill = pasta com SKILL.md. Connector = integração de serviço externo via MCP. Plugin = bundle. Saber a diferença é vocabulário básico.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">🧠</span><div><span class="font-medium">Skill: pasta com SKILL.md</span><span class="text-neutral-500 text-sm ml-2">- YAML frontmatter</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Skill = pasta contendo SKILL.md (frontmatter YAML com name e description) + scripts/recursos opcionais. Claude invoca automaticamente por relevância.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Unidade focada de conhecimento. Bem mais leve que plugin.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">SKILL.md · Auto-invocação · Frontmatter · Disponível em Pro+.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">🔌</span><div><span class="font-medium">Connector: 10+ serviços via MCP</span><span class="text-neutral-500 text-sm ml-2">- Integrations</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Integrations (mai/2025): Atlassian, Zapier, Cloudflare, Intercom, Asana, Square, Sentry, PayPal, Linear, Plaid via MCP. OAuth por conector.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É como Claude alcança dados de SaaS sem você baixar e colar.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">MCP remoto · OAuth · Diretório · Custom Connectors disponíveis.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">📦</span><div><span class="font-medium">Plugin: bundle</span><span class="text-neutral-500 text-sm ml-2">- Slash + subagent + MCP + hooks</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Plugin (public beta no Claude Code) = bundle empacotando qualquer combinação de slash commands, subagentes, MCP servers e hooks.</p></div>
+            <div><span class="text-amber-400 function-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Instalação single-command, ligável/desligável pra economizar contexto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Bundle · /plugin · Ligar/desligar · agents/ recursivo.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">📊</span><div><span class="font-medium">Diferenças resumidas</span><span class="text-neutral-500 text-sm ml-2">- Tabela mental</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Skill = workflow focado. Connector = ponte pra SaaS externo. Plugin = bundle de extensões do Claude Code.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Sala se perde quando você usa os três termos como sinônimos.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Vocabulário distinto · Granularidade · Escopo de cada um.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">🗺️</span><div><span class="font-medium">Onde achar</span><span class="text-neutral-500 text-sm ml-2">- Gallery, /plugin, settings</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Skills: Settings &gt; Features (admin habilita em Team/Enterprise). Connectors: Settings &gt; Connectors. Plugins: /plugin no Claude Code.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem não sabe onde achar acha que "não está disponível".</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">3 lugares · Admin habilita · Gallery pública.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">🛠️</span><div><span class="font-medium">Skill-creator</span><span class="text-neutral-500 text-sm ml-2">- Criar interativamente</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Skill oficial da Anthropic que guia interativamente: pergunta sobre o workflow, gera SKILL.md formatado e empacota.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o jeito mais rápido de transformar um prompt repetido em skill reutilizável.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Interview-driven · Output pronto · Pacote distribuível.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-8')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-8.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- MODULO 4.9 -->
+    <div id="modulo-4-9" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.9</span><span class="text-xs text-neutral-500">~20 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">🤖 Subagente Claude Code Guide</h3>
+        <p class="text-neutral-400 text-sm">Não existe página separada "Claude Code Guide" — a referência canônica é docs.anthropic.com/en/docs/claude-code/sub-agents. Diferença pro Agent SDK importa pra quem pergunta no Q&A.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><span class="text-lg">🤖</span><div><span class="font-medium">O que é o subagente Guide</span><span class="text-neutral-500 text-sm ml-2">- Conceito vs página</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Termo coloquial pro "subagente que serve de guia". Não há página oficial só dele — a doc canônica de subagentes é a referência.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Pra responder com precisão quando alguém pergunta "onde está a doc do Guide".</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Termo coloquial · Não é uma URL · Doc canônica é sub-agents.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><span class="text-lg">📖</span><div><span class="font-medium">Documentação canônica</span><span class="text-neutral-500 text-sm ml-2">- sub-agents docs</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">docs.anthropic.com/en/docs/claude-code/sub-agents — quickstart, AGENT.md completo, fork mode, exemplos prontos.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">É o link que você sempre deve enviar quando perguntarem onde estudar.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">URL canônica · Quickstart · Exemplos · Fork mode.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><span class="text-lg">🔀</span><div><span class="font-medium">Diferença pro Agent SDK</span><span class="text-neutral-500 text-sm ml-2">- CLI vs SDK</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Subagents do Claude Code = CLI/IDE. Claude Agent SDK = biblioteca pra construir sistemas de agentes via API. Mesma filosofia, superfícies distintas.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Resposta certa pra dev que pergunta "uso Claude Code ou SDK".</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">CLI vs SDK · Mesma filosofia · Casos de uso diferentes.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><span class="text-lg">🎯</span><div><span class="font-medium">Quando usar Guide vs custom</span><span class="text-neutral-500 text-sm ml-2">- Default vs especialista</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Built-in (Explore, Plan, general-purpose) resolvem 80% — só crie custom quando o padrão clara não cabe.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Quem cria subagente cedo demais acaba com manutenção infinita.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Default first · Custom só quando justifica · Manutenção.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><span class="text-lg">📋</span><div><span class="font-medium">Padrões oficiais</span><span class="text-neutral-500 text-sm ml-2">- Webinar e PDF</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Webinar "Claude Code Advanced Patterns" e PDF em resources.anthropic.com mostram padrões avançados de subagentes, MCP e escala.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Material de referência pra fechar Q&amp;A com link concreto.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Webinar · PDF advanced patterns · Building C compiler post.</p></div>
+          </div></div>
+        </div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><span class="text-lg">🧬</span><div><span class="font-medium">Clone interno</span><span class="text-neutral-500 text-sm ml-2">- Criar guide do seu time</span></div></button>
+          <div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+            <div><span class="text-amber-400 font-semibold">O que é:</span> <p class="text-neutral-300 text-sm">Crie um AGENT.md "claude-code-guide" que carrega os links canônicos, AGENT.md template e padrões do seu time.</p></div>
+            <div><span class="text-amber-400 font-semibold">Por que aprender:</span> <p class="text-neutral-300 text-sm">Subagente serve de "biblioteca viva" do time — onboarding fica trivial.</p></div>
+            <div><span class="text-amber-400 font-semibold">Conceitos-chave:</span> <p class="text-neutral-300 text-sm">Internal guide · Onboarding · Padrões do time · Repo único.</p></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <button onclick="openModal('modal-4-9')" class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors">Ver em Modal</button>
+        <a href="modulo-4-9.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-12">
+      <a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Trilha anterior: 🎬 Demos</a>
+      <a href="../trilha5/index.html" class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors">Próxima trilha: 🏁 Fechamento →</a>
+    </div>
+
+  </main>
+
+  <!-- MODAIS -->
+  <div id="modal-4-1" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.1</span><span class="font-semibold">📁 Projetos e raio de impacto</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-1.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-2" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.2</span><span class="font-semibold">🧠 Adaptive thinking</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-2.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-3" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.3</span><span class="font-semibold">⚡ Modo YOLO</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-3.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-4" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.4</span><span class="font-semibold">📜 Instructions</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-4.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-5" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.5</span><span class="font-semibold">🕐 Scheduled tasks</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-5.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-6" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.6</span><span class="font-semibold">🎨 Artifacts ao vivo</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-6.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-7" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.7</span><span class="font-semibold">📤 Dispatch e subagents</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-7.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-8" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.8</span><span class="font-semibold">🧩 Skills, connectors, plugins</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-8.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+  <div id="modal-4-9" class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" onclick="if(event.target === this) closeModal()"><div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600"><div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0"><div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.9</span><span class="font-semibold">🤖 Subagente Claude Code Guide</span></div><button onclick="closeModal()" class="text-neutral-400 hover:text-white text-2xl leading-none">&times;</button></div><iframe src="modulo-4-9.html" class="flex-1 w-full rounded-b-xl"></iframe></div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Trilha 4 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; } }
+    function closeModal() { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); document.body.style.overflow = 'auto'; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

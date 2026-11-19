@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.5 — Scheduled tasks | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(217, 119, 6, 0.10); }
+    html:not(.dark) .bg-amber-900\/30 { background-color: rgba(217, 119, 6, 0.12); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217, 119, 6, 0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217, 119, 6, 0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14">
+    <div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div>
+    <div class="flex items-center space-x-1 sm:space-x-2">
+      <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+      <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+      <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+      <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+      <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+      <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+      </button>
+    </div>
+  </div></div></nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span><a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span><span class="text-amber-400">Módulo 4.5</span></div></nav>
+
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.5</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🕐 Scheduled tasks — Zapier/n8n lite</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Claude tem dois mecanismos de agendamento. <strong class="text-amber-400">Session-scoped</strong> roda só
+        enquanto Claude Code está aberto. <strong class="text-amber-400">Routines</strong> rodam na infra da Anthropic
+        — mesmo com seu PC desligado. Confundir os dois é causa #1 de "tarefa fantasma".
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">20</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Automação</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span><h2 class="text-2xl font-bold">🕐 Session-scoped vs Routines</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A primeira escolha: <strong class="text-amber-400">local ou Anthropic?</strong> Eles têm sintaxe parecida mas comportamento radicalmente diferente.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">📍 Session-scoped (local)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Dentro de sessão Claude Code ativa</li>
+            <li>• Cron via ferramentas internas + <code>/loop</code></li>
+            <li>• Dispara só com Claude Code rodando e ocioso</li>
+            <li>• Nova conversa limpa as tarefas</li>
+            <li>• <code>--resume</code>/<code>--continue</code> restaura tarefas não-expiradas (últimos 7 dias)</li>
+            <li>• Sem catch-up para disparos perdidos</li>
+            <li>• <code>CLAUDE_CODE_DISABLE_CRON=1</code> desabilita</li>
+          </ul>
+        </div>
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">☁️ Routines (Anthropic)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Infraestrutura gerenciada pela Anthropic</li>
+            <li>• Roda com PC desligado</li>
+            <li>• Criadas via web, Desktop app ou <code>/schedule</code></li>
+            <li>• Triggers: cron, API call, evento GitHub</li>
+            <li>• Use cases: PR review matinal, CI overnight, audit semanal de deps</li>
+            <li>• Sem dependência da máquina local</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">Regra de bolso: se a tarefa precisa rodar com você dormindo, é Routine. Se é só um lembrete enquanto você trabalha, session-scoped serve.</p>
+      </div>
+    </section>
+
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span><h2 class="text-2xl font-bold">📐 Sintaxe <code>/schedule</code></h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Suporta cron <strong class="text-amber-400">vixie padrão</strong>. <code>0</code> ou <code>7</code> são domingo.
+        <strong class="text-red-400">Não aceita</strong> extensões <code>L</code>, <code>W</code>, <code>?</code> nem
+        aliases como <code>MON</code>/<code>JAN</code>.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">⏰</span> Exemplos cron</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono"><code># minuto hora dia-mês mês dia-semana
+0 9 * * 1-5    # 09:00 toda segunda a sexta
+0 8 * * 1      # 08:00 toda segunda
+*/15 * * * *   # a cada 15 minutos
+0 0 * * 0      # domingo meia-noite
+0 0 1 * *      # primeiro dia do mês</code></pre>
+        <p class="text-neutral-400 text-sm mt-4">Quando DOM e DOW estão ambos restritos, match em qualquer um dos dois dispara.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Aceita</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm font-mono">
+            <li>• <code>0 9 * * 1-5</code></li>
+            <li>• <code>*/30 8-18 * * *</code></li>
+            <li>• <code>0 0 * * 0</code></li>
+            <li>• <code>0 0 * * 7</code> (dom)</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ NÃO aceita</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm font-mono">
+            <li>• <code>0 9 L * *</code> (L = último dia)</li>
+            <li>• <code>0 9 15W * *</code> (W = útil)</li>
+            <li>• <code>0 9 ? * MON</code> (alias)</li>
+            <li>• <code>@daily</code>, <code>@hourly</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span><h2 class="text-2xl font-bold">🎯 Casos de uso</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Foque no que <strong class="text-amber-400">só Claude faz bem</strong>: tarefas que precisam de raciocínio.</p>
+
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Revisão matinal de PRs</h4><p class="text-neutral-300 text-sm">08:00 toda segunda-sexta: Claude varre PRs abertos, escreve comentários, identifica os mais críticos.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Análise overnight de CI failures</h4><p class="text-neutral-300 text-sm">02:00 todo dia: Claude analisa builds falhos da noite, classifica por tipo, abre issues.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Auditoria semanal de deps</h4><p class="text-neutral-300 text-sm">Domingo 18:00: Claude roda <code>npm audit</code>, prioriza CVEs, propõe upgrades.</p></div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-white mb-1">Sync de docs pós-merge</h4><p class="text-neutral-300 text-sm">Trigger por evento GitHub: ao mergear PR que muda API, atualiza README e changelog.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span><h2 class="text-2xl font-bold">🛑 Limites</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Esperar comportamento que o sistema não oferece é frustração garantida. Conhecer os limites te economiza horas
+        de debug.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📐</span> Limites do session-scoped</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• <strong>Sem catch-up:</strong> se o horário passou enquanto Claude estava ocupado, não dispara depois</li>
+          <li>• <strong>Só dispara quando ocioso:</strong> se você está no meio de uma tarefa, cron espera</li>
+          <li>• <strong>Nova conversa limpa:</strong> mudança de tópico apaga as tarefas</li>
+          <li>• <strong>--resume/--continue:</strong> restaura tarefas não-expiradas dos últimos 7 dias</li>
+        </ul>
+      </div>
+
+      <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">☁️</span> Routines têm mais garantias</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Independem da máquina local</li>
+          <li>• Triggers múltiplos (cron + API + GitHub)</li>
+          <li>• Persistem entre sessões</li>
+          <li>• <em>Verificar quotas e frequência mínima na doc oficial — mudam por plano</em></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span><h2 class="text-2xl font-bold">⚖️ Claude vs Zapier</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A decisão arquitetural: <strong class="text-amber-400">raciocínio ou determinismo?</strong></p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Use Claude Routines quando</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>A tarefa exige <strong>julgamento</strong></span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Output muda conforme o input</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Análise de texto livre</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Code review, summarização</span></li>
+          </ul>
+        </div>
+        <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+          <h4 class="font-bold text-blue-400 mb-4">→ Use Zapier/n8n quando</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>"Se X então Y" determinístico</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Mover dado entre SaaS</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Volume alto, custo crítico</span></li>
+            <li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Workflow estável há meses</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-4 flex items-center"><span class="mr-2">⚠️</span> Anti-padrões caros</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Claude pra "copiar dado da planilha A pra B" — caro e lento</li>
+          <li>• Zapier tentando "resumir o e-mail" — sem raciocínio, fica ruim</li>
+          <li>• "Tudo em Claude" porque é moda — sua fatura agradece a moderação</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span><h2 class="text-2xl font-bold">🐛 Debug de tarefa que não rodou</h2></div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">90% dos "meu cron não rodou" caem em 4 itens. Checklist em ordem:</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🧪</span> Checklist de debug</h3>
+        <ol class="space-y-3 text-neutral-300 text-sm list-decimal list-inside">
+          <li><strong>Ambiente certo?</strong> Session-scoped exige Claude Code ativo. Routine roda na Anthropic.</li>
+          <li><strong>Claude Code estava aberto e ocioso?</strong> Se você estava no meio de outra tarefa, o cron esperou.</li>
+          <li><strong>Sintaxe cron válida?</strong> Sem L/W/?, sem aliases. <code>0 9 * * 1-5</code> sim, <code>@daily</code> não.</li>
+          <li><strong>Variável <code>CLAUDE_CODE_DISABLE_CRON=1</code>?</strong> Pode estar setada no shell e desabilitando.</li>
+          <li><strong>Nova conversa?</strong> Em session-scoped, mudar de chat limpa as tarefas (sem --resume).</li>
+          <li><strong>Última saída visível?</strong> Procure log da execução anterior — pode ter falhado por permissão.</li>
+        </ol>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Quando for crítico, use <strong>Routine</strong>. A pegadinha do session-scoped é que ele "parece" igual ao Zapier
+          até a hora em que você fecha o laptop. Pra produção, vá pra infra gerenciada.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Dois mecanismos: session-scoped e Routines</strong><span class="text-neutral-400"> — local vs infra Anthropic</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Sintaxe cron vixie padrão</strong><span class="text-neutral-400"> — sem L/W/?, sem aliases</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Casos: PR review, CI failures, deps, sync docs</strong><span class="text-neutral-400"> — tarefas que exigem julgamento</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Session-scoped: sem catch-up, ocioso, --resume 7d</strong><span class="text-neutral-400"> — limites importantes</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Claude pra raciocínio, Zapier pra determinismo</strong><span class="text-neutral-400"> — ferramenta certa pra cada coisa</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Debug em 6 passos</strong><span class="text-neutral-400"> — ambiente, ocioso, sintaxe, env, conversa, log</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-amber-400 mb-2">Próximo Módulo:</h3><p class="text-neutral-300">4.6 — 🎨 Artifacts ao vivo (MCP, storage persistente, AI-powered)</p></div>
+        <div class="flex flex-col sm:flex-row gap-4"><a href="modulo-4-4.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo anterior</a><a href="modulo-4-6.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Ensinando Cowork · Módulo 4.5 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

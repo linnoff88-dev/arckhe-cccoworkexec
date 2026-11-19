@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 5.3 — Da palestra à consultoria | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13, 148, 136, 0.10); }
+    html:not(.dark) .bg-teal-900\/30 { background-color: rgba(13, 148, 136, 0.12); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13, 148, 136, 0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13, 148, 136, 0.08); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-teal-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-teal-400">Trilha 5</a>
+      <span>/</span>
+      <span class="text-teal-400">Módulo 5.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MÓDULO 5.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">💼 Da palestra à consultoria recorrente</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        A palestra é topo de funil. O valor está no retainer. Este módulo destrincha o funil completo
+        (auditoria → workshop → sprint → retainer), preços de mercado 2024–2025, modelos de retainer, e a regra
+        prática pra precificar o primeiro contrato sem improvisar.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Negócio</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">💵 Funil: auditoria → workshop → sprint → retainer</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O funil documentado em campo (Level Up with AI, Stack Expert e outros consultores enterprise) tem quatro degraus.
+        Cada um qualifica o próximo. <strong class="text-teal-400">Tentar vender retainer pra cliente que nunca viu auditoria</strong>
+        é o erro mais comum — e o que faz a maioria dos consultores travarem em workshop avulso.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🪜</span> Funil completo (preços USD 2024–2025)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Palestra / keynote (free ou baixo)
+    │ (awareness)
+    ▼
+AI Readiness Audit ............ $500 – $1.500
+    │ (qualifica casos de uso, mostra gap)
+    ▼
+Half-day workshop (até 25)..... $2.500 – $5.000
+Full-day workshop (até 50) .... $5.000 – $12.000
+    │ (upskill, identifica próximos passos)
+    ▼
+Implementation sprint (2–4sem). $10.000 – $25.000
+    │ (constrói 1–3 casos de uso reais)
+    ▼
+Retainer mensal ............... $1.000 – $3.000 / mês
+                                (até $25k/mês em enterprise)</code></pre>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Auditoria AI Readiness</h4>
+            <p class="text-sm text-neutral-400 mb-3">$500 – $1.500 · 1–2 semanas</p>
+            <p class="text-neutral-300 text-sm">2–4 entrevistas com lideranças, mapeamento de 5–10 casos de uso, relatório de 10 páginas com priorização. É a porta de entrada — qualifica cliente e dá material pro workshop seguinte.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Workshop (half/full day)</h4>
+            <p class="text-sm text-neutral-400 mb-3">$2.5k–$12k · 1 dia</p>
+            <p class="text-neutral-300 text-sm">Workshop com casos extraídos da auditoria. Mais caro e mais valioso que workshop "pacote pronto" — porque os exemplos são do dia a dia daquele cliente específico.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Implementation sprint</h4>
+            <p class="text-sm text-neutral-400 mb-3">$10k–$25k · 2–4 semanas</p>
+            <p class="text-neutral-300 text-sm">Constrói de fato 1–3 casos de uso identificados. Entrega: prompts em produção, Projects configurados, doc de governança. Daqui se sai com cliente convencido de que precisa de continuidade.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Retainer mensal</h4>
+            <p class="text-sm text-neutral-400 mb-3">$1k–$3k/mês · contínuo</p>
+            <p class="text-neutral-300 text-sm">Acompanhamento de evolução de modelos, suporte em casos novos, governança, treinamento de novos hires. Aqui é onde o LTV explode.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">⚠️</span> Indústrias reguladas pagam premium</h3>
+        <p class="text-neutral-300 text-sm">
+          Saúde, jurídico, finanças, manufatura — todos pagam 30–50% acima dos preços base. Risco operacional e
+          compliance justificam. Ciclos de venda são mais longos (3–6 meses), mas tickets são maiores.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📣 Pré-vender no fechamento</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Última slide do workshop não pode ser só "obrigado pela presença". <strong class="text-teal-400">Tem que oferecer
+        próximo passo concreto</strong>, mas sem virar pitch agressivo. A fórmula testada: oferta de chamada de 20 min em 30
+        dias (grátis), + menção sutil de retainer pra quem quiser parceria.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🎤</span> Última slide (template)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>OBRIGADO PELA PRESENÇA
+
+Próximos passos pra quem quer ir além:
+
+→ Free: chamada de 20 min em ~30 dias pra
+  revisar seu 1-2-3 e desbloquear o que travou.
+  Link: [calendário com slots]
+
+→ Pago: pra times que querem acompanhamento
+  contínuo, ofereço retainer de "AI office hours"
+  ($1k–$3k/mês). Pergunte pra mim.
+
+→ Material: [URL do curso, repositório, prompts]</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Tom que funciona</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Pra quem quiser ir além, ofereço..."</li>
+            <li>"Pergunte pra mim no break ou por e-mail"</li>
+            <li>"A chamada de 20 min é grátis, sem compromisso"</li>
+            <li>"Material persistente fica disponível pra sempre"</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Tom que afasta</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>"Quem fechar hoje tem 20% off"</li>
+            <li>"Não percam essa oportunidade única"</li>
+            <li>"Sem retainer vocês vão ficar pra trás"</li>
+            <li>15 slides finais empurrando upsell</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Ofertas pagas <strong>nunca ocupam mais que 60s</strong> do fechamento. O grosso da última slide é o 1-2-3 e o
+          material persistente. A oferta paga é menção, não pitch. Quem se interessa pergunta — você responde no break.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🎁 Oferta dupla (open + paid)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Toda sessão precisa de duas saídas paralelas. <strong class="text-teal-400">Caminho gratuito</strong> (este curso, repositório,
+        newsletter, comunidade) e <strong class="text-teal-400">caminho pago</strong> (sprint, retainer, próximo workshop avançado).
+        Quem se autodirige vai pelo grátis. Quem precisa de mão segura paga. Sem essa qualificação por self-selection, você
+        atende todos com o mesmo formato.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">📚 Caminho aberto (grátis)</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Este curso completo, sempre online</li>
+            <li>• Repositório GitHub com prompts e Projects</li>
+            <li>• Newsletter quinzenal com 1 caso de uso</li>
+            <li>• Canal opt-in da turma (60–90 dias)</li>
+            <li>• Material das demos do workshop</li>
+          </ul>
+        </div>
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">💼 Caminho pago</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• AI Readiness Audit ($500–$1.5k)</li>
+            <li>• Implementation sprint ($10k–$25k)</li>
+            <li>• Retainer "AI office hours" ($1k–$3k/mês)</li>
+            <li>• Workshop avançado custom ($5k–$15k)</li>
+            <li>• Treinamento de AI Liaison interno</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Por que self-selection funciona</h3>
+        <p class="text-neutral-300 text-sm mb-3">
+          Quem realmente precisa de continuidade paga sem precisar ser empurrado. Quem só precisa de awareness consome o
+          grátis e fica satisfeito — e vira evangelizador orgânico pra outros workshops futuros.
+        </p>
+        <p class="text-neutral-300 text-sm">
+          Tentar vender retainer pra quem só queria awareness queima a relação. Não oferecer pra quem precisa deixa dinheiro
+          na mesa. As duas trilhas em paralelo qualificam sem fricção.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📂 Cases que viraram retainer</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O padrão recorrente em campo: empresa contrata workshop ou auditoria, identifica 2–3 casos de uso na sessão,
+        descobre que <strong class="text-teal-400">internamente não tem capacidade pra implementar sozinha</strong>. Retainer aparece
+        como pragmatismo, não como upsell forçado. Reconhecer o padrão te permite calibrar o workshop pra deixar essas
+        oportunidades visíveis.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🔍</span> Padrão observado</h3>
+        <ol class="space-y-2 text-neutral-300 list-decimal list-inside">
+          <li>Cliente contrata workshop básico ($3k–$5k).</li>
+          <li>Durante a sessão, surgem 5–10 casos de uso possíveis.</li>
+          <li>Cliente percebe que precisa priorizar mas não sabe como.</li>
+          <li>Cliente percebe que não tem time interno pra implementar.</li>
+          <li>Cliente pergunta sobre próximo passo — auditoria ou sprint.</li>
+          <li>Sprint vira retainer porque "queremos manter o ritmo".</li>
+        </ol>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O insight crítico documentado pelo Level Up with AI: <strong class="text-teal-400">o que converte é o frame de
+        "amplificação, não substituição"</strong>. Clientes entram acreditando que IA substitui papéis e saem entendendo que
+        amplifica. Essa virada — de ameaça pra ferramenta — é o que faz voltarem buscando suporte contínuo.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">📊 Sinais de prospect quente</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Lideranças pedem 1:1 pós-workshop</li>
+            <li>Time questiona "como começamos amanhã?"</li>
+            <li>Surgem dúvidas de governança/política interna</li>
+            <li>Patrocinador menciona orçamento disponível</li>
+            <li>Pergunta sobre "AI Liaison interno"</li>
+          </ul>
+        </div>
+        <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+          <h4 class="font-bold text-teal-400 mb-4">❄️ Sinais de prospect frio</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>Lideranças saem antes do fim</li>
+            <li>Q&A só tem perguntas teóricas</li>
+            <li>Ninguém abre o laptop no exercício</li>
+            <li>Patrocinador não comparece</li>
+            <li>Sem follow-up nos 7 dias seguintes</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⏰ Modelos: hours-bank, async, sync+async</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Não existe "retainer" genérico. Existem três formatos principais, cada um servindo um perfil de cliente. Vender o
+        formato errado fritar relacionamento — empresa que precisa de sync e contrata só async cancela em 60 dias.
+      </p>
+
+      <div class="space-y-6 mb-6">
+
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h3 class="text-lg font-semibold text-teal-400 mb-3 flex items-center"><span class="mr-2">⏳</span> 1. Hours-bank</h3>
+          <p class="text-sm text-neutral-400 mb-3">Bom pra: operação madura, demandas pontuais</p>
+          <p class="text-neutral-300 text-sm mb-3">Cliente compra X horas/mês (ex: 4h, 8h, 16h) pra usar como quiser — chamada, revisão de prompt, troubleshooting. Não-usadas geralmente expiram no mês.</p>
+          <ul class="text-neutral-300 text-sm space-y-1">
+            <li><strong>Faixa:</strong> $200–$400/h, ticket $800–$6.000/mês</li>
+            <li><strong>Vantagem:</strong> flexível, paga por valor entregue</li>
+            <li><strong>Risco:</strong> mês sem demanda = cliente sente que pagou caro</li>
+          </ul>
+        </div>
+
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h3 class="text-lg font-semibold text-teal-400 mb-3 flex items-center"><span class="mr-2">📨</span> 2. Async</h3>
+          <p class="text-sm text-neutral-400 mb-3">Bom pra: times técnicos autônomos</p>
+          <p class="text-neutral-300 text-sm mb-3">Canal dedicado (Slack/Teams). Resposta em ≤ 24h. Sem reuniões agendadas. Cliente posta dúvidas, recebe resposta, segue tocando.</p>
+          <ul class="text-neutral-300 text-sm space-y-1">
+            <li><strong>Faixa:</strong> $1.000–$2.000/mês</li>
+            <li><strong>Vantagem:</strong> baixo overhead, escalável</li>
+            <li><strong>Risco:</strong> cliente que precisa de sync não engaja</li>
+          </ul>
+        </div>
+
+        <div class="bg-teal-900/20 rounded-xl border border-teal-500/30 p-6">
+          <h3 class="text-lg font-semibold text-teal-400 mb-3 flex items-center"><span class="mr-2">🔄</span> 3. Sync + async</h3>
+          <p class="text-sm text-neutral-400 mb-3">Bom pra: empresa em transformação</p>
+          <p class="text-neutral-300 text-sm mb-3">Reunião quinzenal de 1h (sync) + canal sempre aberto (async). É o modelo mais caro mas o mais resiliente — o sync mantém o relacionamento vivo quando demanda flutua.</p>
+          <ul class="text-neutral-300 text-sm space-y-1">
+            <li><strong>Faixa:</strong> $2.000–$3.000/mês (até $25k em enterprise)</li>
+            <li><strong>Vantagem:</strong> relacionamento forte, baixo churn</li>
+            <li><strong>Risco:</strong> overhead de reuniões, calendário disputado</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Pergunta a fazer ANTES de propor formato: <strong>"Em mês de pouca demanda, qual seria o critério de sucesso?"</strong>.
+          Se cliente diz "ter conseguido contatar quando precisei" → async funciona. Se diz "ter avançado em alguma frente
+          mesmo que pequeno" → precisa de sync. A resposta determina o modelo.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">💲 Como precificar o primeiro retainer</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sem âncora de valor, retainer vira improviso — você dá desconto pra fechar, depois fica refém. A regra prática que
+        funciona: <strong class="text-teal-400">retainer mensal deve representar ~10% do valor mensal que IA agrega à
+        operação</strong>. Defende preço com lógica, não com bluff.
+      </p>
+
+      <div class="bg-gradient-to-br from-teal-900/30 to-dark-800 rounded-xl border border-teal-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-teal-400 mb-4 flex items-center"><span class="mr-2">🧮</span> A regra dos 10%</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>Valor agregado mensal (estimado) × 10% = retainer
+
+Exemplos:
+
+Time de 5 pessoas economizando ~4h/semana com IA,
+hora custando $50:
+  5 × 4 × 4 semanas × $50 = $4.000/mês
+  Retainer-âncora: $400/mês (muito baixo)
+  → ofereça async básico ou bundle anual
+
+Time de 20 pessoas, 6h/semana economizadas, $80/h:
+  20 × 6 × 4 × $80 = $38.400/mês
+  Retainer-âncora: ~$3.800/mês
+  → sync+async confortável
+
+Operação de 100 pessoas, ganho de $100k/mês:
+  Retainer-âncora: ~$10.000/mês
+  → modelo enterprise, equipe dedicada</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📈</span> Por que 10% funciona</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>É barato o suficiente pra não ser questionado pelo CFO</li>
+          <li>É caro o suficiente pra justificar atenção do consultor</li>
+          <li>É proporcional — empresa pequena paga pouco, grande paga mais</li>
+          <li>É defensável com aritmética, não com pitch</li>
+          <li>Se cliente discute, a conversa vira "qual é o valor real?" — boa pergunta</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Conversa de precificação que funciona</h4>
+          <p class="text-sm text-neutral-300 italic">
+            "Considerando que vocês estimam economizar ~$15k/mês com os 3 casos identificados, $1.500/mês de retainer
+            cobre acompanhamento sem comer mais que 10% do ganho. Faz sentido pra vocês?"
+          </p>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Conversa de precificação que erra</h4>
+          <p class="text-sm text-neutral-300 italic">
+            "Eu cobro $2.000/mês. Se for muito posso dar 20% off. Quer fechar hoje? Tenho desconto de fechamento rápido se confirmar até sexta."
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Pra calcular o "valor mensal agregado" sem chutar, peça pro cliente <strong>autodeclarar</strong>: "Quantas horas
+          por semana o time gasta hoje no caso X? Qual o custo médio dessa hora?". Cliente faz a conta sozinho —
+          autoria do número defende o preço melhor que qualquer pitch seu.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">10%</div><div class="text-sm text-neutral-400">Do valor agregado</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">$1k–$3k</div><div class="text-sm text-neutral-400">Faixa típica</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Auto-declarado</div><div class="text-sm text-neutral-400">Cliente faz a conta</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-bold mb-1">Sem desconto</div><div class="text-sm text-neutral-400">Lógica defende</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Funil: auditoria $500 → workshop $2-12k → sprint $10-25k → retainer $1-3k/mês</strong></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Pré-vender no fechamento, sem pitch agressivo</strong><span class="text-neutral-400"> — oferta sutil, sem desconto</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Oferta dupla (open + paid)</strong><span class="text-neutral-400"> — self-selection qualifica sem fricção</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">"Amplificação, não substituição"</strong><span class="text-neutral-400"> — frame que converte retainer</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Três modelos: hours-bank, async, sync+async</strong><span class="text-neutral-400"> — match com maturidade do cliente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Regra dos 10% pra precificar</strong><span class="text-neutral-400"> — defende preço com aritmética</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-teal-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">5.4 — 📊 Métricas de sucesso da sessão (4 dimensões da Capably, NPS, adoção, contrato de 48h)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-5-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-5-4.html" class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 5.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.3 — O contrato com o público | Ensinando Cowork</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎤</span><span class="font-bold text-lg hidden sm:inline">Ensinando Cowork</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Enquadramento</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Produtos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Demos</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Interface</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Fechamento</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.3</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🤝 O contrato com o público</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        Toda sessão começa com um contrato implícito — o problema é que sem explicitá-lo, cada participante
+        chega com expectativas diferentes e a sala se desorganiza nas primeiras frustrações. Este módulo
+        ensina a colocar o contrato na mesa nos primeiros 5 minutos: expectativa de saída, ritmo, política
+        de perguntas, divisão de papéis, objetivo único e a promessa do fechamento.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Frame</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TOPICO 1: EXPECTATIVA DE SAIDA -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📜 Explicitando a expectativa de saída</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A primeira frase substantiva da sessão deve ser uma promessa concreta:
+        <strong class="text-emerald-400">"ao fim das próximas X horas, você vai conseguir fazer Y"</strong>. Sem isso,
+        cada pessoa preenche o vazio com a própria expectativa — e metade da sala vai sair frustrada porque
+        esperava algo que você nunca prometeu.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> A fórmula da promessa</h3>
+        <p class="text-neutral-300 mb-4">
+          <strong>Verbo de ação + objeto concreto + sem ajuda externa.</strong> Não "entender IA" nem
+          "ter familiaridade com Claude" — promessa de capacidade observável que o participante mesmo
+          consegue verificar.
+        </p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Verbo:</strong> escrever, rascunhar, revisar, automatizar, estruturar</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Objeto:</strong> um e-mail de proposta, uma pauta de reunião, uma revisão de código</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Autonomia:</strong> sozinho, no fim da sessão, sem o facilitador do lado</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Promessa específica</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Você vai sair daqui com 3 prompts salvos no seu Claude que você usa na segunda."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Ao fim, você consegue rascunhar uma proposta comercial em 10 min."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Você vai ter um Project pessoal configurado pro seu trabalho real."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Você vai saber escolher entre Haiku, Sonnet e Opus pra cada tipo de tarefa."</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Promessa vaga</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Vamos entender o universo da IA generativa."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Vocês vão sair com uma boa noção do Claude."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Vamos explorar o potencial transformador da IA."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"O objetivo é vocês ficarem confortáveis com a ferramenta."</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Coloque a promessa no <strong>primeiro slide</strong> e <strong>repita no fechamento</strong>. Se você não consegue
+          escrever a promessa em 1 frase clara, o workshop ainda não está pronto — volte e reduza o escopo.
+          Survey de baseline ("escala 1-5, quão confortável você se sente usando IA hoje?") permite medir o delta
+          contra a promessa no fim.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 2: RITMO E PAUSAS -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⏱️ Estabelecendo ritmo e pausas</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Atenção sustentada em adulto saturado de IA tem janela de
+        <strong class="text-emerald-400">20-25 minutos</strong> por bloco. Acima disso, custo cognitivo cresce
+        exponencialmente e a sala silenciosamente para de acompanhar. Avisar o ritmo desde o início é parte
+        do contrato: ninguém precisa "se segurar" sem saber quando vem o próximo respiro.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📈</span> Blocos por duração de sessão</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-white">1h:</strong> 2 blocos de ~25 min com 1 microbreak de 2 min entre eles</li>
+          <li><strong class="text-white">4h (half-day):</strong> 6-7 blocos de 20-25 min, com 2 coffee breaks de 15 min</li>
+          <li><strong class="text-white">8h (full-day):</strong> ~12 blocos, almoço de 1h, 2 coffee breaks de 15 min, microbreaks de 5 min</li>
+          <li><strong class="text-white">Microbreaks:</strong> 2-5 min entre blocos. Levante, mexa, hidrate. Não é Q&amp;A.</li>
+        </ul>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Minuto 0-5</h4>
+            <p class="text-sm text-neutral-400 mb-3">Contrato + promessa</p>
+            <p class="text-neutral-300 text-sm">Quem é você (30s), o que a sala vai sair sabendo, qual o ritmo, qual a política de perguntas. Tudo na mesa.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Minuto 5-25</h4>
+            <p class="text-sm text-neutral-400 mb-3">Bloco 1 — show, then do</p>
+            <p class="text-neutral-300 text-sm">Demo guiada + prática individual. Encerra com microbreak de 3 min — anuncie em voz alta: "respira, daqui 3 min a gente volta".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Minuto 28-50</h4>
+            <p class="text-sm text-neutral-400 mb-3">Bloco 2 — caso mais próximo</p>
+            <p class="text-neutral-300 text-sm">Demo com avatar da empresa, prática em duplas. Outro microbreak no fim — ou coffee de 15 min se for half-day.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">4</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Minuto 53-90</h4>
+            <p class="text-sm text-neutral-400 mb-3">Bloco 3 + Q&amp;A + 1-2-3</p>
+            <p class="text-neutral-300 text-sm">Caso avançado/específico, parking lot esvaziado, fechamento com 3 próximos passos concretos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Coloque um <strong>cronômetro visível</strong> (tela secundária ou app no celular projetado). A sala
+          percebe e relaxa: "ele está controlando o tempo, eu não preciso me preocupar". Sem cronômetro, você
+          mesmo perde a noção e extrapola — o pecado mais comum de facilitador iniciante.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 3: POLITICA DE PERGUNTAS -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">❓ Política de perguntas: live vs parking lot</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sem política explícita, dois cenários se alternam: 1) ninguém pergunta e o facilitador acha que está
+        claro (não está), ou 2) um único participante domina o tempo com perguntas tangenciais. A solução é
+        anunciar no início: <strong class="text-emerald-400">"o que é dúvida de execução, peçam na hora;
+        o que é tangencial, vai pro parking lot"</strong>.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🅿️</span> O parking lot</h3>
+        <p class="text-neutral-300 mb-3">
+          Quadro físico (flipchart) ou digital (post-it virtual, canal no Slack, formulário aberto) onde dúvidas
+          tangenciais ficam guardadas. Você endereça em 3 momentos: na transição entre blocos, no Q&amp;A formal,
+          e por e-mail no follow-up. Nada se perde, ninguém é cortado mal.
+        </p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Live:</strong> "não estou conseguindo replicar", "deu erro X", "qual botão", "o prompt travou"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Parking lot:</strong> "e sobre fine-tuning?", "como compara com o GPT?", "qual a diferença pra LangChain?"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Follow-up:</strong> qualquer pergunta sem resposta no parking lot vira tópico do e-mail D+2</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Política bem comunicada</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Dúvida que trava sua prática, levanta a mão na hora."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Pergunta filosófica, anota neste post-it amarelo."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"15 min de Q&amp;A no final, e e-mail meu pra qualquer coisa solta."</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Slido aberto o tempo todo se preferirem perguntar anônimo."</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Política ausente ou ruim</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Podem interromper a qualquer momento" (e perdem o ritmo)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Guardem tudo pro fim" (e esquecem; sala silenciada)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cortar pergunta sem dar destino ("essa é grande, depois a gente vê")</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Deixar 1 pessoa monopolizar 10 min com perguntas em sequência</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Sala &gt; 100 pessoas: muda o canal</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Acima de 100, perguntas ao vivo viram caos — use <strong>Slido, Mentimeter ou pollev</strong> com upvote</li>
+          <li>O <strong>upvote</strong> resolve priorização sem você precisar julgar no palco</li>
+          <li>1 facilitador auxiliar dedicado só pra moderar o canal escrito enquanto você apresenta</li>
+          <li>No fim, perguntas com mais votos são respondidas em voz alta — as outras vão pro follow-up</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Live</div><div class="text-sm text-neutral-400">Trava execução</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Parking</div><div class="text-sm text-neutral-400">Tangencial</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Q&amp;A formal</div><div class="text-sm text-neutral-400">Bloco no final</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Follow-up</div><div class="text-sm text-neutral-400">E-mail D+2</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 4: EU MOSTRO VOCES PRATICAM -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🤝 O acordo "eu mostro, vocês praticam"</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Workshop &gt; palestra para qualquer ferramenta que se aprende fazendo — e IA generativa é exatamente
+        isso. O contrato precisa deixar claro que <strong class="text-emerald-400">a sessão não é uma exposição
+        para assistir</strong>: é um laboratório em que você demonstra um movimento e a sala replica antes de
+        seguir adiante. É o padrão <em>show, then do</em> da Atlassian.
+      </p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📜</span> Roteiro do show-then-do (por bloco)</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>1. ENQUADRAR     (1 min)  — "vamos pedir pro Claude rascunhar X"
+2. MOSTRAR       (3 min)  — você na tela, narrando "show your work"
+3. PASSAR        (30 seg) — "agora abram o Claude e façam o mesmo
+                            com o exemplo de vocês"
+4. PRATICAR      (5 min)  — sala digita, você circula (presencial)
+                            ou observa breakouts (remoto)
+5. DEBRIEF CURTO (2 min)  — 1 pergunta: "o que apareceu diferente?"
+6. PROXIMO BLOCO</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Modo workshop</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Sala com notebook aberto desde o minuto 1</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada conceito tem prática direta em até 5 min depois</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Facilitador circula durante prática (ou observa breakouts)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Debrief curto pergunta "o que apareceu diferente?"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Anuncia explicitamente: "isto não é palestra"</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Modo palestra disfarçada</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>40 min de slides antes da primeira prática</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sala de braços cruzados, notebook fechado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Vamos praticar no final" (final que nunca chega)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Facilitador fica no palco o tempo todo</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Demos longas sem pausa pra replicação</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">👥</span> Papéis distribuídos (Atlassian)</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-white">AI Super User:</strong> participante avançado nomeado antes do evento — demonstra casos avançados, responde dúvidas locais</li>
+          <li><strong class="text-white">Facilitator:</strong> conduz o ritmo, mantém o relógio, anuncia transições</li>
+          <li><strong class="text-white">AI Liaison:</strong> faz a ponte com liderança pós-workshop, mantém adoção viva</li>
+          <li>Nomear esses 3 antes do evento impede que técnicos dominem a discussão e cria suporte distribuído na sala</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          No <strong>e-mail de pré-workshop</strong>, mande 2 linhas: "tragam notebook carregado, conta Claude já
+          criada, e um exemplo de e-mail/documento real do trabalho que vocês toparia melhorar com IA". Quem chega
+          sem essas 3 coisas perde o primeiro bloco — e a sala sabe disso desde antes. O contrato começa antes da
+          sessão.
+        </p>
+      </div>
+    </section>
+
+    <!-- TOPICO 5: OBJETIVO UNICO -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎯 Um único objetivo da sessão (north star)</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Workshop bom não cobre tudo — cobre <strong class="text-emerald-400">uma coisa muito bem</strong>. A
+        regra: se você não consegue resumir o objetivo em 1 frase de 12 palavras, ainda há 2 workshops misturados
+        no mesmo evento. Escolha 1, mande o resto pro follow-up.
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">⭐</span> O teste do north star</h3>
+        <p class="text-neutral-300 mb-3">
+          Toda decisão de conteúdo passa por: "isso aproxima do north star ou diverge?". Se diverge, corta — ou
+          guarda pra parking lot. Inclui slides que você ama, demos legais, histórias engraçadas. Tudo que não
+          serve ao norte único é ruído.
+        </p>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Pra grupo misto (10-50, sala universal):</strong> "rascunhar comunicação escrita melhor com Claude"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Pra equipe de vendas:</strong> "responder leads em metade do tempo sem perder personalização"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Pra time de engenharia:</strong> "Claude Code no fluxo de PR review"</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Pra liderança:</strong> "decidir onde injetar IA no roadmap do trimestre"</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sessão multi-norte (típica)</h4>
+          <p class="text-sm text-neutral-300 italic mb-2">"Vamos ver Claude na escrita, no código, em análise de dados, em automação com Zapier, em pesquisa, em produtividade pessoal e em RH. E uma intro sobre custos."</p>
+          <p class="text-xs text-neutral-500">→ 3h depois, ninguém lembra de nada com profundidade.</p>
+        </div>
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Sessão de north star</h4>
+          <p class="text-sm text-neutral-300 italic mb-2">"Hoje, todo mundo sai com 1 Project bem configurado pra responder e-mail comercial, e 3 prompts salvos. Só isso. Outros casos vão pro follow-up."</p>
+          <p class="text-xs text-neutral-500">→ 3h depois, todo mundo tem um produto na mão.</p>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🚫</span> Regra de escopo para sala mista</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>Acima de 30 pessoas com perfis heterogêneos: <strong>máximo 2 casos de uso universais</strong> (comunicação escrita + resumo)</li>
+          <li>Casos por função (código, RH, jurídico) vão pra <strong>sessões complementares</strong> separadas</li>
+          <li>Tentar cobrir código + análise + redação no mesmo bloco pra todos = ninguém aprende com profundidade</li>
+          <li>Se o sponsor pediu "tudo num workshop só", reenquadre antes de aceitar: "te entrego norte único + 2 follow-ups"</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">1 frase</div><div class="text-sm text-neutral-400">12 palavras máx</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Verificável</div><div class="text-sm text-neutral-400">Você vê o produto</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Único</div><div class="text-sm text-neutral-400">Sem "e também"</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold mb-1">Realista</div><div class="text-sm text-neutral-400">Cabe no tempo</div></div>
+      </div>
+    </section>
+
+    <!-- TOPICO 6: ANUNCIAR O FECHAMENTO -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🏁 Anunciar o fechamento desde o início</h2>
+      </div>
+
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        A última peça do contrato: prometer o formato do fechamento na abertura. Quando a sala sabe que vai
+        sair com <strong class="text-emerald-400">3 próximos passos concretos</strong> (a estrutura 1-2-3) e
+        um e-mail de follow-up em 48h, o engajamento durante a sessão muda — passa de modo "escutar" pra modo
+        "vou aproveitar porque tem entrega no fim".
+      </p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎁</span> A promessa do 1-2-3</h3>
+        <p class="text-neutral-300 mb-3">
+          Estrutura validada que entrega 3 coisas escritas no fechamento. Anunciar isso no minuto 5 é o que
+          transforma a sala — ela já sabe o que vai levar pra casa.
+        </p>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-white">1 — Uma tarefa pra tentar amanhã.</strong> Tarefa real, específica, que a pessoa já faz hoje. "Vou usar o Claude pra rascunhar a pauta da segunda."</li>
+          <li><strong class="text-white">2 — Uma pessoa pra contar o que aprendeu.</strong> Forçar compartilhamento consolida aprendizado e gera propagação orgânica.</li>
+          <li><strong class="text-white">3 — Uma dúvida que ainda fica.</strong> Coletada pelo facilitador. Vira material pro FAQ, follow-up e workshops futuros.</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📜</span> Script de abertura que anuncia o fechamento</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto font-mono whitespace-pre-wrap"><code>"Antes de começar, deixa eu te dizer como a gente termina —
+porque o final molda como você usa as próximas 2 horas:
+
+ • Nos últimos 5 minutos, você vai escrever 3 coisas:
+   1) uma tarefa que vai tentar amanhã com Claude
+   2) uma pessoa pra quem você vai contar isso
+   3) uma dúvida que ainda fica
+
+ • Em 48h, você recebe um e-mail meu perguntando 'rolou?'
+ • Em 7 dias, mando 3 prompts a mais pro caso de vocês
+ • Em 30 dias, marco 20 min com quem quiser destravar algo
+
+Saca isso? Ninguém sai daqui pra esquecer. Vamos."</code></pre>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O contrato de 48h</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Compromisso figurativo de testar 1 caso de uso em 48h</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>E-mail D+2: "conseguiu testar? como foi?"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Taxa de resposta do D+2 = métrica de sucesso da sessão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quem responde D+2 vira candidato a AI Liaison interno</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Fechamento genérico</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Próximos passos: explorar mais a ferramenta"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Continuem praticando no dia a dia"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem follow-up agendado — sessão evapora em 48h</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Qualquer dúvida me chama" (ninguém chama)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📨</span> Variação por tamanho de sala</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong>Até 50:</strong> 1-2-3 escrito em post-it físico ou Google Form individual</li>
+          <li><strong>50-100:</strong> 1-2-3 em formulário compartilhado, resultados projetados ao vivo</li>
+          <li><strong>100+:</strong> 3 polls ao vivo (Mentimeter/Slido) com poll 1 (caso de uso por área), poll 2 (quando vai testar), poll 3 (maior dúvida)</li>
+          <li>Os polls projetados no final viram <strong>fechamento coletivo</strong> e dado de adoção real</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">
+          Anunciar o fechamento <strong>cedo</strong> também resolve resistência. Participante cético relaxa
+          quando ouve "no fim você escreve 3 coisas, não vou te pedir nada além disso". A previsibilidade
+          remove o medo de "será que vou ter que apresentar?" — que silencia metade da sala se não for
+          desativado no início.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Promessa de saída específica</strong><span class="text-neutral-400"> — verbo + objeto + autonomia, no primeiro slide e no fechamento</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Blocos de 20-25 min + microbreaks</strong><span class="text-neutral-400"> — cronômetro visível, ritmo anunciado, sala relaxa</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Live vs parking lot vs follow-up</strong><span class="text-neutral-400"> — 3 canais, cada pergunta tem destino, nada se perde</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Show-then-do em cada bloco</strong><span class="text-neutral-400"> — workshop &gt; palestra, notebook aberto desde o minuto 1</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">North star único da sessão</strong><span class="text-neutral-400"> — 1 frase de 12 palavras, se diverge corta ou parking lot</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Fechamento 1-2-3 anunciado no início</strong><span class="text-neutral-400"> — promessa do contrato de 48h, follow-up agendado</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo:</h3>
+          <p class="text-neutral-300">🚗 Trilha 2 — Três Produtos + Modelos Mentais (Chat / Cowork / Code, ciclo agêntico, hierarquia Haiku→Sonnet→Opus)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="../trilha2/index.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próxima Trilha →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Ensinando Cowork · Módulo 1.3 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+
+</body>
+</html>
