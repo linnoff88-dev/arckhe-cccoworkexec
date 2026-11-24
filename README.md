@@ -1,4 +1,4 @@
-﻿# Ensinando Claude Cowork
+# Ensinando Claude Cowork
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -8,7 +8,7 @@
 
 Playbook de campo para conduzir treinamentos corporativos de Claude Cowork em salas de 10 a 300 pessoas.
 
-**Site:** https://inematds.github.io/cccoworkexec/
+**Site:** https://linnoff88-dev.github.io/
 
 ## Estrutura
 
@@ -24,7 +24,7 @@ Playbook de campo para conduzir treinamentos corporativos de Claude Cowork em sa
 
 HTML estÃ¡tico com Tailwind CDN. Sem build step â€” abre direto no browser ou via GitHub Pages.
 
-PadrÃ£o visual: [INEMA.CLUB](https://inema.club).
+PadrÃ£o visual: [ARCKHÉ AI](https://ARCKHÉ AI).
 
 ## Ativar GitHub Pages
 
