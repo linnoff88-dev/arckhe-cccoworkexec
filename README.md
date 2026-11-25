@@ -12,23 +12,23 @@ Playbook de campo para conduzir treinamentos corporativos de Claude Cowork em sa
 
 ## Estrutura
 
-5 trilhas, 27 mÃ³dulos:
+5 trilhas, 27 mêÂ³dulos:
 
-- **T1 â€” Enquadramento e Autoridade** (3 mÃ³dulos)
-- **T2 â€” TrÃªs Produtos + Modelos Mentais** (6 mÃ³dulos)
-- **T3 â€” PrÃ©-produÃ§Ã£o de Demos** (6 mÃ³dulos)
-- **T4 â€” Tour Guiado da Interface** (9 mÃ³dulos)
-- **T5 â€” Fechamento e Continuidade** (6 mÃ³dulos)
+- **T1 ê¢â¬â Enquadramento e Autoridade** (3 mêÂ³dulos)
+- **T2 ê¢â¬â TrêÂªs Produtos + Modelos Mentais** (6 mêÂ³dulos)
+- **T3 ê¢â¬â PrêÂ©-produêÂ§êÂ£o de Demos** (6 mêÂ³dulos)
+- **T4 ê¢â¬â Tour Guiado da Interface** (9 mêÂ³dulos)
+- **T5 ê¢â¬â Fechamento e Continuidade** (6 mêÂ³dulos)
 
 ## Formato
 
-HTML estÃ¡tico com Tailwind CDN. Sem build step â€” abre direto no browser ou via GitHub Pages.
+HTML estêÂ¡tico com Tailwind CDN. Sem build step ê¢â¬â abre direto no browser ou via GitHub Pages.
 
-PadrÃ£o visual: [ARCKHÉ AI](https://ARCKHÉ AI).
+PadrêÂ£o visual: [ARCKHê AI](https://ARCKHê AI).
 
 ## Ativar GitHub Pages
 
-`Settings â†’ Pages â†’ Source: Deploy from a branch â†’ main â†’ / (root) â†’ Save`
+`Settings ê¢â â Pages ê¢â â Source: Deploy from a branch ê¢â â main ê¢â â / (root) ê¢â â Save`
 
 ---
 
